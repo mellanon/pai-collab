@@ -192,6 +192,11 @@ After completing steps 1–5, **render** (don't summarize) the following report 
     "How do I help with security and trust?" → Issues #16/#17/#18 + TRUST-MODEL.md
     "How does the lifecycle work?" → sops/README.md (the full sequence)
 
+  Request help:
+    "I need a reviewer for my work" → sops/requesting-collaboration.md
+    "I need domain expertise" → Label issue with expertise-needed + seeking-contributors
+    "I want a second opinion" → sops/requesting-collaboration.md
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 4 projects │ 2 contributors │ 12 open issues │ 5 seeking contributions
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

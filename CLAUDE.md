@@ -177,10 +177,27 @@ After any policy change, add a journal entry in the most relevant project explai
 
 ## Communication Protocol
 
-After processing a PR or completing significant work:
+### After completing significant work:
 - Draft a Discord summary for the maintainer to post
 - Include: what was done, what emerged, what follow-up was created
 - Keep it concise — the journal has the detail
+
+### When you need help (requesting collaboration):
+
+If you encounter a gap during work — need a security reviewer, domain expertise, a second opinion, or implementation help — follow `sops/requesting-collaboration.md`:
+
+1. **Label the issue** — Add `seeking-contributors` + specific need label (`parallel-review`, `competing-proposals`, or `expertise-needed`)
+2. **Scope the request** — Update the issue with: what you need, what the helper needs to know, expected deliverable
+3. **Draft a Discord broadcast** for the maintainer:
+   ```
+   🤝 Collaboration request on pai-collab
+
+   Need: [review / expertise / implementation / second opinion]
+   Issue: #N — [title]
+   Context: [1-2 sentences]
+   How to help: [specific action they can take]
+   ```
+4. **Track responses** — Monitor the issue, respond promptly to helpers, acknowledge contributions
 
 ---
 
