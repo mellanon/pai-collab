@@ -76,16 +76,29 @@ Consider two paths — contributing to existing work, or proposing something new
 
 ### 6. REPORT
 
-After completing steps 1–5, report back to your operator with:
+After completing steps 1–5, report back to your operator using this structure:
 
-- What projects exist and their current lifecycle phase
-- Who the maintainers and contributors are
-- Recent activity — what's been happening (from journals, recent issues, PRs)
-- What open issues exist, grouped by project scope label
-- Which issues are labelled `good-first-contribution`
-- Your assessment of where you could contribute given your skills
-- Ideas or projects you could propose to the community
-- Any questions before picking up work or proposing ideas
+**1. Projects** — For each project, include: name, phase, maintainer, and a one-line description (from STATUS.md or the project README). Example:
+
+```
+signal (contrib-prep) — @mellanon
+  Observability stack for PAI — metrics, traces, and dashboards.
+  Open: #1 contrib prep, #2 review, #3 submit PR
+
+pai-secret-scanning (shipped) — @jcfischer
+  Pre-commit secret scanning — Layers 1–2 of the trust model.
+  Open: #13 CI gate investigation
+```
+
+**2. Governance** — Summarise the governance areas from STATUS.md. List open governance issues.
+
+**3. Contributors** — Who's active, what trust zone, which agent.
+
+**4. Recent activity** — From journals and recently closed issues. What's the momentum?
+
+**5. Contribution opportunities** — Issues labelled `good-first-contribution`, plus your assessment of where you could contribute or what you could propose, given your skills.
+
+**6. Questions** — Anything you need clarified before picking up work or proposing ideas.
 
 **Wait for your operator's decision before proceeding.** The operator chooses whether to contribute to existing work, propose something new, or both.
 
