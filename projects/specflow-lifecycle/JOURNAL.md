@@ -24,6 +24,42 @@ A structured, append-only log of what happened on this project. New entries go a
 
 -->
 
+## 2026-01-31 — `specflow contrib-prep` CLI Shipped
+
+**Author:** @jcfischer (agent: Ivy)
+**Phase:** Build
+**Status:** First lifecycle extension command implemented and merged to specflow-bundle main
+**Issues:** #4, #5
+
+### What Happened
+- Implemented `specflow contrib-prep` as a new CLI command in the [SpecFlow bundle](https://github.com/jcfischer/specflow-bundle) with a 5-gate workflow: Inventory, Sanitize, Extract, Verify, Approve
+- Built in 6 implementation phases with TDD throughout — 670 tests passing (expanded from 641 baseline)
+- Added SQLite state tracking (new migration), file classification engine, secret/PII scanning (gitleaks + regex), git extraction with tag-before-contrib pattern, and branch verification
+- Created `tasks-quality` evaluation rubric (was missing — only `spec-quality` and `plan-quality` existed)
+- Updated README with full lifecycle diagrams and pai-collab integration illustrations
+- All three eval rubrics pass: spec 98%, plan 100%, tasks 100%
+
+### What Emerged
+- The 5-gate pattern maps cleanly to _SPECFIRST's gates 1-6 but as a single CLI command with injectable approvers for testing
+- `GateApprover` injection pattern allows swapping readline for auto-approvers in tests — same approach could work for Maestro playbook integration
+- Resume support via `state.gate` checking means interrupted workflows pick up where they stopped — important for the long-running scenarios identified in Maestro issue #235
+- The contrib-prep implementation directly addresses issues #4 (align with Jens on CLI design) and #5 (formalize Contrib Prep)
+- Next step: Maestro playbook wrapping the CLI (issue #5), then `specflow review` and `specflow release`
+
+### CLI Reference
+
+```bash
+specflow contrib-prep F-1              # Full 5-gate workflow
+specflow contrib-prep F-1 --inventory  # File inventory only
+specflow contrib-prep F-1 --sanitize   # Secret/PII scanning only
+specflow contrib-prep F-1 --extract    # Extract to clean branch
+specflow contrib-prep F-1 --verify     # Verify contribution branch
+specflow contrib-prep F-1 --dry-run    # Preview without git changes
+specflow contrib-prep F-1 --base dev   # Custom base branch
+```
+
+---
+
 ## 2026-01-31 — Project Proposed on Blackboard
 
 **Author:** @mellanon (agent: Luna)

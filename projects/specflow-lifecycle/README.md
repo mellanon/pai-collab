@@ -57,7 +57,7 @@ This is how Signal was built: 18 features, 708 tests, two parallel agents in sep
 |----------------|----------------------|--------|
 | **Specify + Build** | All 5 layers working together | ✅ Proven (Signal) |
 | **Harden** | Human-driven, no tooling | ✅ Works (manual) |
-| **Contrib Prep** | SOP exists, no playbook or CLI | 🏗️ Needs playbook |
+| **Contrib Prep** | **`specflow contrib-prep` CLI shipped** — 5-gate workflow with file inventory, secret scanning, extraction, verification. [670 tests](https://github.com/jcfischer/specflow-bundle). Maestro playbook still needed. | ✅ CLI shipped, 🏗️ Playbook needed |
 | **Review** | PR_Review playbook exists, needs extension | 🏗️ Needs lifecycle integration |
 | **Release** | SOP + _SPECFIRST skill exist, no playbook | 🏗️ Needs playbook |
 | **Evolve** | Open Spec template exists in SpecFlow bundle | 🏗️ Needs playbook |
@@ -101,7 +101,7 @@ The pipeline gets you to **working, tested code**. But between "working" and "sh
 
 | Phase | What Exists | What's Missing | Question It Answers |
 |-------|------------|----------------|-------------------|
-| **Contrib Prep** | _SPECFIRST gates 1-6, SOP, [pai-secret-scanning](https://github.com/jcfischer/pai-secret-scanning) (automated gate) | SpecFlow CLI command, Maestro playbook | "Is this safe to share?" |
+| **Contrib Prep** | **`specflow contrib-prep` CLI** (5-gate workflow, 670 tests), _SPECFIRST gates, SOP, [pai-secret-scanning](https://github.com/jcfischer/pai-secret-scanning) | Maestro playbook wrapping CLI | "Is this safe to share?" |
 | **Review** | PR_Review playbook, SOP | Lifecycle integration, four-layer strategy | "Is this good code?" |
 | **Release** | _SPECFIRST full workflow, SOP | SpecFlow CLI command, Maestro playbook | "Is this ready to merge?" |
 | **Evolve** | Open Spec template in SpecFlow bundle | SpecFlow CLI command, Maestro playbook | "How does this evolve?" |
@@ -148,10 +148,10 @@ The _SPECFIRST skill is a stepping stone — it will be **superseded** by an ext
 ┌──────────────────────────────────────────────────────────────────────┐
 │                     SPECFLOW BUNDLE (future)                         │
 │                                                                      │
-│  Today (build):          Extension (new):          Post-merge:       │
-│  specflow specify        specflow contrib-prep     specflow openspec │
-│  specflow plan           specflow review                             │
-│  specflow implement      specflow release                            │
+│  Today (build):          Shipped:                  Extension (new):  │
+│  specflow specify        specflow contrib-prep     specflow review   │
+│  specflow plan           (5 gates, 670 tests)      specflow release  │
+│  specflow implement                                specflow openspec │
 │                                                                      │
 │  SQLite state tracking across ALL phases                             │
 │  Quality gates, interview protocol, TDD — extended to full lifecycle │

@@ -12,7 +12,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 |---------|-----------|-------|-------------|
 | [signal](projects/signal/) | @mellanon | contrib-prep | Observability stack for PAI — metrics, traces, and dashboards |
 | [pai-secret-scanning](projects/pai-secret-scanning/) | @jcfischer | shipped | Pre-commit secret scanning — Layer 1–2 of the trust model |
-| [specflow-lifecycle](projects/specflow-lifecycle/) | @mellanon | building | Extending SpecFlow bundle with full lifecycle playbooks |
+| [specflow-lifecycle](projects/specflow-lifecycle/) | @mellanon, @jcfischer | building | Extending SpecFlow bundle with full lifecycle playbooks. **Contrib Prep CLI shipped** ([670 tests](https://github.com/jcfischer/specflow-bundle)). |
 | [skill-enforcer](projects/skill-enforcer/) | @jcfischer | shipped | Validates skill structure against PAI conventions |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
