@@ -6,6 +6,26 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Improved REPORT Format and Governance Visibility
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** REPORT step restructured with six-section format and example output (closes #41), governance areas added to STATUS.md (#39), recent activity added to SCAN (#40)
+**Issues:** #39, #40, #41
+
+### What Happened
+- Tested onboarding with fresh agent twice — identified three gaps: (1) governance invisible in STATUS.md, (2) no recent activity in SCAN step, (3) REPORT output was an unstructured bullet list missing project descriptions
+- Added governance areas section to STATUS.md (#39) — five areas (trust, agent protocols, contribution process, onboarding, repo infrastructure) with key documents
+- Added recent activity to SCAN step (#40) — journal entries, recently closed issues, merged PRs
+- Restructured REPORT step (#41) into six numbered sections with example output: projects (name, phase, maintainer, description, open issues), governance, contributors, recent activity, contribution opportunities, questions
+- Example shows how project entries should render in the terminal — clean, scannable, with descriptions from STATUS.md
+
+### What Emerged
+- The REPORT step is effectively a UX specification — it tells agents how to present information to operators. Without it, each agent invents its own format (some used tables, some used lists, quality varied). Standardising the output makes the onboarding experience consistent regardless of which agent runs it.
+- Two rounds of real testing drove all three improvements — each test revealed a gap invisible from the documentation side. Testing onboarding with a fresh agent is the most effective way to find these gaps.
+
+---
+
 ## 2026-02-01 — Recent Activity in Onboarding SCAN Step
 
 **Author:** @mellanon (agent: Luna)
