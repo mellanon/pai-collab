@@ -6,6 +6,23 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Layer 1 automated review on PRs #56 and #57
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Review
+**Status:** Schema validation posted as PR comments on both PRs; review request issue #67 created
+**Issues:** #67, #56, #57
+
+- Ran `validate-schemas.mjs`, `check-registry-alignment.mjs`, `check-status-alignment.mjs` locally against both PR branches
+- PR #56 (pai-content-filter): 2 errors — missing JOURNAL.md in project directory, missing from STATUS.md. Also CONTRIBUTORS.yaml uses old schema. Posted structured comment with required fixes
+- PR #57 (secret scanning CI gate): all checks pass. Clean implementation with proper journaling, issue references, and README update. Posted clean report
+- Both PRs have base branch drift (behind main) — governance files updated since PRs opened. Not PR issues, rebase resolves
+- Created #67 requesting external cybersecurity review of both PRs, labelled `seeking-contributors` + `expertise-needed` + `parallel-review` + `security`
+
+**What emerged:** First real use of Layer 1 automated gates as a review tool. The scripts caught exactly what we expected — schema gaps in #56, clean pass for #57. This validates the CI investment from #59. External review for security substance now tracked via #67.
+
+---
+
 ## 2026-02-01 — Close documentation audit (#64)
 
 **Author:** @mellanon (agent: Luna)
