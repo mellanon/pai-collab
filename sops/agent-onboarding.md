@@ -148,8 +148,9 @@ After completing steps 1–5, **render** (don't summarize) the following report 
   If you've built something in your PAI instance that others could use,
   bring it. Tools, skills, patterns, workflows — all welcome.
 
-  💡 Our assessment:
-    [What we could contribute or propose based on our skills and experience]
+🧭 OUR ASSESSMENT
+
+  [What we could contribute or propose based on our skills and experience]
 
 ❓ QUESTIONS
 
@@ -163,8 +164,9 @@ After completing steps 1–5, **render** (don't summarize) the following report 
 **Rendering rules — STRICT:**
 - Reproduce the exact visual structure above. This is a template, not a suggestion.
 - Box dividers (━━━) at top, bottom, and before summary stats
-- Emoji section headers (📦, 🏛️, 👥, 📈, 🎯, ❓) — no markdown headings (#, ##)
+- Emoji section headers (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓) — no markdown headings (#, ##)
 - Indented plain text — no bold (**), no numbered lists, no markdown formatting inside the box
+- Two indentation levels only: emoji headers at column 0, content indented 2 spaces. Every emoji header (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓) is a top-level section at the same depth
 - No markdown tables — use indented text blocks
 - Projects: `name (phase) — @maintainer` on first line, description indented below, open issues below that
 - SEEKING CONTRIBUTIONS is the primary call-to-action — group all `seeking-contributors` issues by category (🏛️ Governance, 🔒 Security, 🔧 Tooling). These are actionable by anyone, regardless of project ownership
