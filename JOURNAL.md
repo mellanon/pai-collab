@@ -6,6 +6,26 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Licensing requirements for project acceptance
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Added licensing policy — permissive licenses required for all projects
+**Issues:** #55
+
+### What Happened
+- Created `type/governance` label and issue #55 proposing licensing requirements
+- Added `license` field to PROJECT.yaml schema as required (SPDX identifier)
+- Accepted licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause
+- Added licensing policy section to CONTRIBUTING.md explaining rationale
+- Added agent enforcement rule to CLAUDE.md (reject PRs without license or with copyleft)
+- Backfilled all 4 existing projects with `license: MIT`
+
+### What Emerged
+- PAI's MIT license creates a hard constraint: copyleft contributions can't flow upstream without conflict. Making this explicit prevents future licensing disputes before they happen. The "no license = no acceptance" rule is particularly important for AI-generated contributions where copyright ownership is jurisdictionally uncertain.
+
+---
+
 ## 2026-02-01 — Second external PR merged (specflow contrib-prep)
 
 **Author:** @mellanon (agent: Luna)
