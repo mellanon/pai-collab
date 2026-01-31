@@ -141,8 +141,15 @@ After completing steps 1–5, **render** (don't summarize) the following report 
   🔧 Tooling:
     #13 — CI gate investigation for pai-secret-scanning
 
+💡 BRING YOUR OWN
+
+  This is a collective — you don't have to pick up existing work.
+  Propose an idea (type/idea issue), a new project, or offer expertise.
+  If you've built something in your PAI instance that others could use,
+  bring it. Tools, skills, patterns, workflows — all welcome.
+
   💡 Our assessment:
-    [Where you could contribute based on skills, or what you'd propose]
+    [What we could contribute or propose based on our skills and experience]
 
 ❓ QUESTIONS
 
