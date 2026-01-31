@@ -6,6 +6,25 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Issue Title Prefixes and Journal Schema Update
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Issue title convention documented, all 37 issues renamed, journal schema updated with Issues field
+**Issues:** #37, #38
+
+### What Happened
+- Added required `**Issues:**` field to JOURNAL.md schema in CONTRIBUTING.md (#37) — lists every issue touched by an entry, enabling reconciliation by cross-referencing closed issues against journal entries
+- Backfilled all 13 pai-secret-scanning journal entries and 1 governance journal entry with issue references
+- Added issue title prefix convention to CLAUDE.md (#38) — titles use `<scope>: <subject>` format matching project directory names (e.g., `signal:`, `governance:`, `pai-secret-scanning:`)
+- Renamed all 37 existing issues with appropriate prefixes — issues now group naturally when sorted by name
+
+### What Emerged
+- The prefix convention complements labels: labels enable filtering (show me all signal issues), prefixes enable scanning (visually group related issues in a list). Both serve discoverability but at different interaction points.
+- The Issues field in journal entries creates a reconciliation path — if an issue is closed but doesn't appear in any journal's Issues line, journaling was missed. This is the enforcement mechanism for the journaling protocol.
+
+---
+
 ## 2026-02-01 — Governance Journal, Collective Messaging, and Process Catch-Up
 
 **Author:** @mellanon (agent: Luna)
