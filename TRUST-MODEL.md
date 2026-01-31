@@ -74,6 +74,8 @@ All external content loading events are logged: what was loaded, from whom, what
 
 pai-collab uses three trust zones. Every contributor starts in the untrusted zone. Promotion is always explicit and manual — never automatic.
 
+Trust zones control **authority** — what you can decide — not **immunity** from the defense layers. Even maintainers' contributions pass through Layers 1–3. Nobody is exempt from scanning.
+
 ### Untrusted (Default)
 
 All new contributors. All first-time PRs. Content from untrusted contributors triggers:
@@ -111,6 +113,26 @@ Maintainers can:
 Maintainer status is granted by existing maintainers. At current scale, maintainers are the repository owners. As the collaboration grows, maintainer promotion should require approval from at least two existing maintainers.
 
 Maintainers are not exempt from the defense layers. Their contributions still pass through Layers 1–3. The difference is authority over the collaboration process, not immunity from its gates.
+
+### Two-Level Scoping
+
+Trust operates at two levels:
+
+**Repo-level** — A contributor's overall trust zone in pai-collab, recorded in `CONTRIBUTORS.yaml` at the repository root. This determines baseline content trust and governance authority across the entire shared blackboard.
+
+**Project-level** — A contributor can be designated as maintainer of a specific project in that project's `PROJECT.yaml`. This grants governance authority over that project (merge project PRs, manage project issues, guide project direction) without elevating repo-level trust.
+
+A contributor can hold different trust levels at each scope:
+
+| Contributor | Repo-Level | Project-Level |
+|------------|------------|---------------|
+| @mellanon | Maintainer | Maintainer of Signal, specflow-lifecycle |
+| @jcfischer | Trusted | Maintainer of pai-secret-scanning |
+| @newcontributor | Untrusted | — |
+
+This means @jcfischer governs pai-secret-scanning — merging changes, managing issues, guiding direction — but cannot promote repo-level contributors, modify the trust model, or merge changes to other projects. Their project-level authority is scoped to what they built and maintain.
+
+Repo-level maintainers retain override authority across all projects. A repo maintainer can intervene in any project when security, process compliance, or cross-project concerns require it.
 
 ---
 
