@@ -1,6 +1,7 @@
 name: PAI Signal
 maintainer: mellanon
 status: contrib-prep
+created: 2026-01-31
 type: skill
 upstream: danielmiessler/PAI
 fork: mellanon/PAI

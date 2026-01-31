@@ -1,6 +1,7 @@
 name: pai-secret-scanning
 maintainer: jcfischer
 status: shipped
+created: 2026-01-31
 type: infrastructure
 source:
   repo: jcfischer/pai-secret-scanning

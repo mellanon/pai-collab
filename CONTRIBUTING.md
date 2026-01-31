@@ -79,6 +79,7 @@ Every project directory must include a `PROJECT.yaml`. This is the machine-reada
 | `name` | string | Project display name |
 | `maintainer` | string | GitHub handle of the project maintainer |
 | `status` | string | One of: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving` |
+| `created` | date | Date the project was registered (YYYY-MM-DD). Used for staleness tracking and archival decisions |
 | `contributors` | map | Project-level trust zones (see [TRUST-MODEL.md](TRUST-MODEL.md) → Two-Level Scoping) |
 
 ### Optional Fields
@@ -105,6 +106,7 @@ Every project directory must include a `PROJECT.yaml`. This is the machine-reada
 name: PAI Signal
 maintainer: mellanon
 status: contrib-prep
+created: 2026-01-31
 type: skill
 upstream: danielmiessler/PAI
 fork: mellanon/PAI
@@ -130,6 +132,7 @@ contributors:
 name: pai-secret-scanning
 maintainer: jcfischer
 status: shipped
+created: 2026-01-31
 type: infrastructure
 source:
   repo: jcfischer/pai-secret-scanning
@@ -147,6 +150,7 @@ contributors:
 name: SpecFlow Lifecycle Extension
 maintainer: mellanon
 status: building
+created: 2026-01-31
 type: bundle
 upstream: jcfischer/specflow-bundle
 fork: mellanon/specflow-bundle
