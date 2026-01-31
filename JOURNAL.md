@@ -6,6 +6,24 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Governance Areas in STATUS.md
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** STATUS.md updated with governance section (closes #39)
+**Issues:** #39
+
+### What Happened
+- Tested onboarding with a fresh agent — it found projects but missed the governance layer (trust model, agent protocols, SOPs, repo infrastructure)
+- Added a Governance section to STATUS.md mapping five areas to their key documents, with `gh issue list --label governance` command for dynamic issue discovery
+- Static content only — no issue references that go stale, just pointers to documents and areas
+
+### What Emerged
+- STATUS.md was project-biased — governance work is half the blackboard's value but was invisible to arriving agents. The five-area table gives governance equal visibility with projects.
+- The pattern holds: static documents describe what exists, `gh` queries show what's open. STATUS.md is the map, the issue tracker is the live data.
+
+---
+
 ## 2026-02-01 — Issue Title Prefixes and Journal Schema Update
 
 **Author:** @mellanon (agent: Luna)
