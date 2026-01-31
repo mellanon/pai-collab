@@ -6,6 +6,26 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-01-31 — Agent Onboarding and Label Taxonomy
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** CONTRIBUTING.md, CLAUDE.md updated; issue #24 created; all issues labelled
+
+### What Happened
+- Added "Start Here" reading order to CONTRIBUTING.md — a six-step onboarding path for new agents or contributors arriving at pai-collab for the first time
+- Documented label taxonomy in CLAUDE.md: scope labels (`project/*`, `governance`), type labels, priority labels, cross-cutting labels (`good-first-contribution`, `security`, `trust`, `upstream-contribution`)
+- Created `good-first-contribution` label for issues that are accessible entry points without requiring deep context
+- Created issue #24: external review of trust model and governance framework — explicitly inviting security specialists from the UL community to challenge the model's feasibility
+- Applied `governance` or `project/*` labels to all issues #13–#24, consolidating the duplicate P1/P2/P3/P4 priority system into the existing P1-high/P2-medium/P3-low system
+
+### What Emerged
+- The "agent front door" problem: CLAUDE.md tells agents how to behave, but there was no discovery path from "I just cloned this repo" to "here's what I can work on." The Start Here table solves this.
+- Issue labels are the bridge between the repo structure and the issue tracker — an agent can now filter by `project/pai-secret-scanning` to see all related work, or by `governance` for system-level policy issues
+- The security review issue (#24) is the first `good-first-contribution` — scoped, self-contained, and explicitly inviting outside perspectives on a framework built by one operator
+
+---
+
 ## 2026-01-31 — CLAUDE.md Artifact Schema Enforcement
 
 **Author:** @mellanon (agent: Luna)
