@@ -6,6 +6,25 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Documentation audit + CI validation coverage expansion
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** 25 audit findings identified, major issues fixed, CI coverage expanded from 6 to 12 CLAUDE.md rules
+**Issues:** #59
+
+### What Happened
+- Ran comprehensive audit across all 20 documentation files — found 25 issues (6 major, 18 minor, 1 trust audit gap)
+- Fixed CONTRIBUTORS.yaml schema: standardized to zone/since/promoted_by, removed non-standard fields
+- Added `type/governance` to CLAUDE.md label taxonomy
+- Enhanced CI: journal phase validation, project journal validation, CONTRIBUTORS.yaml schema, PR/commit issue reference checks
+- Tested locally: phase validation correctly flagged pre-standard entries as warnings
+
+### What Emerged
+- CI now enforces 12 of the CLAUDE.md rules automatically (was 6). Remaining rules (trust zone checks, SOP structure, scope label lifecycle) require runtime context that would add complexity without proportional value. Current coverage catches the most common PR issues.
+
+---
+
 ## 2026-02-01 — Operationalize requesting collaboration + journal enforcement in CI
 
 **Author:** @mellanon (agent: Luna)
