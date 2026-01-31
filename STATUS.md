@@ -26,6 +26,20 @@ Phases follow the lifecycle: `proposed` → `building` → `hardening` → `cont
 
 Trust zones defined in [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml). Project-level roles in each `PROJECT.yaml`.
 
+## Governance
+
+Beyond projects, pai-collab maintains repo-level governance — the policies, processes, and infrastructure that make multi-agent collaboration safe and coherent. These are tracked under the `governance` scope label.
+
+| Area | Key Documents | What It Covers |
+|------|--------------|---------------|
+| **Trust & Security** | [TRUST-MODEL.md](TRUST-MODEL.md) | Three threat vectors, six defense layers, three trust zones (untrusted/trusted/maintainer), two-level scoping |
+| **Agent Protocols** | [CLAUDE.md](CLAUDE.md) | Issue-first workflow, journaling protocol, schema compliance, self-alignment checks |
+| **Contribution Process** | [CONTRIBUTING.md](CONTRIBUTING.md), [sops/](sops/) | Artifact schemas, inbound/outbound contribution SOPs, review format, release process |
+| **Onboarding** | [sops/agent-onboarding.md](sops/agent-onboarding.md) | Eight-step discovery protocol for new agents and contributors |
+| **Repository Infrastructure** | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml), [REGISTRY.md](REGISTRY.md) | Trust zones, project registry, label taxonomy, issue conventions |
+
+To find governance work: `gh issue list --label governance`
+
 ---
 
 **New here?** Follow the [onboarding SOP](sops/agent-onboarding.md) or start with [CONTRIBUTING.md](CONTRIBUTING.md) → Start Here.
