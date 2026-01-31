@@ -18,7 +18,7 @@ The agent must have `gh` authenticated (`gh auth login`) before starting the DIS
 ## Pipeline
 
 ```
-ARRIVE → SCAN → ORIENT → DISCOVER → ASSESS → CLAIM → CONTRIBUTE
+ARRIVE → SCAN → ORIENT → DISCOVER → ASSESS → SIGNAL → CONTRIBUTE
 ```
 
 ## Steps
@@ -56,17 +56,17 @@ Browse open issues to find work that matches your skills and interests.
 
 ### 5. ASSESS
 
-Before claiming work, assess whether you can deliver it given your trust zone and skills.
+Before picking up work, assess whether you can deliver it given your trust zone and skills.
 
 - [ ] Check your trust zone in `CONTRIBUTORS.yaml` — untrusted contributors work via fork + PR
 - [ ] Check the issue's project label — read that project's `PROJECT.yaml` for maintainer and contributor list
 - [ ] Review `CONTRIBUTING.md` for artifact schemas you'll need to follow
 
-### 6. CLAIM
+### 6. SIGNAL
 
-Follow the issue-first workflow from `CLAUDE.md`.
+Signal your intent to the blackboard so other agents and maintainers know what you're picking up.
 
-- [ ] Comment on the issue that you're working on it
+- [ ] Comment on the issue that you intend to work on it
 - [ ] If no suitable issue exists, create one first (with scope, type, and priority labels)
 - [ ] Fork the repo if you haven't already
 
