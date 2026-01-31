@@ -39,6 +39,7 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 | ∞ | Archive | [Project Archival](project-archival.md) | "How do we retire inactive projects?" | Maintainer or owner decides a project is stale |
 | ∞ | Parallel Reviews | [Parallel Reviews](parallel-reviews.md) | "How do we get multiple perspectives?" | Inviting independent reviews on security, architecture, or governance topics |
 | ∞ | Competing Proposals | [Competing Proposals](competing-proposals.md) | "Which approach should we take?" | Multiple valid solutions exist for the same problem |
+| ∞ | Requesting Collaboration | [Requesting Collaboration](requesting-collaboration.md) | "I need help — how do I ask?" | Active contributor needs review, expertise, or a second opinion |
 
 ---
 

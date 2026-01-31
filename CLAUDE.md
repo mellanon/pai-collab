@@ -108,7 +108,7 @@ Every issue must have labels from these categories:
 | **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling` | What kind of work |
 | **Priority** | `P1-high`, `P2-medium`, `P3-low` | When to do it |
 | **Cross-cutting** | `security`, `trust`, `upstream-contribution`, `seeking-contributors` | Functional tags |
-| **Collaboration** | `parallel-review`, `competing-proposals` | Multiple contributors sought on the same topic |
+| **Collaboration** | `parallel-review`, `competing-proposals`, `expertise-needed` | Multiple contributors sought on the same topic |
 
 - Every issue needs at least one **scope** label — this links the issue to the repo structure
 - `governance` is for repo-level policy, trust model, SOPs, and process — not tied to a single project
@@ -153,6 +153,7 @@ Follow the standard operating procedures in `sops/`:
 | Processing an external PR | `sops/inbound-contribution-protocol.md` |
 | Inviting multiple independent reviews | `sops/parallel-reviews.md` |
 | Inviting competing approaches | `sops/competing-proposals.md` |
+| Requesting help from community | `sops/requesting-collaboration.md` |
 | Preparing code to share | `sops/contribution-protocol.md` |
 | Reviewing contributions | `sops/review-format.md` |
 | Building features | `sops/specflow-development-pipeline.md` |
