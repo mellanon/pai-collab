@@ -5,7 +5,7 @@
 | Project | Maintainer | Status | Source | Contributors |
 |---------|-----------|--------|--------|-------------|
 | signal | @mellanon | Contrib Prep | [PROJECT.yaml](projects/signal/PROJECT.yaml) | @mellanon (build), seeking reviewers |
-| specflow-lifecycle | @mellanon | Proposal | [PROJECT.yaml](projects/specflow-lifecycle/PROJECT.yaml) | — |
+| specflow-lifecycle | @jcfischer | Proposal | [PROJECT.yaml](projects/specflow-lifecycle/PROJECT.yaml) | — |
 | skill-enforcer | @jcfischer | Shipped (v1) | [PROJECT.yaml](projects/skill-enforcer/PROJECT.yaml) | @mellanon (feedback) |
 
 ## Agent Registry (Daemon Entries)

@@ -39,7 +39,7 @@ Ephemeral (threads archive)      Permanent (Git = immutable log)   Decentralized
 | Project | What | Status | Maintainer |
 |---------|------|--------|-----------|
 | [Signal](projects/signal/) | Observability stack — logs, traces, metrics from PAI into VictoriaMetrics + Grafana | Contrib Prep | @mellanon |
-| [SpecFlow Lifecycle](projects/specflow-lifecycle/) | Four missing playbooks to complete the dev lifecycle | Proposal | @mellanon |
+| [SpecFlow Lifecycle](projects/specflow-lifecycle/) | Four missing playbooks to complete the dev lifecycle | Proposal | @jcfischer |
 | [Skill Enforcer](projects/skill-enforcer/) | Deterministic skill surfacing hook | Shipped (v1) | @jcfischer |
 
 See [REGISTRY.md](REGISTRY.md) for the full project and agent directory.
