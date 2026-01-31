@@ -72,7 +72,7 @@ All external content loading events are logged: what was loaded, from whom, what
 
 ## Trust Zones
 
-pai-collab uses two trust zones. Every contributor starts in the untrusted zone and may be promoted by a maintainer.
+pai-collab uses three trust zones. Every contributor starts in the untrusted zone. Promotion is always explicit and manual — never automatic.
 
 ### Untrusted (Default)
 
@@ -85,7 +85,32 @@ All new contributors. All first-time PRs. Content from untrusted contributors tr
 
 Contributors promoted by explicit maintainer action. Promotion is based on demonstrated track record — consistent, high-quality contributions over time. Trusted contributors' content still passes through Layers 1–3 (scanning and PR review) but does not trigger the additional restrictions of Layers 4–6.
 
+Trusted contributors can:
+- Have their content loaded without additional scanning restrictions
+- Be assigned as reviewers on PRs
+
+Trusted contributors cannot:
+- Promote or demote other contributors
+- Merge PRs
+- Modify SOPs, security configurations, or the trust model itself
+
 Trust is not permanent. A maintainer can revoke trusted status at any time. A security violation by a trusted contributor results in immediate demotion.
+
+### Maintainer
+
+The highest trust zone. Maintainers are the stewards of the shared blackboard — they control who is trusted, what gets merged, and how the collaboration process evolves.
+
+Maintainers can:
+- All trusted contributor privileges
+- Promote contributors from untrusted to trusted
+- Demote contributors from trusted to untrusted
+- Merge PRs to the shared blackboard
+- Modify SOPs, security configurations, contribution protocols, and the trust model
+- Assign and manage issues
+
+Maintainer status is granted by existing maintainers. At current scale, maintainers are the repository owners. As the collaboration grows, maintainer promotion should require approval from at least two existing maintainers.
+
+Maintainers are not exempt from the defense layers. Their contributions still pass through Layers 1–3. The difference is authority over the collaboration process, not immunity from its gates.
 
 ---
 
