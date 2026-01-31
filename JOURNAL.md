@@ -6,6 +6,24 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Automated schema enforcement, review SOP update, requesting collaboration pattern
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Three governance issues actioned — automated PR checks, review SOP modernized, call-for-help pattern documented
+**Issues:** #59, #60, #61, #58
+
+### What Happened
+- **#59 — GitHub Actions schema enforcement.** Created `.github/workflows/pr-schema-check.yml` with two validation scripts: `validate-schemas.mjs` (PROJECT.yaml required fields, license, status, contributors schema, JOURNAL.md format) and `check-registry-alignment.mjs` (REGISTRY.md ↔ PROJECT.yaml status match). Tested locally — all 4 projects pass. This implements Layer 1 (automated gates) from the review format SOP.
+- **#60 — Review format SOP update.** Major rewrite: added SCHEMA as first pipeline step, updated Layer 1 from "available" to "operational", added community reviewer pathway with trust-building framing, added proposal review type (lightweight for ideas/competing-proposals), added schema compliance and claim verification to review template, cross-referenced parallel reviews/competing proposals/inbound SOPs.
+- **#61 — Requesting collaboration SOP.** New SOP with 6-step pipeline (IDENTIFY → SIGNAL → SCOPE → BROADCAST → TRACK → ACKNOWLEDGE). Covers how active contributors call for help: review, expertise, implementation, second opinions. Includes Discord broadcast template and worked example from PR #56. Created `expertise-needed` label.
+- **#58 closed** — Review capacity work addressed through onboarding HOW TO CONTRIBUTE section, parallel reviews SOP, and requesting collaboration SOP. Follow-ups tracked in #59, #60, #61.
+
+### What Emerged
+- The review format SOP was the most outdated document — written before parallel reviews, competing proposals, community reviewers, and automated checks existed. Updating it revealed that the blackboard's review infrastructure has matured significantly: Layer 1 is now automated, Layer 3 has a documented community pathway, and there's a formal mechanism for requesting help. The gap is now Layer 2 (Maestro playbook) running consistently on incoming PRs.
+
+---
+
 ## 2026-02-01 — Parallel collaboration SOPs and review capacity
 
 **Author:** @mellanon (agent: Luna)
