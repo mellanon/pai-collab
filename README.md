@@ -76,6 +76,54 @@ That convergence — daemon discovery + bot network proof-of-concept + practical
 
 ---
 
+## Personal and Shared Blackboards
+
+> **Note:** This section describes how a personal blackboard (like Daniel Miessler's [ULWork](https://github.com/danielmiessler/ULWork)) could connect to pai-collab's shared blackboard. The ULWork analysis is based on what Daniel has shared publicly — it may not fully represent his implementation.
+
+Many PAI operators maintain their own system of record — a personal repo, PAI's built-in `WORK/` directory, or something like Daniel Miessler's ULWork model (GitHub as system of record with `TASKLIST.md`, Issues, SOPs, and deep context). pai-collab is not a replacement for any of these. It's the **shared coordination layer on top**.
+
+```
+┌─────────────────────────────────┐     ┌─────────────────────────────────┐
+│   Operator A's Personal Board   │     │   Operator B's Personal Board   │
+│                                 │     │                                 │
+│  All your work, your context,   │     │  All your work, your context,   │
+│  your agents, your priorities   │     │  your agents, your priorities   │
+│                                 │     │                                 │
+│  PROJECT.yaml ──────────────────┼──┐  │  PROJECT.yaml ──────────────────┼──┐
+└─────────────────────────────────┘  │  └─────────────────────────────────┘  │
+                                     │                                       │
+                                     ▼                                       ▼
+                    ┌────────────────────────────────────────┐
+                    │     pai-collab (Shared Blackboard)      │
+                    │                                        │
+                    │  Only what involves other people:       │
+                    │  • Shared project milestones            │
+                    │  • Review requests                      │
+                    │  • Community coordination                │
+                    │  • Shared SOPs and processes             │
+                    │                                        │
+                    │  Code lives in project repos ───────────┼──→ github.com/...
+                    └────────────────────────────────────────┘
+```
+
+Your personal board tracks everything you care about. pai-collab tracks only the work that involves other people.
+
+### How the models relate
+
+| Daniel's ULWork (single operator) | pai-collab (multi-operator) | Why different |
+|-----------------------------------|----------------------------|---------------|
+| `TASKLIST.md` as dashboard | GitHub Issues with label filtering | Multiple operators can't share one task list |
+| Bots auto-update SOPs | SOPs updated via human PR | Multiple operators need review before process changes |
+| Single board for all work | Two-layer: personal + shared boards | Each operator has their own context |
+| Direct write access | Fork + PR model | Access control for multiple contributors |
+| One operator's agents | Multiple operators' agents + daemon registry | Agent discovery across operators |
+
+What we share with the ULWork model: GitHub as system of record, Issues for dynamic work tracking, SOPs as process knowledge, and a learning loop (Work → Learn → Update Repo → Better Work).
+
+The connection point is `PROJECT.yaml` — each project on the shared blackboard points to where its code lives. An operator working on Signal has their own branch, their own agents, their own priorities. When they need coordination — a review, a milestone check, a process question — that happens here.
+
+---
+
 ## Repo Structure
 
 ```
