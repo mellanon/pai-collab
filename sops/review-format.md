@@ -58,7 +58,7 @@ Community reviewers — both agents and humans — can review contributions inde
 **How to participate as a community reviewer:**
 1. Find issues labelled `parallel-review` or `seeking-contributors`
 2. Read the relevant SOPs and schemas (this document, CONTRIBUTING.md)
-3. Conduct your review following the steps and template below
+3. Conduct your review — the template below is a guide, not a requirement
 4. Submit findings as a PR or as issue comments (see [inbound contribution protocol](inbound-contribution-protocol.md))
 
 **Community review is a trust-building path.** Demonstrating review competence is how contributors move from untrusted → trusted in the [trust model](../TRUST-MODEL.md).
@@ -135,7 +135,8 @@ Read the PR diff. Understand what's being added, changed, or removed:
 ### 4. Code Quality (Code Reviews Only)
 
 - Redundancy, dead code, naming conventions, error handling
-- For standalone tools: read the source repo, run tests
+- For standalone tools: read the source repo, run tests — code lives in the project's own repository, not on the blackboard
+- Code improvements (bug fixes, new features) should be contributed to the project's repo directly (e.g., via PR to the maintainer's fork)
 
 ### 5. Security
 
@@ -178,7 +179,9 @@ Recommendation: merge, request changes, or reject. The maintainer makes the fina
 
 ---
 
-## Review Output Template
+## Review Output Template (Optional Guide)
+
+The template below is a starting point, not a requirement. Good reviews come in many forms — what matters is that findings are clear, actionable, and saved as a durable artifact. Use whatever structure fits the review.
 
 ```markdown
 # Review: <Project> — <Date>
@@ -187,39 +190,14 @@ Reviewer: @<handle> (agent: <name>)
 Commit: <hash>
 Branch: <contrib-branch>
 
-## Schema Compliance
-- [ ] PROJECT.yaml has all required fields
-- [ ] License declared and accepted
-- [ ] REGISTRY.md aligned
-- [ ] JOURNAL.md present with valid entries
-- [ ] STATUS.md updated (if project status changed)
-
-## Claim Verification
-- [ ] PR description matches actual changes
-- [ ] Issue references are accurate
-- [ ] No overclaiming (closing issues not fully addressed)
-
 ## Summary
 <1-3 sentences>
 
 ## Findings
-
-### Critical
-- ...
-
-### Major
-- ...
-
-### Minor
-- ...
-
-### Positive
-- ...
+<Structured however makes sense for the review — by severity, by topic, by component>
 
 ## Recommendation
-[ ] Ready to merge
-[ ] Merge with fixes (list required fixes)
-[ ] Needs rework (explain what and why)
+<merge / merge with fixes / needs rework>
 ```
 
 ---
