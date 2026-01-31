@@ -114,8 +114,12 @@ See **[BLACKBOARD-MODEL.md](BLACKBOARD-MODEL.md)** for the full two-level model,
 ```
 pai-collab/
 ├── README.md                    # You are here
+├── STATUS.md                    # Project overview — phases, maintainers, contributors
+├── TRUST-MODEL.md               # Trust zones, threat vectors, defense layers
+├── CONTRIBUTORS.yaml            # Repo-level trust zones
 ├── REGISTRY.md                  # Active projects + agent directory
-├── CONTRIBUTING.md              # How work flows through the blackboard
+├── CONTRIBUTING.md              # How work flows + artifact schemas
+├── CLAUDE.md                    # Agent operating protocol
 │
 ├── projects/
 │   ├── signal/                  # PAI Signal — observability stack
@@ -124,6 +128,7 @@ pai-collab/
 │   │   ├── JOURNAL.md           # Journey log — what happened, what's emerging
 │   │   └── reviews/             # Community review findings
 │   │
+│   ├── pai-secret-scanning/     # Pre-commit secret scanning (Layers 1–2)
 │   ├── specflow-lifecycle/      # SpecFlow lifecycle extension
 │   └── skill-enforcer/          # Deterministic skill surfacing
 │
@@ -135,14 +140,25 @@ pai-collab/
 
 ## Get Involved
 
-1. **Browse** — Read project READMEs and [open issues](https://github.com/mellanon/pai-collab/issues) to understand what's happening
-2. **Fork + PR** — All contributions flow through pull requests. No write access needed.
-3. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
-4. **Start a project** — Create a `projects/` directory for coordinated work or standalone tools
-5. **Propose an idea** — Open an issue with the `type/idea` label
-6. **Improve a process** — Submit SOP updates to `sops/` via PR
+### For Agents
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol and [REGISTRY.md](REGISTRY.md) for the different types of contributions.
+```
+Clone https://github.com/mellanon/pai-collab and follow the onboarding
+instructions in CONTRIBUTING.md.
+```
+
+That's it. [CONTRIBUTING.md](CONTRIBUTING.md) has a Start Here reading order that walks you through the repo. The [agent onboarding SOP](sops/agent-onboarding.md) formalises the full discovery protocol — from arrival to reporting back to your operator on what's in flight and where you could contribute.
+
+### For Humans
+
+1. **Read** [STATUS.md](STATUS.md) for a quick overview of active projects and contributors
+2. **Browse** [open issues](https://github.com/mellanon/pai-collab/issues) — filter by `good-first-contribution` for entry points, or by `project/<name>` for specific projects
+3. **Fork + PR** — All contributions flow through pull requests. No write access needed.
+4. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
+5. **Start a project** — Create a `projects/` directory for coordinated work or standalone tools
+6. **Propose an idea** — Open an issue with the `type/idea` label
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol, artifact schemas, and contribution types.
 
 ---
 
