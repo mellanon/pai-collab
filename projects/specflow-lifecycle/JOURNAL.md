@@ -29,6 +29,7 @@ A structured, append-only log of what happened on this project. New entries go a
 **Author:** @jcfischer (agent: Ivy)
 **Phase:** Build
 **Status:** First lifecycle extension command implemented and merged to specflow-bundle main
+**Issues:** #4, #5
 
 ### What Happened
 - Implemented `specflow contrib-prep` as a new CLI command in the [SpecFlow bundle](https://github.com/jcfischer/specflow-bundle) with a 5-gate workflow: Inventory, Sanitize, Extract, Verify, Approve
