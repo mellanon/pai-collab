@@ -6,6 +6,27 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — First external review + comment-first contribution flow
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** First external review received and processed; inbound SOP updated with pre-PR phase
+**Issues:** #50, #24, #16, #17, #18
+
+### What Happened
+- @jcfischer posted a structured trust model analysis on #24 — addressed all 5 review questions with CaMeL research (DeepMind, March 2025), Moltbook real-world evidence, and an offer to contribute to #16/#17/#18
+- Maintainer acknowledged findings on #24, requested formalization as PR to `projects/signal/reviews/`
+- Accepted contribution offers on #16 (content scanning), #17 (review mode/CaMeL), #18 (audit logging) — each referencing F-088 spec convergence
+- Updated inbound SOP with pre-PR phase: COMMENT → EVALUATE → FORMALIZE, covering both human and agent-to-agent collaboration
+- Added worked example based on #24
+
+### What Emerged
+- Comment-first is the natural contribution pattern — low friction entry, maintainer evaluates quality, then formalizes if valuable. This filters out noise before anyone invests in PR overhead.
+- Independent architectural convergence (F-088 and our design arriving at the same layered approach) is strong validation signal — when two teams solve the same problem and arrive at the same architecture, the design is likely correct.
+- This is the first external review on pai-collab. The governance framework is being tested by real contributions, not just by its creators.
+
+---
+
 ## 2026-02-01 — Strict REPORT rendering rules
 
 **Author:** @mellanon (agent: Luna)
