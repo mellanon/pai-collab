@@ -118,9 +118,19 @@ The contrib branch is a **sanitization gate** that forces explicit file selectio
 
 ---
 
-## Existing Process Knowledge: _SPECFIRST Skill
+## Blueprint: OpenSpec Standard + _SPECFIRST Skill
 
-We're not starting from scratch. The [_SPECFIRST skill](https://github.com/mellanon/Personal_AI_Infrastructure/tree/contrib-specfirst-v1.0.0) already encodes the full release lifecycle as PAI workflows — battle-tested across three real contributions:
+We're not starting from scratch. Two existing projects together provide the blueprint — the reference architecture — for extending the SpecFlow bundle with full lifecycle support:
+
+### The OpenSpec Standard
+
+[OpenSpec](https://github.com/Fission-AI/OpenSpec) defines the **spec-driven development (SDD) standard** for AI coding assistants. It provides the specification format, directory structure, and change proposal workflow that SpecFlow already implements for the build phase. The same standard applies to post-merge evolution — Open Spec baselines track what shipped, and Change Proposals drive what's next.
+
+OpenSpec is the "what a spec looks like" standard. SpecFlow is the "how to execute specs" tool.
+
+### The _SPECFIRST Skill
+
+The [_SPECFIRST skill](https://github.com/mellanon/Personal_AI_Infrastructure/tree/contrib-specfirst-v1.0.0) encodes the full release lifecycle as PAI workflows — the Contrib Prep, Release, and Open Spec phases that SpecFlow doesn't yet cover. It's been battle-tested across three real contributions:
 
 | Contribution | Scale | Outcome |
 |-------------|-------|---------|
@@ -132,12 +142,38 @@ We're not starting from scratch. The [_SPECFIRST skill](https://github.com/mella
 - **`workflows/Release.md`** — The full fork contribution workflow with 8 human approval gates, tag-before-contrib pattern, cherry-pick from tag, sanitization checklist (~574 lines of proven process)
 - **`templates/RELEASE-FRAMEWORK.md`** — Scope definition, sanitization rules, propagation process, CHANGELOG management, pre-release checklist, version lifecycle
 
-The goal of this project is to encode that process knowledge into the tooling stack — specifically:
+### How they combine
+
+Together, OpenSpec + _SPECFIRST provide the complete blueprint for extending SpecFlow:
+
+```
+OpenSpec Standard                    _SPECFIRST Skill
+────────────────                    ────────────────
+Spec format + structure             Process knowledge + gates
+Change Proposal workflow            Contrib Prep workflow (8 gates)
+Directory conventions               Release workflow (tag-before-contrib)
+SDD methodology                     Sanitization checklist
+                 ↘                ↙
+              SpecFlow Bundle Extension
+              ─────────────────────────
+              New CLI commands:
+              • specflow contrib-prep
+              • specflow review
+              • specflow release
+              • specflow openspec
+                        ↓
+              Maestro Playbooks
+              ─────────────────
+              Orchestration + human gates
+              wrapping the CLI commands
+```
+
+The goal of this project is to encode that combined process knowledge into the tooling stack:
 1. **SpecFlow CLI commands** (`specflow contrib-prep`, `specflow review`, `specflow release`, `specflow openspec`) — coordinating with @jcfischer on whether these belong in [jcfischer/specflow-bundle](https://github.com/jcfischer/specflow-bundle) or a separate extension
 2. **Maestro playbooks** wrapping those CLI commands with orchestration, human approval gates, and `.maestro/` state management
 3. **PAI skills** (where appropriate) making phases invocable from any session
 
-The pattern: _SPECFIRST provides the "what" (process knowledge). SpecFlow provides the "how" (CLI + state). Maestro provides the "when" (orchestration + gates). Signal validates everything as the first project through the full pipeline.
+The pattern: OpenSpec defines the standard. _SPECFIRST provides the process knowledge. SpecFlow provides the CLI + state. Maestro provides the orchestration + gates. Signal validates everything as the first project through the full pipeline.
 
 **Tracked in:** Issues [#4](https://github.com/mellanon/pai-collab/issues) (align with Jens), [#5](https://github.com/mellanon/pai-collab/issues) (Contrib Prep), [#6](https://github.com/mellanon/pai-collab/issues) (Review), [#7](https://github.com/mellanon/pai-collab/issues) (Release), [#8](https://github.com/mellanon/pai-collab/issues) (Open Spec)
 
