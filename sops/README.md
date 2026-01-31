@@ -25,6 +25,8 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+**Numbering:** 1–6 are sequential lifecycle phases (each feeds the next). **0** is a prerequisite (onboarding). **∞** are parallel processes that run independently alongside any phase.
+
 | # | Phase | SOP | Question It Answers | When to Read |
 |---|-------|-----|-------------------|-------------|
 | 1 | Specify + Build | [SpecFlow Development Pipeline](specflow-development-pipeline.md) | "What + how do I build this?" | Starting a new feature or project |

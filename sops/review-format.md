@@ -153,8 +153,10 @@ Read the PR diff. Understand what's being added, changed, or removed:
 
 Write structured findings using the template below. Submit as:
 - **PR comment** — for inline review feedback
-- **Review file (project)** — for project findings: `projects/<name>/reviews/<topic>-review-<handle>.md`
+- **Review file (project)** — for project findings: `projects/<name>/reviews/<date>-<topic>-review-<handle>.md`
 - **Review file (governance)** — for trust model, documentation, cross-project reviews: `reviews/<date>-<topic>-<handle>.md`
+
+**Workflow:** Reviews are tracked by a GitHub issue (use the review's parent issue, or create one). The review document is the durable artifact contributed back via PR. The issue provides traceability; the document provides substance.
 
 ### 8. Gate
 

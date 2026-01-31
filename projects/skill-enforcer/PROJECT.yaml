@@ -5,6 +5,9 @@ created: 2026-01-31
 license: MIT
 type: tool
 upstream: jcfischer/pai-skill-enforcer
+fork: jcfischer/pai-skill-enforcer
+source_branch: main
+contrib_branch: contrib/skill-enforcer
 paths:
   - hooks/SkillInvocationEnforcement.hook.ts
 

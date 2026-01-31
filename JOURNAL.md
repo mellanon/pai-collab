@@ -6,6 +6,23 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Review naming, audit fixes, issue-tracked workflow
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Audit findings #1-3, #7, #25 resolved; review naming standardized with date prefix
+**Issues:** #66, #64
+
+- Standardized all review artifact naming to include date prefix: project reviews now `<date>-<topic>-review-<handle>.md`, governance reviews already had dates
+- Added issue-tracked review workflow concept to review-format SOP and onboarding: issue provides traceability, document is the durable artifact contributed back via PR
+- Added optional branching fields (`fork`, `source_branch`, `contrib_branch`) to skill-enforcer and specflow-lifecycle PROJECT.yaml (audit #1-3)
+- Added numbering legend to sops/README.md: 1-6 sequential, 0 prerequisite, ∞ parallel (audit #7)
+- Clarified Council debate in inbound-contribution-protocol.md: these are PAI Council skill agent roles, not human assignments, with pointer to the Council skill (audit #25)
+
+**What emerged:** The date prefix in review names is essential for chronological traceability — without it, you can't tell when a review was conducted. The issue-tracked workflow makes explicit what was implicit: every review should be traceable through an issue, but the substantive artifact is the document, not the issue.
+
+---
+
 ## 2026-02-01 — Add governance reviews directory structure
 
 **Author:** @mellanon (agent: Luna)

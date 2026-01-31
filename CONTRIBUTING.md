@@ -338,8 +338,8 @@ No write access needed. Everything flows through PRs. The maintainer layer keeps
 | **Source pointers** | `projects/*/PROJECT.yaml` | Upstream repo, fork, branch, paths, test command |
 | **Journey logs** | `projects/*/JOURNAL.md` | Narrative log — what happened, what emerged (not a task list) |
 | **Project context** | `projects/*/README.md` | Goals, architecture, challenges, success criteria |
-| **Review findings (project)** | `projects/*/reviews/*.md` | Structured review of a specific project |
-| **Review findings (governance)** | `reviews/*.md` | Trust model audits, documentation audits, cross-project reviews |
+| **Review findings (project)** | `projects/*/reviews/<date>-<topic>-review-<handle>.md` | Structured review of a specific project |
+| **Review findings (governance)** | `reviews/<date>-<topic>-<handle>.md` | Trust model audits, documentation audits, cross-project reviews |
 | **Living spec** | `projects/*/OPEN-SPEC.md` | Post-v1.0 evolution: baseline + change proposals |
 | **Shared processes** | `sops/*.md` | How we review, contribute, release |
 

@@ -6,6 +6,8 @@ license: MIT
 type: bundle
 upstream: jcfischer/specflow-bundle
 fork: mellanon/specflow-bundle
+source_branch: main
+contrib_branch: contrib/specflow-lifecycle
 paths:
   - playbooks/ContribPrep/
   - playbooks/Review/

@@ -178,6 +178,8 @@ After completing steps 1–5, **render** (don't summarize) the following report 
     "How do I support review efforts?" → sops/parallel-reviews.md
     "How do I review an incoming PR?" → sops/inbound-contribution-protocol.md
     "What does a structured review look like?" → sops/review-format.md
+    Reviews are issue-tracked: the issue provides traceability, the review
+    document (contributed via PR) is the durable artifact
 
   Build something:
     "How do I pick up an existing issue?" → CONTRIBUTING.md → The Flow
