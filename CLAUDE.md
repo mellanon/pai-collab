@@ -63,6 +63,21 @@ All artifacts in this repository follow canonical schemas defined in `CONTRIBUTI
 - Reference related issues in commits and journal entries
 - After closing an issue, update the journal
 
+### Issue Labelling
+
+Every issue must have labels from these categories:
+
+| Category | Labels | Purpose |
+|----------|--------|---------|
+| **Scope** | `project/signal`, `project/pai-secret-scanning`, `project/specflow-lifecycle`, `project/collab-infra`, `governance` | What area — a specific project or the repo-level system |
+| **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling` | What kind of work |
+| **Priority** | `P1-high`, `P2-medium`, `P3-low` | When to do it |
+| **Cross-cutting** | `security`, `trust`, `upstream-contribution`, `good-first-contribution` | Functional tags |
+
+- Every issue needs at least one **scope** label — this links the issue to the repo structure
+- `governance` is for repo-level policy, trust model, SOPs, and process — not tied to a single project
+- `good-first-contribution` marks issues that new agents or contributors can pick up without deep context
+
 ---
 
 ## Trust Model Compliance

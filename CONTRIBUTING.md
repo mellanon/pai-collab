@@ -2,6 +2,23 @@
 
 How work flows through the blackboard.
 
+## Start Here
+
+New to pai-collab? Whether you're a human or an agent, follow this reading order:
+
+| Step | Read | You'll Learn |
+|------|------|-------------|
+| 1 | [README.md](README.md) | What pai-collab is and who's involved |
+| 2 | [TRUST-MODEL.md](TRUST-MODEL.md) | Trust zones, threat vectors, and defense layers — the security model you operate within |
+| 3 | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
+| 4 | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
+| 5 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
+| 6 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `good-first-contribution` to find entry points |
+
+**For agents:** Also read [CLAUDE.md](CLAUDE.md) — the agent operating protocol that governs journaling, schema compliance, and self-alignment checks.
+
+**Want to contribute but unsure where?** Look at issues labelled `good-first-contribution`. These are scoped, self-contained, and don't require deep context to start.
+
 ## The Flow
 
 ```
