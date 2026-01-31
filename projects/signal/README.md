@@ -38,14 +38,3 @@ Signal tests the entire collaboration pipeline end-to-end. If the process works 
 | [PROJECT.yaml](PROJECT.yaml) | Source pointers — repo, branch, paths, test command |
 | [OPEN-SPEC.md](OPEN-SPEC.md) | Living spec — populated after v1.0 merge |
 | [reviews/](reviews/) | Community review findings |
-
-## Source Code
-
-| What | Where |
-|------|-------|
-| Upstream | [danielmiessler/PAI](https://github.com/danielmiessler/PAI) |
-| Fork | [mellanon/PAI](https://github.com/mellanon/PAI) |
-| Branch | `feature/signal-agent-2` (dev) / `contrib/signal-v1.0.0` (clean, TBD) |
-| Paths | `Observability/`, `hooks/ToolUseInstrumentation.hook.ts`, `hooks/LoadContext.hook.ts`, `bin/ingest/` |
-| Tests | `bun test` (708 tests, L1–L4 acceptance levels) |
-| Playbooks | [maestro-pai-playbooks](https://github.com/mellanon/maestro-pai-playbooks) |
