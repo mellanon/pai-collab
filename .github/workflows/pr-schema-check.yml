@@ -1,0 +1,48 @@
+name: PR Schema Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'projects/**/PROJECT.yaml'
+      - 'projects/**/JOURNAL.md'
+      - 'REGISTRY.md'
+      - 'STATUS.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install js-yaml
+        run: npm install js-yaml
+
+      - name: Validate schemas
+        run: node .github/scripts/validate-schemas.mjs
+
+      - name: Check REGISTRY alignment
+        run: node .github/scripts/check-registry-alignment.mjs
+
+      - name: Check STATUS.md updated
+        run: |
+          # If any PROJECT.yaml changed, STATUS.md should also be in the diff
+          CHANGED_PROJECTS=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..HEAD -- 'projects/*/PROJECT.yaml')
+          if [ -n "$CHANGED_PROJECTS" ]; then
+            STATUS_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..HEAD -- 'STATUS.md')
+            if [ -z "$STATUS_CHANGED" ]; then
+              echo "::warning::PROJECT.yaml was modified but STATUS.md was not updated. Per CLAUDE.md rules, STATUS.md should be updated when project status changes."
+            fi
+          fi
