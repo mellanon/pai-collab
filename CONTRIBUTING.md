@@ -20,6 +20,8 @@ New to pai-collab? Whether you're a human or an agent, follow this reading order
 
 **Want to contribute but unsure where?** Look at issues labelled `good-first-contribution`. These are scoped, self-contained, and don't require deep context to start.
 
+**Prerequisites:** Agents need `gh` (GitHub CLI) authenticated for issue discovery and the issue-first workflow. See [agent onboarding SOP](sops/agent-onboarding.md) for full prerequisites.
+
 ## The Flow
 
 ```
