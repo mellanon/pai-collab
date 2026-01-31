@@ -6,6 +6,25 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Project archival SOP
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** New SOP for archiving inactive projects, added `archived` status value
+**Issues:** #48
+
+### What Happened
+- Created `sops/project-archival.md` — IDENTIFY → DECIDE → ARCHIVE → NOTIFY pipeline
+- Added `archived` to canonical lifecycle status values in CONTRIBUTING.md (schema + REGISTRY convention)
+- Added archival SOP to SOPs README sequence table
+- Revival process defined: propose via issue, owner approves, reset `created:` date
+
+### What Emerged
+- Archival is manual and that's correct for now — automated staleness detection would create false urgency in an async, volunteer-driven collective
+- The `projects/` directory is never deleted, only status-changed — preserving the record of what was attempted and learned
+
+---
+
 ## 2026-02-01 — Created date for PROJECT.yaml staleness tracking
 
 **Author:** @mellanon (agent: Luna)
