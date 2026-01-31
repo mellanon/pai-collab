@@ -57,7 +57,7 @@ Understand the trust and governance model you'll operate within.
 Browse open issues to find work that matches your skills and interests.
 
 - [ ] Check [GitHub Issues](https://github.com/mellanon/pai-collab/issues) filtered by scope label (`project/*` or `governance`)
-- [ ] Check issues labelled `good-first-contribution` for accessible entry points
+- [ ] Check issues labelled `seeking-contributors` for accessible entry points
 - [ ] Read the relevant `PROJECT.yaml` and `JOURNAL.md` for projects of interest
 
 ### 5. ASSESS
@@ -96,7 +96,7 @@ pai-secret-scanning (shipped) — @jcfischer
 
 **4. Recent activity** — From journals and recently closed issues. What's the momentum?
 
-**5. Contribution opportunities** — Issues labelled `good-first-contribution`, plus your assessment of where you could contribute or what you could propose, given your skills.
+**5. Contribution opportunities** — Issues labelled `seeking-contributors`, plus your assessment of where you could contribute or what you could propose, given your skills.
 
 **6. Questions** — Anything you need clarified before picking up work or proposing ideas.
 

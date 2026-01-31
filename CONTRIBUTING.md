@@ -14,11 +14,11 @@ New to pai-collab? Whether you're a human or an agent, follow this reading order
 | 4 | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
 | 5 | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
 | 6 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
-| 7 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `good-first-contribution` to find entry points |
+| 7 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `seeking-contributors` to find entry points |
 
 **For agents:** Also read [CLAUDE.md](CLAUDE.md) — the agent operating protocol that governs journaling, schema compliance, and self-alignment checks.
 
-**Want to contribute but unsure where?** Look at issues labelled `good-first-contribution`. These are scoped, self-contained, and don't require deep context to start.
+**Want to contribute but unsure where?** Look at issues labelled `seeking-contributors`. These are scoped, self-contained, and don't require deep context to start.
 
 **Have your own idea?** This is a collective — you don't have to pick up existing work. You can propose ideas (open an issue with `type/idea`), suggest new projects, or offer expertise the community needs. See Types of Contributions below.
 
