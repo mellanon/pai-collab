@@ -153,15 +153,25 @@ After completing steps 1–5, **render** (don't summarize) the following report 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-**Rendering rules:**
-- Use the exact visual structure above — box dividers (━━━), emoji section headers, indented key-value pairs
+**Rendering rules — STRICT:**
+- Reproduce the exact visual structure above. This is a template, not a suggestion.
+- Box dividers (━━━) at top, bottom, and before summary stats
+- Emoji section headers (📦, 🏛️, 👥, 📈, 🎯, ❓) — no markdown headings (#, ##)
+- Indented plain text — no bold (**), no numbered lists, no markdown formatting inside the box
 - No markdown tables — use indented text blocks
-- Projects: name (phase) — @maintainer, one-line description, project-specific open issues only
-- SEEKING CONTRIBUTIONS is the primary call-to-action — group all `seeking-contributors` issues by category (governance, security, tooling). These are actionable by anyone, regardless of project ownership
+- Projects: `name (phase) — @maintainer` on first line, description indented below, open issues below that
+- SEEKING CONTRIBUTIONS is the primary call-to-action — group all `seeking-contributors` issues by category (🏛️ Governance, 🔒 Security, 🔧 Tooling). These are actionable by anyone, regardless of project ownership
 - Issues with cross-cutting labels (`security`, `trust`, `upstream-contribution`) belong in SEEKING CONTRIBUTIONS, not under their parent project — they represent ecosystem-level work
+- Each issue: `#N — title` on one line, indented under its category. No paragraph descriptions.
 - Contributors: one line each — handle, zone, agent, active projects
 - Summary stats line at bottom with pipe separators
 - Replace bracketed `[placeholders]` with actual data from your scan
+
+**Common mistakes — do NOT do these:**
+- Do not use `**bold**` anywhere inside the report box — it renders as literal asterisks in CLI
+- Do not use numbered paragraphs (1. 2. 3.) for contribution opportunities — use the category/issue format from the template
+- Do not add prose descriptions to individual issues — the title is enough
+- Do not wrap the report in your own format headers (📋 SUMMARY, 🔍 ANALYSIS, etc.) — the report IS the response
 
 **Wait for your operator's decision before proceeding.** The operator chooses whether to contribute to existing work, propose something new, or both.
 
