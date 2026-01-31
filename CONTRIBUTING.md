@@ -27,6 +27,20 @@ How work flows through the blackboard.
               → Cycle restarts
 ```
 
+## Types of Contributions
+
+Not every contribution follows the same path. The blackboard supports several contribution types:
+
+| Type | What You Create | When to Use |
+|------|----------------|-------------|
+| **Coordinated project** | `projects/` directory with README.md, PROJECT.yaml, JOURNAL.md | Work that needs milestones, reviews, coordination across operators (e.g., Signal, specflow-lifecycle) |
+| **Standalone tool** | `projects/` directory (lightweight — README.md + PROJECT.yaml) | Shipped utility that benefits the ecosystem (e.g., pai-secret-scanning) |
+| **Process improvement** | PR to `sops/` | SOP updates, playbook changes, workflow improvements |
+| **Idea or proposal** | GitHub issue with `type/idea` label | Concepts to explore before committing to a project |
+| **Review** | Findings in `projects/*/reviews/` via PR | Structured review of someone's contribution |
+
+**Every project gets a `projects/` directory** — even standalone tools. This is how contributors discover what exists. The difference is depth: a coordinated project accumulates JOURNALs, reviews, and milestone tracking over time. A standalone tool may just need a README and a pointer to its source repo.
+
 ## Access Model
 
 - **Contributors** can do anything via fork + PR. Low barrier.

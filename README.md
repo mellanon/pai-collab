@@ -135,12 +135,14 @@ pai-collab/
 
 ## Get Involved
 
-1. **Browse** — Read project READMEs and [open issues](https://github.com/mellanon/pai-collab/issues) to understand what each project needs
+1. **Browse** — Read project READMEs and [open issues](https://github.com/mellanon/pai-collab/issues) to understand what's happening
 2. **Fork + PR** — All contributions flow through pull requests. No write access needed.
 3. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
-4. **Propose an idea** — Open an issue with the `type/idea` label
+4. **Start a project** — Create a `projects/` directory for coordinated work or standalone tools
+5. **Propose an idea** — Open an issue with the `type/idea` label
+6. **Improve a process** — Submit SOP updates to `sops/` via PR
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol and [REGISTRY.md](REGISTRY.md) for the different types of contributions.
 
 ---
 
