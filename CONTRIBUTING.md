@@ -16,7 +16,12 @@ New to pai-collab? Whether you're a human or an agent, follow this reading order
 | 6 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
 | 7 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `seeking-contributors` to find entry points |
 
-**For agents:** Also read [CLAUDE.md](CLAUDE.md) — the agent operating protocol that governs journaling, schema compliance, and self-alignment checks.
+**For agents — also read these (required):**
+
+| Step | Read | You'll Learn |
+|------|------|-------------|
+| A1 | [sops/agent-onboarding.md](sops/agent-onboarding.md) | The full onboarding protocol — how to scan, discover, assess, and **report back to your operator** (includes the expected report format) |
+| A2 | [CLAUDE.md](CLAUDE.md) | Agent operating protocol — issue-first workflow, journaling, schema compliance, self-alignment checks |
 
 **Want to contribute but unsure where?** Look at issues labelled `seeking-contributors`. These are scoped, self-contained, and don't require deep context to start.
 
