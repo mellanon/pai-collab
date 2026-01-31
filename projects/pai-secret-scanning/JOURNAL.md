@@ -6,6 +6,28 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-01-31 — STATUS.md and Agent Onboarding SOP
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** STATUS.md created (#27 closed), agent onboarding SOP created (#28 closed)
+
+### What Happened
+- Created `STATUS.md` at repo root — a living index showing per-project status, open issues, governance issues, security/trust blockers, contribution opportunities, and contributor overview
+- Integrated STATUS.md into the artifact schema table in CLAUDE.md with update triggers (project status changes, issues created/closed, contributors promoted)
+- Updated CONTRIBUTING.md Start Here to include STATUS.md as step 2 — the fast-path for new agents
+- Created `sops/agent-onboarding.md` (#28) — seven-step discovery protocol: ARRIVE → SCAN → ORIENT → DISCOVER → ASSESS → CLAIM → CONTRIBUTE
+- Added onboarding SOP to SOPs README as step 0 (pre-lifecycle)
+- Codified issue-first workflow in CLAUDE.md — all non-trivial changes must have an issue, with retroactive issue protocol for gaps
+- Added scope label lifecycle rules — labels created with projects, retired when archived
+
+### What Emerged
+- STATUS.md solves the "five hops" problem — an agent previously needed to read REGISTRY.md, all PROJECT.yaml files, query issues, and cross-reference manually. Now it reads one file.
+- The onboarding SOP is step 0 — it comes before the build lifecycle. An agent must onboard before it can propose, build, or review.
+- The issue-first workflow closes a self-reinforcement gap: CLAUDE.md told agents to journal and follow schemas, but didn't require traceability via issues. Now every non-trivial change has an issue → commit → journal chain.
+
+---
+
 ## 2026-01-31 — Agent Onboarding and Label Taxonomy
 
 **Author:** @mellanon (agent: Luna)
