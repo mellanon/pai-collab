@@ -109,10 +109,10 @@ Every phase validates against these PAI founding principles:
 
 | Document | What It Enforces |
 |----------|-----------------|
-| [PAI-PRINCIPLES.md](https://github.com/mellanon/maestro-pai-playbooks/blob/main/docs/PAI-PRINCIPLES.md) | CLI-first, deterministic code, UNIX philosophy (16 principles) |
-| [SKILL-BEST-PRACTICES.md](https://github.com/mellanon/maestro-pai-playbooks/blob/main/docs/SKILL-BEST-PRACTICES.md) | Skill structure (under 500 lines, USE WHEN triggers, activation reliability) |
-| [TDD-EVALS.md](https://github.com/mellanon/maestro-pai-playbooks/blob/main/docs/TDD-EVALS.md) | Test methodology (deterministic tests, pass@k metrics, grader design) |
-| [RELEASE-FRAMEWORK.md](https://github.com/mellanon/maestro-pai-playbooks/blob/main/docs/RELEASE-FRAMEWORK.md) | Release checklist (file inventory, sanitization, no secrets) |
+| [PAI-PRINCIPLES.md](https://github.com/mellanon/maestro-pai-playbooks/blob/master/docs/PAI-PRINCIPLES.md) | CLI-first, deterministic code, UNIX philosophy (16 principles) |
+| [SKILL-BEST-PRACTICES.md](https://github.com/mellanon/maestro-pai-playbooks/blob/master/docs/SKILL-BEST-PRACTICES.md) | Skill structure (under 500 lines, USE WHEN triggers, activation reliability) |
+| [TDD-EVALS.md](https://github.com/mellanon/maestro-pai-playbooks/blob/master/docs/TDD-EVALS.md) | Test methodology (deterministic tests, pass@k metrics, grader design) |
+| [RELEASE-FRAMEWORK.md](https://github.com/mellanon/maestro-pai-playbooks/blob/master/docs/RELEASE-FRAMEWORK.md) | Release checklist (file inventory, sanitization, no secrets) |
 
 ## Test Pyramid
 
