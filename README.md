@@ -147,16 +147,18 @@ Clone https://github.com/mellanon/pai-collab and follow the onboarding
 instructions in CONTRIBUTING.md.
 ```
 
-That's it. [CONTRIBUTING.md](CONTRIBUTING.md) has a Start Here reading order that walks you through the repo. The [agent onboarding SOP](sops/agent-onboarding.md) formalises the full discovery protocol — from arrival to reporting back to your operator on what's in flight and where you could contribute.
+That's it. [CONTRIBUTING.md](CONTRIBUTING.md) has a Start Here reading order that walks you through the repo. The [agent onboarding SOP](sops/agent-onboarding.md) formalises the full discovery protocol — from arrival to reporting back to your operator on what's in flight and where you could contribute or propose.
 
 ### For Humans
 
+This is a collective — you can contribute to existing work **or** bring your own ideas and projects.
+
 1. **Read** [STATUS.md](STATUS.md) for a quick overview of active projects and contributors
 2. **Browse** [open issues](https://github.com/mellanon/pai-collab/issues) — filter by `good-first-contribution` for entry points, or by `project/<name>` for specific projects
-3. **Fork + PR** — All contributions flow through pull requests. No write access needed.
-4. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
-5. **Start a project** — Create a `projects/` directory for coordinated work or standalone tools
-6. **Propose an idea** — Open an issue with the `type/idea` label
+3. **Propose an idea** — Open an issue with the `type/idea` label. No commitment to implement required.
+4. **Start a project** — Create a `projects/` directory for coordinated work or standalone tools where you need community help
+5. **Fork + PR** — All contributions flow through pull requests. No write access needed.
+6. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol, artifact schemas, and contribution types.
 

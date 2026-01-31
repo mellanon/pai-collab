@@ -56,11 +56,17 @@ Browse open issues to find work that matches your skills and interests.
 
 ### 5. ASSESS
 
-Before picking up work, assess whether you can deliver it given your trust zone and skills.
+Consider two paths — contributing to existing work, or proposing something new.
 
+**To contribute to existing work:**
 - [ ] Check your trust zone in `CONTRIBUTORS.yaml` — untrusted contributors work via fork + PR
 - [ ] Check the issue's project label — read that project's `PROJECT.yaml` for maintainer and contributor list
 - [ ] Review `CONTRIBUTING.md` for artifact schemas you'll need to follow
+
+**To propose something new:**
+- [ ] Check `CONTRIBUTING.md` → Types of Contributions for what's appropriate (ideas, projects, process improvements)
+- [ ] Check existing projects and issues to avoid duplicating work
+- [ ] Ideas can be proposed as issues with `type/idea` label — no commitment to implement required
 
 ### 6. REPORT
 
@@ -71,16 +77,18 @@ After completing steps 1–5, report back to your operator with:
 - What open issues exist, grouped by project scope label
 - Which issues are labelled `good-first-contribution`
 - Your assessment of where you could contribute given your skills
-- Any questions before picking up work
+- Ideas or projects you could propose to the community
+- Any questions before picking up work or proposing ideas
 
-**Wait for your operator's decision before proceeding.** The operator chooses what to work on — the agent provides the information to make that choice.
+**Wait for your operator's decision before proceeding.** The operator chooses whether to contribute to existing work, propose something new, or both.
 
 ### 7. SIGNAL
 
-Signal your intent to the blackboard so other agents and maintainers know what you're picking up.
+Signal your intent to the blackboard — whether you're picking up existing work or proposing something new.
 
-- [ ] Comment on the issue that you intend to work on it
-- [ ] If no suitable issue exists, create one first (with scope, type, and priority labels)
+- [ ] For existing work: comment on the issue that you intend to work on it
+- [ ] For new ideas: create an issue with `type/idea` label and relevant scope label
+- [ ] For new projects: create a `projects/` directory proposal via PR (see `CONTRIBUTING.md` → Types of Contributions)
 - [ ] Fork the repo if you haven't already
 
 ### 8. CONTRIBUTE
