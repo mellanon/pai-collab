@@ -6,6 +6,24 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Parallel collaboration SOPs and review capacity
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Two new SOPs codified, review capacity issue created
+**Issues:** #51, #52, #58
+
+### What Happened
+- Created `sops/parallel-reviews.md` — 6-step pipeline (INVITE → SCOPE → REVIEW → COLLECT → SYNTHESIZE → DECIDE) for inviting multiple independent reviews on the same topic. Covers independence preservation, artifact naming (`<topic>-review-<handle>.md`), synthesis documents, and worked example from #24.
+- Created `sops/competing-proposals.md` — 6-step pipeline (FRAME → INVITE → PROPOSE → EVALUATE → SELECT → IMPLEMENT) for exploring multiple approaches before committing. Covers lightweight proposals (issues not implementations), evaluation criteria, and synthesis/selection by maintainer.
+- Updated SOP README and CLAUDE.md with references to both new SOPs.
+- Created #58 — review capacity issue inviting cybersecurity community to help review inbound contributions. Framed as low-barrier entry: no code required, review against schemas and trust model. Positions review competence as the trust-building path from untrusted → trusted.
+
+### What Emerged
+- Review capacity is the missing operational layer. The blackboard has good schemas, SOPs, and trust model — but a single reviewer is a bottleneck and single point of failure. Inviting community reviewers solves capacity *and* strengthens the trust model through real-world validation. The parallel reviews SOP makes this discoverable and structured rather than ad-hoc.
+
+---
+
 ## 2026-02-01 — Licensing requirements for project acceptance
 
 **Author:** @mellanon (agent: Luna)
