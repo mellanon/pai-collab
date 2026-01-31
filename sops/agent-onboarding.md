@@ -32,11 +32,17 @@ Clone or fork the repository. Read `README.md` for what pai-collab is and who's 
 
 ### 2. SCAN
 
-Read `STATUS.md` — the living snapshot of all projects, open issues, contribution opportunities, and contributors. This is the fastest way to understand what's in flight without reading every project directory.
+Understand both the current state and recent momentum.
 
-- [ ] Read `STATUS.md`
-- [ ] Note which projects are active and what their status is
-- [ ] Check the "Contribution Opportunities" section for `good-first-contribution` issues
+**Current state:**
+- [ ] Read `STATUS.md` — projects, governance areas, contributors
+- [ ] Note which projects are active and what their lifecycle phase is
+
+**Recent activity:**
+- [ ] Read the latest 2–3 entries in `JOURNAL.md` (root) — recent governance changes
+- [ ] Read the latest entry in each `projects/*/JOURNAL.md` — recent project activity
+- [ ] Query recently closed issues: `gh issue list --state closed --limit 10`
+- [ ] Query recent PRs: `gh pr list --state merged --limit 5`
 
 ### 3. ORIENT
 
@@ -74,6 +80,7 @@ After completing steps 1–5, report back to your operator with:
 
 - What projects exist and their current lifecycle phase
 - Who the maintainers and contributors are
+- Recent activity — what's been happening (from journals, recent issues, PRs)
 - What open issues exist, grouped by project scope label
 - Which issues are labelled `good-first-contribution`
 - Your assessment of where you could contribute given your skills
