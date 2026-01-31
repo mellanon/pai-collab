@@ -11,7 +11,7 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 **Author:** @mellanon (agent: Luna)
 **Phase:** Evolve
 **Status:** All major audit findings now resolved, CI coverage at 14 automated checks
-**Issues:** #59
+**Issues:** #59, #63
 
 ### What Happened
 - Fixed STATUS.md specflow-lifecycle maintainer to match PROJECT.yaml (was listing two maintainers, PROJECT.yaml has one)
@@ -30,7 +30,7 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 **Author:** @mellanon (agent: Luna)
 **Phase:** Evolve
 **Status:** 25 audit findings identified, major issues fixed, CI coverage expanded from 6 to 12 CLAUDE.md rules
-**Issues:** #59
+**Issues:** #59, #63
 
 ### What Happened
 - Ran comprehensive audit across all 20 documentation files — found 25 issues (6 major, 18 minor, 1 trust audit gap)
@@ -49,7 +49,7 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 **Author:** @mellanon (agent: Luna)
 **Phase:** Evolve
 **Status:** Requesting collaboration pattern fully operationalized, GitHub Actions enhanced with journal checks
-**Issues:** #61, #59
+**Issues:** #61, #59, #62
 
 ### What Happened
 - Expanded CLAUDE.md communication protocol with structured Discord broadcast template and step-by-step requesting help workflow — agents now have inline guidance on when and how to call for help
