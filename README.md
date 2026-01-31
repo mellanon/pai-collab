@@ -20,6 +20,10 @@ This repo implements the [blackboard architecture](https://en.wikipedia.org/wiki
 
 **Code lives elsewhere.** Each project has a `PROJECT.yaml` pointing to its source repository, branch, and paths. The blackboard tracks *coordination* — what's being built, by whom, what state it's in, and what's needed. Contributors work freely on their own forks; the structured rigour comes at merge time.
 
+### Files and Issues
+
+**Files are static artifacts. Issues are dynamic work.** Markdown files in this repo (READMEs, JOURNALs, SOPs, PROJECT.yaml) capture stable knowledge — architecture decisions, process documentation, project context. [GitHub Issues](https://github.com/mellanon/pai-collab/issues) track dynamic work — tasks, ideas, review requests, milestones. If it changes state (open → closed, blocked → unblocked), it's an issue. If it's reference material, it's a file.
+
 ### Three Layers
 
 ```
@@ -56,7 +60,26 @@ The blackboard is a coordination surface — it tracks *what's being built*, not
 
 The blackboard holds vision, status, reviews, and SOPs. The source repos hold the code. Contributors work on their own forks; structured rigour comes at merge time.
 
-The [SOPs](sops/) document the end-to-end lifecycle — from building with SpecFlow, through contribution preparation and review, to release. Tooling support is partial today; completing it is a key collaboration goal. See the [SOPs README](sops/README.md) for the full tooling maturity matrix.
+### The Development Lifecycle
+
+Every contribution follows the same lifecycle — from spec to shipped code. The [SOPs](sops/) document each phase:
+
+```
+SPECIFY → BUILD → HARDEN → CONTRIB PREP → REVIEW → RELEASE → EVOLVE
+```
+
+| Phase | Question | SOP |
+|-------|----------|-----|
+| **Specify** | "What are we building?" | [SpecFlow Development Pipeline](sops/specflow-development-pipeline.md) (specify phase) |
+| **Build** | "How do I build this?" | [SpecFlow Development Pipeline](sops/specflow-development-pipeline.md) |
+| **Harden** | "Does this survive real use?" | Human acceptance testing — no SOP (project-specific) |
+| **Contrib Prep** | "Is this safe to share?" | [Contribution Preparation](sops/contribution-protocol.md) |
+| **Review** | "Is this good code?" | [Review Format](sops/review-format.md) |
+| **Release** | "Is this ready to merge?" | [SpecFirst Release Process](sops/specfirst-release-process.md) |
+| **Evolve** | "How does this grow?" | Open Spec baseline + Change Proposals |
+| **Discover** | "How do agents find each other?" | [Daemon Registry Protocol](sops/daemon-registry-protocol.md) |
+
+Build → Contrib Prep → Review → Release are sequential — each phase produces input for the next. Discovery runs in parallel. See the [SOPs README](sops/README.md) for how they connect.
 
 ---
 
@@ -98,15 +121,12 @@ pai-collab/
 │   ├── signal/                  # PAI Signal — observability stack
 │   │   ├── README.md            # Project overview, architecture, status
 │   │   ├── PROJECT.yaml         # Source pointers (repo, branch, paths, tests)
-│   │   ├── TELOS.md             # Vision, architecture direction, goals, challenges
 │   │   ├── JOURNAL.md           # Journey log — what happened, what's emerging
-│   │   ├── OPEN-SPEC.md         # Living spec (post-v1.0 evolution)
 │   │   └── reviews/             # Community review findings
 │   │
 │   ├── specflow-lifecycle/      # SpecFlow lifecycle extension
 │   └── skill-enforcer/          # Deterministic skill surfacing
 │
-├── ideas/                       # Proposals not yet adopted as projects
 ├── sops/                        # Shared processes (how we work together)
 └── assets/                      # Architecture diagrams and visuals
 ```
@@ -115,10 +135,10 @@ pai-collab/
 
 ## Get Involved
 
-1. **Browse** — Read project READMEs and `TELOS.md` files to understand what each project needs
+1. **Browse** — Read project READMEs and [open issues](https://github.com/mellanon/pai-collab/issues) to understand what each project needs
 2. **Fork + PR** — All contributions flow through pull requests. No write access needed.
 3. **Register your agent** — Add a daemon entry to [REGISTRY.md](REGISTRY.md) via PR
-4. **Propose an idea** — Drop a markdown file in `ideas/` via PR
+4. **Propose an idea** — Open an issue with the `type/idea` label
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution protocol.
 

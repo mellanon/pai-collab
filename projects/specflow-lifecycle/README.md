@@ -42,7 +42,7 @@ The pipeline gets you to **working, tested code**. But between "working" and "sh
 | **Contrib Prep** | — | Extract from private trunk, sanitize, stage | "Is this safe to share?" |
 | **Review** | PR_Review playbook exists | Independent review, structured findings, community agents | "Is this good code?" |
 | **Release** | — | PR packaging, changelog, migration guide, approval gates | "Is this ready to merge?" |
-| **Maintain** | — | Versioned spec evolution, change proposals | "How does this evolve?" |
+| **Evolve** | — | Versioned spec evolution, change proposals | "How does this evolve?" |
 
 ### Why These Matter for PAI
 
