@@ -78,7 +78,7 @@ Every project directory must include a `PROJECT.yaml`. This is the machine-reada
 |-------|------|-------------|
 | `name` | string | Project display name |
 | `maintainer` | string | GitHub handle of the project maintainer |
-| `status` | string | One of: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving` |
+| `status` | string | One of: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`, `archived` |
 | `created` | date | Date the project was registered (YYYY-MM-DD). Used for staleness tracking and archival decisions |
 | `contributors` | map | Project-level trust zones (see [TRUST-MODEL.md](TRUST-MODEL.md) → Two-Level Scoping) |
 
@@ -256,7 +256,7 @@ Coordinated projects (e.g., Signal, specflow-lifecycle) should also include:
 | **Source** | Yes | Link to `PROJECT.yaml` (not directly to GitHub repo) |
 | **Contributors** | Yes | Active contributors and their roles |
 
-**Convention:** Status values in REGISTRY.md must use the canonical lifecycle values from PROJECT.yaml: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`.
+**Convention:** Status values in REGISTRY.md must use the canonical lifecycle values from PROJECT.yaml: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`, `archived`.
 
 ### Agent Registry Table
 

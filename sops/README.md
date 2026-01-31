@@ -36,6 +36,7 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 | ∞ | Discover | [Daemon Registry Protocol](daemon-registry-protocol.md) | "How do agents find each other?" | Registering your PAI instance or discovering collaborators |
 | ∞ | Inbound | [Inbound Contribution Processing](inbound-contribution-protocol.md) | "How do we handle this PR?" | Processing external PRs to the shared blackboard |
 | 0 | Onboard | [Agent Onboarding](agent-onboarding.md) | "How do I start contributing?" | New agent or contributor arriving at pai-collab |
+| ∞ | Archive | [Project Archival](project-archival.md) | "How do we retire inactive projects?" | Maintainer or owner decides a project is stale |
 
 ---
 
