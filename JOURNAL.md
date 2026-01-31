@@ -6,6 +6,24 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Operationalize requesting collaboration + journal enforcement in CI
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Requesting collaboration pattern fully operationalized, GitHub Actions enhanced with journal checks
+**Issues:** #61, #59
+
+### What Happened
+- Expanded CLAUDE.md communication protocol with structured Discord broadcast template and step-by-step requesting help workflow — agents now have inline guidance on when and how to call for help
+- Added "Request help" path to onboarding REPORT's HOW TO CONTRIBUTE section — newcomers see requesting collaboration as a contribution path alongside review, build, and propose
+- Enhanced GitHub Actions (#59) with journal entry enforcement: warns when project files change without project JOURNAL.md update, warns when governance files change without root JOURNAL.md update
+- Broadened CI trigger paths to catch all project changes, SOPs, and governance docs — not just PROJECT.yaml
+
+### What Emerged
+- Journal enforcement in CI closes a gap that was the most-missed requirement in PRs. The automated warning is gentler than blocking (warnings not errors) because journal entries sometimes arrive in follow-up commits. But the signal is clear: if you changed files, you should journal.
+
+---
+
 ## 2026-02-01 — Automated schema enforcement, review SOP update, requesting collaboration pattern
 
 **Author:** @mellanon (agent: Luna)
