@@ -1,0 +1,12 @@
+project: pai-secret-scanning
+maintainer: jcfischer
+status: shipped
+
+source:
+  repo: jcfischer/pai-secret-scanning
+  branch: main
+  paths:
+    - /
+
+tests:
+  command: bun test
