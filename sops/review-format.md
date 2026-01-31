@@ -25,9 +25,13 @@ No single review layer is enough. The blackboard uses four layers, each catching
 | **3. Community agent review** | Cross-agent review via blackboard protocol | Domain expertise, convention adherence, integration concerns | PR to `reviews/` |
 | **4. Human sign-off** | Maintainer reviews findings from all layers | Final judgment, merge decision | Human time |
 
-## Working Implementation: Maestro PR_Review Playbook
+---
 
-The [Maestro PR_Review playbook](https://github.com/mellanon/maestro-pai-playbooks/tree/main/playbooks/PR_Review) (adapted from Kayvan Sylvan's Fabric PR Review) is a concrete, working implementation of the review pipeline. It runs as a Maestro auto-run — 6 sequential documents, each producing a structured working file:
+## What Exists Today
+
+### Maestro PR_Review Playbook (Working)
+
+The [Maestro PR_Review playbook](https://github.com/mellanon/maestro-pai-playbooks/tree/main/playbooks/PR_Review) (adapted from Kayvan Sylvan's Fabric PR Review) is a concrete, working implementation. It runs as a Maestro auto-run — 6 sequential documents, each producing a structured working file:
 
 ```
 1_ANALYZE_PR.md        → REVIEW_SCOPE.md       (PR scope, changed files, risk areas)
@@ -40,6 +44,87 @@ The [Maestro PR_Review playbook](https://github.com/mellanon/maestro-pai-playboo
 ```
 
 This playbook integrates into the SpecFlow pipeline — it runs after `SpecFlow_Development` creates a PR. The review output (`REVIEW_SUMMARY.md`) feeds into the community review and human sign-off layers.
+
+### External Tools (Available, Not Yet Integrated)
+
+| Tool | What It Does | How It Fits | Status |
+|------|-------------|------------|--------|
+| [Greptile](https://www.greptile.com/blog/ai-code-review-bubble) | Independent AI code review — autonomous, specialized, feedback loops back to coding agents | Validates "auditor ≠ builder" principle. External reviewer alongside community agents | Available — needs integration |
+| [Cursor BugBot](https://cursor.com/bugbot) | Automated pre-merge logic bug detection with low false-positive rate, posts comments on PRs | Pre-merge quality gate — catches logic bugs that test suites miss | Available — needs GitHub Actions setup |
+| [Vibe Kanban](https://github.com/BloopAI/vibe-kanban) | Task orchestration across multiple coding agents — switch agents, parallel execution, status tracking | HITL orchestration for managing review at 10x speed. Same trajectory as Maestro's auto-run | Available — exploratory |
+
+---
+
+## What Needs to Be Built
+
+### 1. SpecFlow Review Playbook (for Jens' SpecFlow Bundle)
+
+A new playbook in Maestro autorun format that extends the existing PR_Review into the SpecFlow lifecycle. This is one of the four missing playbooks in the [SpecFlow Lifecycle Extension](../projects/specflow-lifecycle/).
+
+**Differences from the existing PR_Review:**
+- Operates on clean contrib branch (not a feature branch PR)
+- Validates against PAI constitutional documents (PAI-PRINCIPLES, SKILL-BEST-PRACTICES, TDD-EVALS)
+- Produces findings in the blackboard review output format (see template below)
+- Posts structured results to `projects/*/reviews/` via PR
+
+**Owner:** @jcfischer (SpecFlow bundle maintainer)
+
+### 2. PAI Review Skill
+
+A new PAI skill following the SKILL.md + bin/tool/ pattern (same as Jira, Coupa, Signal):
+
+```
+skills/Review/
+├── SKILL.md                    # USE WHEN review, code review, independent review, Greptile
+└── workflows/
+    └── ReviewProtocol.md       # Step-by-step review workflow
+
+bin/review/
+├── review.ts                   # CLI entry point
+├── lib/
+│   ├── config.ts               # Blackboard repo URL, contrib branch patterns
+│   ├── clone.ts                # Clone contrib branch from PROJECT.yaml
+│   ├── gates.ts                # Run automated gates (BugBot, Greptile integration)
+│   ├── playbook.ts             # Trigger Maestro PR_Review playbook
+│   └── findings.ts             # Format findings, submit to reviews/ via PR
+└── package.json
+```
+
+**CLI usage:**
+```bash
+review signal                    # Full review: clone contrib branch, run all layers, post findings
+review signal --layer automated  # Automated gates only (BugBot, Greptile)
+review signal --layer playbook   # Maestro PR_Review only
+review signal --layer community  # Format findings for community PR submission
+```
+
+The skill reads `PROJECT.yaml` to know what to clone and test, runs the Maestro playbook for depth, integrates external tool findings, and posts structured results to `projects/*/reviews/` via PR.
+
+**Owner:** @mellanon (to be contributed as PAI skill)
+
+### 3. Integration Layer
+
+The layered strategy means wiring these together:
+
+```
+PR opened on contrib branch
+    │
+    ├── BugBot runs automatically (GitHub Actions)
+    ├── Greptile runs automatically (GitHub integration)
+    │
+    ├── Maestro PR_Review playbook triggered (manual or CI)
+    │   → Produces REVIEW_SUMMARY.md + PR_COMMENT.md
+    │
+    ├── Community agents read PROJECT.yaml, clone, review independently
+    │   → Post findings to projects/*/reviews/ via PR
+    │
+    └── Human maintainer reviews all findings
+        → Merge decision
+```
+
+**Not yet built.** This is the orchestration that connects existing tools into the layered pipeline.
+
+---
 
 ## Review Areas
 
