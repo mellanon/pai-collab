@@ -41,6 +41,102 @@ Not every contribution follows the same path. The blackboard supports several co
 
 **Every project gets a `projects/` directory** — even standalone tools. This is how contributors discover what exists. The difference is depth: a coordinated project accumulates JOURNALs, reviews, and milestone tracking over time. A standalone tool may just need a README and a pointer to its source repo.
 
+## PROJECT.yaml Schema
+
+Every project directory must include a `PROJECT.yaml`. This is the machine-readable identity of the project — what it is, where the code lives, how to test it, and who governs it.
+
+### Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Project display name |
+| `maintainer` | string | GitHub handle of the project maintainer |
+| `status` | string | One of: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving` |
+| `contributors` | map | Project-level trust zones (see [TRUST-MODEL.md](TRUST-MODEL.md) → Two-Level Scoping) |
+
+### Optional Fields
+
+| Field | Type | Description | When to Use |
+|-------|------|-------------|-------------|
+| `type` | string | Project type: `skill`, `bundle`, `tool`, `infrastructure` | When the project type isn't obvious from context |
+| `upstream` | string | Upstream repo (org/repo format) | For contributions targeting an existing repo |
+| `fork` | string | Fork repo (org/repo format) | For contributions via fork-and-PR |
+| `source` | map | Source repo details (for standalone tools) | When the project lives in its own repo, not a fork |
+| `source.repo` | string | Repository (org/repo format) | Standalone tools |
+| `source.branch` | string | Main branch | Standalone tools |
+| `contrib_branch` | string | Contribution branch name | Upstream contributions |
+| `source_branch` | string | Development branch name | Upstream contributions |
+| `tag` | string | Release tag | After tagging a release |
+| `paths` | list | Files/directories included in the contribution | Upstream contributions |
+| `tests` | string | Test command | Projects with test suites |
+| `docs` | string | URL to external documentation | When docs live outside the blackboard |
+
+### Examples
+
+**Upstream contribution** (fork-and-PR to another repo):
+```yaml
+name: PAI Signal
+maintainer: mellanon
+status: contrib-prep
+type: skill
+upstream: danielmiessler/PAI
+fork: mellanon/PAI
+contrib_branch: contrib/signal-v1.0.0
+source_branch: feature/signal-agent-2
+tag: signal-v1.0.0
+paths:
+  - Observability/
+  - hooks/ToolUseInstrumentation.hook.ts
+  - hooks/LoadContext.hook.ts
+  - bin/ingest/
+tests: bun test
+docs: https://gist.github.com/mellanon/62a12ddef60ca7ff74331c2983fb43c7
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-01-31
+```
+
+**Standalone tool** (lives in its own repo):
+```yaml
+name: pai-secret-scanning
+maintainer: jcfischer
+status: shipped
+type: infrastructure
+source:
+  repo: jcfischer/pai-secret-scanning
+  branch: main
+tests: bun test
+
+contributors:
+  jcfischer:
+    zone: maintainer
+    since: 2026-01-31
+```
+
+**Lifecycle/process project** (coordination, no deployable code):
+```yaml
+name: SpecFlow Lifecycle Extension
+maintainer: mellanon
+status: building
+type: bundle
+upstream: jcfischer/specflow-bundle
+fork: mellanon/specflow-bundle
+paths:
+  - playbooks/ContribPrep/
+  - playbooks/Review/
+  - playbooks/Release/
+  - templates/OPEN-SPEC.md
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-01-31
+```
+
+---
+
 ## Access Model
 
 - **Contributors** can do anything via fork + PR. Low barrier.

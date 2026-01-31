@@ -1,5 +1,12 @@
 name: PAI Skill Enforcer
+maintainer: jcfischer
+status: shipped
 type: tool
 upstream: jcfischer/pai-skill-enforcer
 paths:
   - hooks/SkillInvocationEnforcement.hook.ts
+
+contributors:
+  jcfischer:
+    zone: maintainer
+    since: 2026-01-31

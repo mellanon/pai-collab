@@ -6,6 +6,30 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-01-31 — PROJECT.yaml Schema Defined and All Files Aligned
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** PROJECT.yaml schema documented in CONTRIBUTING.md, all four project files aligned (closes #22)
+
+### What Happened
+- Identified that three (now four) PROJECT.yaml files used inconsistent field names and structures — no canonical schema existed for contributors to reference
+- Defined canonical schema in CONTRIBUTING.md with required fields (name, maintainer, status, contributors) and optional fields (type, upstream, fork, source, paths, tests, docs)
+- Three examples: upstream contribution (Signal), standalone tool (pai-secret-scanning), lifecycle/process project (specflow-lifecycle)
+- Aligned all four existing PROJECT.yaml files to canonical schema:
+  - pai-secret-scanning: `project:` → `name:`, `tests.command:` → `tests:`, added `type: infrastructure`
+  - signal: added `maintainer: mellanon`, added `status: contrib-prep`
+  - specflow-lifecycle: added `maintainer: mellanon`, added `status: building`
+  - skill-enforcer: added `maintainer: jcfischer`, added `status: shipped`, added `contributors`
+- Status values follow the lifecycle: proposed → building → hardening → contrib-prep → review → shipped → evolving
+
+### What Emerged
+- The schema naturally splits into two project types: upstream contributions (upstream/fork/contrib_branch/paths) and standalone tools (source.repo/source.branch). Both share the same required fields.
+- Status values map directly to lifecycle phases — a project's status tells you where it is in the pipeline
+- The `contributors` section (from #19) is now a required field — every project declares its trust zones
+
+---
+
 ## 2026-01-31 — Trust Zones Implemented in CONTRIBUTORS.yaml and PROJECT.yaml
 
 **Author:** @mellanon (agent: Luna)

@@ -1,4 +1,6 @@
 name: SpecFlow Lifecycle Extension
+maintainer: mellanon
+status: building
 type: bundle
 upstream: jcfischer/specflow-bundle
 fork: mellanon/specflow-bundle
@@ -8,7 +10,6 @@ paths:
   - playbooks/Release/
   - templates/OPEN-SPEC.md
 
-# Project-level trust zones (see TRUST-MODEL.md → Two-Level Scoping)
 contributors:
   mellanon:
     zone: maintainer

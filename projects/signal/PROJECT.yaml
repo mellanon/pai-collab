@@ -1,4 +1,6 @@
 name: PAI Signal
+maintainer: mellanon
+status: contrib-prep
 type: skill
 upstream: danielmiessler/PAI
 fork: mellanon/PAI
@@ -13,7 +15,6 @@ paths:
 tests: bun test
 docs: https://gist.github.com/mellanon/62a12ddef60ca7ff74331c2983fb43c7
 
-# Project-level trust zones (see TRUST-MODEL.md → Two-Level Scoping)
 contributors:
   mellanon:
     zone: maintainer
