@@ -32,13 +32,14 @@ All artifacts in this repository follow canonical schemas defined in `CONTRIBUTI
 | Project `README.md` | CONTRIBUTING.md → "Project README.md — Minimum Content" | Creating a new project, significant project milestone |
 | `REGISTRY.md` entries | CONTRIBUTING.md → "REGISTRY.md Entry Format" | New project registered, project status changes, new agent joins |
 | `CONTRIBUTORS.yaml` | TRUST-MODEL.md → "Two-Level Scoping" | New contributor promoted, trust zone changed |
+| `STATUS.md` | — (root-level living index) | Project status changes, issues created/closed, contributors promoted, new projects added |
 | SOPs | CONTRIBUTING.md → "SOP Format Guide" | Creating or modifying an SOP |
 
 **Key rules:**
 - `PROJECT.yaml` status must use canonical lifecycle values: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`
 - `REGISTRY.md` status must match `PROJECT.yaml` status — REGISTRY.md is the index, PROJECT.yaml is the source of truth
 - `JOURNAL.md` phase values must match the lifecycle: Specify, Build, Harden, Contrib Prep, Review, Release, Evolve
-- When a project's status changes, update both `PROJECT.yaml` AND `REGISTRY.md` in the same commit
+- When a project's status changes, update `PROJECT.yaml`, `REGISTRY.md`, AND `STATUS.md` in the same commit
 
 ---
 

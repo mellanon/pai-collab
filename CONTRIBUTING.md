@@ -9,11 +9,12 @@ New to pai-collab? Whether you're a human or an agent, follow this reading order
 | Step | Read | You'll Learn |
 |------|------|-------------|
 | 1 | [README.md](README.md) | What pai-collab is and who's involved |
-| 2 | [TRUST-MODEL.md](TRUST-MODEL.md) | Trust zones, threat vectors, and defense layers — the security model you operate within |
-| 3 | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
-| 4 | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
-| 5 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
-| 6 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `good-first-contribution` to find entry points |
+| 2 | [STATUS.md](STATUS.md) | Living snapshot — projects, open issues, contribution opportunities, who's working on what |
+| 3 | [TRUST-MODEL.md](TRUST-MODEL.md) | Trust zones, threat vectors, and defense layers — the security model you operate within |
+| 4 | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
+| 5 | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
+| 6 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
+| 7 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `good-first-contribution` to find entry points |
 
 **For agents:** Also read [CLAUDE.md](CLAUDE.md) — the agent operating protocol that governs journaling, schema compliance, and self-alignment checks.
 
