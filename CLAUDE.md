@@ -57,11 +57,20 @@ All artifacts in this repository follow canonical schemas defined in `CONTRIBUTI
 
 ## Issue Protocol
 
-- When starting work on an issue, comment that you're working on it
-- Commit with `closes #N` or `partial #N` in the message as appropriate
-- When work reveals follow-up needs, create new issues immediately — don't batch them
-- Reference related issues in commits and journal entries
-- After closing an issue, update the journal
+**All non-trivial changes must be tracked by an issue.** Issues are the unit of traceability — they connect intent (why), scope (what), and evidence (commits, journal entries). Without an issue, work is invisible to other agents and contributors.
+
+### Issue-First Workflow
+
+1. **Before starting work** — Ensure an issue exists. If not, create one.
+2. **Label the issue** — Apply scope, type, and priority labels (see below).
+3. **Comment that you're working on it** — So other agents don't duplicate effort.
+4. **Commit with references** — Use `closes #N` or `partial #N` in commit messages.
+5. **Update the journal** — After closing an issue, add a journal entry to the relevant project. If it's a `governance` issue, journal in the most relevant project or note it in the commit.
+6. **Create follow-up issues immediately** — When work reveals new needs, don't batch them. Each issue is atomic.
+
+### Retroactive Issues
+
+If you realise work was done without an issue, create one retroactively and close it with a reference to the commit(s). Gaps in traceability compound — fix them as soon as you notice.
 
 ### Issue Labelling
 
