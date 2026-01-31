@@ -1,17 +1,20 @@
 # SOP: Inbound Contribution Processing
 
-How to process external contributions when they arrive as pull requests to the shared blackboard.
+How to process external contributions — from initial comment through to merged PR.
 
 ## Why This Exists
 
-pai-collab has SOPs for outbound contribution (extracting code from your private trunk) but the inbound side — receiving and processing external PRs — was undocumented. This SOP codifies the pattern established through processing the first external contribution (PR #12).
+pai-collab has SOPs for outbound contribution (extracting code from your private trunk) but the inbound side — receiving and processing contributions — was undocumented. This SOP codifies patterns established through real contributions: PR #12 (first external PR) and #24 (first comment-based review).
 
-Every PR to the shared blackboard is a trust boundary crossing. This protocol ensures contributions are reviewed consistently, follow-up work is tracked, and the community has visibility into how decisions are made.
+Contributions don't always start as PRs. Often they begin as issue comments — findings, reviews, expertise, offers to help. This SOP covers both paths: comment-first contributions that get formalized into PRs, and direct PRs. Both are trust boundary crossings that need consistent processing.
+
+This protocol applies to both human and agent contributors. In agent-to-agent collaboration, one agent's operator posts findings or offers on an issue, and the maintainer's agent processes the response using this SOP.
 
 ## Pipeline
 
 ```
-RECEIVE → ASSESS → REVIEW → DECIDE → MERGE → FOLLOW UP → JOURNAL → ANNOUNCE
+Comment path:  COMMENT → EVALUATE → FORMALIZE → RECEIVE → ... → ANNOUNCE
+Direct PR:                                      RECEIVE → ASSESS → REVIEW → DECIDE → MERGE → FOLLOW UP → JOURNAL → ANNOUNCE
 ```
 
 ## Three Concerns (Cleanly Separated)
@@ -22,7 +25,50 @@ RECEIVE → ASSESS → REVIEW → DECIDE → MERGE → FOLLOW UP → JOURNAL →
 | **Review** | "Is this good code?" | [review-format.md](review-format.md) |
 | **Outbound Contrib Prep** | "Is this safe to share?" | [contribution-protocol.md](contribution-protocol.md) |
 
-## Steps
+## Pre-PR: Comment-First Contributions
+
+Not all contributions start as PRs. Reviews, findings, expertise, and offers to help often arrive as issue comments. This is the preferred low-friction entry point — contributors share their thinking before investing in formal artifacts.
+
+### 0a. Comment
+
+A contributor posts findings, analysis, or an offer to help on an existing issue.
+
+What to look for:
+- Substantive analysis (not just "I can help" — actual findings or a concrete plan)
+- References to external work (specs, research, implementations) that align with the issue
+- Offers to contribute to specific issues beyond the one being commented on
+
+### 0b. Evaluate
+
+The maintainer (or maintainer's agent) evaluates the comment:
+
+- **Quality** — Is the analysis substantive? Does it address the issue's questions?
+- **Alignment** — Does their approach align with the project's direction?
+- **Scope** — Are they offering to help with more than the original issue? (e.g., commenting on #24 but offering to contribute to #16/#17/#18)
+- **Trust zone** — Check `CONTRIBUTORS.yaml`. New contributors are untrusted by default.
+
+### 0c. Formalize
+
+If the contribution has value, the maintainer responds on the issue:
+
+1. **Acknowledge** — Thank the contributor, confirm which findings are accepted
+2. **Request formalization** — Ask them to submit a PR with their findings as a formal artifact (e.g., a review file in `projects/*/reviews/`)
+3. **Accept related offers** — If they offered to contribute to other issues, comment on those issues welcoming their contribution and referencing any aligned specs
+4. **Update trust** — If this is a new contributor doing quality work, consider promoting them in `CONTRIBUTORS.yaml`
+
+The formalized PR then enters the standard pipeline below at step 1 (Receive).
+
+### Worked Example: Issue #24 (Trust Model Review)
+
+| Step | What Happened |
+|------|--------------|
+| **Comment** | @jcfischer posted a structured trust model analysis on #24 — 5-question review with CaMeL research, Moltbook evidence, and offers to contribute to #16/#17/#18 |
+| **Evaluate** | Substantive analysis addressing all 5 review questions. References independent spec (F-088) that converged on same architecture. Already trusted contributor. |
+| **Formalize** | Maintainer acknowledged findings, asked for formal review PR to `projects/signal/reviews/`, accepted offers on #16/#17/#18 referencing F-088 |
+
+---
+
+## Steps (PR Pipeline)
 
 ### 1. Receive
 
