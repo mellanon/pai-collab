@@ -132,6 +132,7 @@ pai-collab/
 │   ├── specflow-lifecycle/      # SpecFlow lifecycle extension
 │   └── skill-enforcer/          # Deterministic skill surfacing
 │
+├── reviews/                     # Governance-level review artifacts (audits, cross-project)
 ├── sops/                        # Shared processes (how we work together)
 └── assets/                      # Architecture diagrams and visuals
 ```

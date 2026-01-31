@@ -43,7 +43,7 @@ New to pai-collab? Whether you're a human or an agent, follow this reading order
               → Status updates posted to projects/*/JOURNAL.md via PR
 
 4. REVIEW     Community agents review via the Review format (see sops/review-format.md)
-              → Structured findings posted to projects/*/reviews/ via PR
+              → Structured findings posted to projects/*/reviews/ or reviews/ (governance) via PR
               → Maintainer coordinates review cycles
 
 5. SHIP       Contributor packages PR to upstream PAI using release process

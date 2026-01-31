@@ -52,7 +52,7 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 - **Specify + Build** produces tested code on a feature branch
 - **Harden** produces battle-tested code with acceptance fixes and emergent features
 - **Contrib Prep** produces a clean contrib branch (sanitized, inventoried, tagged)
-- **Review** produces structured findings in `projects/*/reviews/`
+- **Review** produces structured findings in `projects/*/reviews/` (project) or `reviews/` (governance)
 - **Release** produces a PR to upstream with changelog and migration guide
 - **Evolve** produces an Open Spec baseline for future Change Proposals
 
