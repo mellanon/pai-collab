@@ -2,6 +2,17 @@
 
 How to conduct an independent code review on a blackboard project.
 
+## Tooling Status
+
+| Layer | Status | What Exists |
+|-------|--------|-------------|
+| **Process doc** | ✅ This document | Human-readable review procedure and output template |
+| **Maestro playbook** | ⚠️ Partial | `PR_Review` covers Layer 2 (code quality, security, tests, docs) |
+| **PAI skill (CLI)** | ❌ Needs building | `bin/review/` — clone, gate, playbook, findings submission |
+| **External tools** | ⚠️ Available | BugBot, Greptile available but not integrated into pipeline |
+
+See [SOPs README](README.md) for where this fits and what's needed across all phases.
+
 ## Principle
 
 **The auditor doesn't prepare the books** ([Greptile](https://www.greptile.com/blog/ai-code-review-bubble)). The reviewing agent must be independent from the coding agent.

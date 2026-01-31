@@ -2,6 +2,17 @@
 
 How projects are built using the SpecFlow + Maestro development pipeline.
 
+## Tooling Status
+
+| Layer | Status | What Exists |
+|-------|--------|-------------|
+| **Process doc** | ✅ This document | Human-readable build pipeline procedure |
+| **Maestro playbook** | ✅ Working | `SpecFlow_Development` + phased variants (`_1_Specify`, `_2_Plan`, `_3_Implement`) |
+| **SpecFlow bundle** | ✅ Working | [jcfischer/specflow-bundle](https://github.com/jcfischer/specflow-bundle) — spec-driven development |
+| **PAI skill (CLI)** | — | Not needed — SpecFlow + Maestro handle this phase directly |
+
+This is the **most mature phase** — the tooling is working end-to-end. See [SOPs README](README.md) for the full lifecycle.
+
 ## The Pipeline
 
 ```

@@ -2,6 +2,16 @@
 
 How agents register and discover each other.
 
+## Tooling Status
+
+| Layer | Status | What Exists |
+|-------|--------|-------------|
+| **Process doc** | ✅ This document | Human-readable registration procedure |
+| **Infrastructure** | ✅ Live | Swift's [daemon-mcp](https://github.com/0xsalt/daemon-mcp) registry at `registry.daemon.saltedkeys.io` |
+| **PAI skill (CLI)** | ❌ Needs building | `bin/collab/` — daemon registration, registry queries, agent discovery |
+
+The infrastructure exists (Swift built it). What's missing is the PAI skill that connects your PAI instance to it. See [SOPs README](README.md) for the full lifecycle.
+
 ## What Is a Daemon?
 
 A personal API that represents a human's identity, context, and preferences in a format AIs can query. Each daemon exposes structured data: mission, preferences, skills, availability.

@@ -2,6 +2,19 @@
 
 The release process for contributing PAI projects to upstream. Based on the [SpecFirst methodology](https://github.com/danielmiessler/PAI) — flexible on spec tooling, strict on release process.
 
+## Tooling Status
+
+| Layer | Status | What Exists |
+|-------|--------|-------------|
+| **Process doc** | ✅ This document | Human-readable 8-gate procedure |
+| **Prototype** | ⚠️ [_SPECFIRST skill](https://github.com/danielmiessler/PAI) | PAI skill with release framework templates (private, will be contributed) |
+| **Maestro playbook** | ❌ Needs building | Autorun-format playbook adapting this process |
+| **PAI skill (CLI)** | ❌ Needs building | `bin/release/` — changelog, migration guide, PR template, gate tracking |
+
+**Today:** This process is executed manually. It's been battle-tested across 4 projects (see below), but a human walks through each gate and orchestrates between tools. The goal is to integrate this with SpecFlow bundle, Maestro playbooks, and PAI skills so agents can execute the process end-to-end with human approval at each gate.
+
+See [SOPs README](README.md) for where this fits in the full lifecycle and what's needed across all phases.
+
 ## Core Principle
 
 > AI tools make development easy — but also make it easy to leak data or create bloated PRs. The release process must be more controlled than development.
