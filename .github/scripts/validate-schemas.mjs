@@ -102,19 +102,81 @@ if (existsSync(projectsDir)) {
   }
 }
 
-// --- Validate JOURNAL.md entries (root) ---
+// --- Validate JOURNAL.md entries (helper) ---
 
-const rootJournal = 'JOURNAL.md';
-if (existsSync(rootJournal)) {
-  const content = readFileSync(rootJournal, 'utf8');
+function validateJournalEntries(journalPath) {
+  if (!existsSync(journalPath)) return;
+
+  const content = readFileSync(journalPath, 'utf8');
   const entries = content.split(/^## \d{4}-\d{2}-\d{2}/m).slice(1);
 
   for (let i = 0; i < Math.min(entries.length, 5); i++) {
     const entry = entries[i];
-    if (!entry.includes('**Author:**')) warn(rootJournal, `Recent entry ${i + 1} missing **Author:** field`);
-    if (!entry.includes('**Phase:**')) warn(rootJournal, `Recent entry ${i + 1} missing **Phase:** field`);
-    if (!entry.includes('**Status:**')) warn(rootJournal, `Recent entry ${i + 1} missing **Status:** field`);
-    if (!entry.includes('**Issues:**')) warn(rootJournal, `Recent entry ${i + 1} missing **Issues:** field`);
+    if (!entry.includes('**Author:**')) warn(journalPath, `Recent entry ${i + 1} missing **Author:** field`);
+    if (!entry.includes('**Phase:**')) warn(journalPath, `Recent entry ${i + 1} missing **Phase:** field`);
+    if (!entry.includes('**Status:**')) warn(journalPath, `Recent entry ${i + 1} missing **Status:** field`);
+    if (!entry.includes('**Issues:**')) warn(journalPath, `Recent entry ${i + 1} missing **Issues:** field`);
+
+    // Validate phase values
+    const phaseMatch = entry.match(/\*\*Phase:\*\*\s*(.+)/);
+    if (phaseMatch) {
+      const phase = phaseMatch[1].trim();
+      if (!ACCEPTED_PHASES.includes(phase)) {
+        warn(journalPath, `Recent entry ${i + 1} has invalid phase: "${phase}". Must be one of: ${ACCEPTED_PHASES.join(', ')}`);
+      }
+    }
+  }
+}
+
+// Root journal
+validateJournalEntries('JOURNAL.md');
+
+// Project journals
+if (existsSync(projectsDir)) {
+  const projects = readdirSync(projectsDir, { withFileTypes: true })
+    .filter(d => d.isDirectory())
+    .map(d => d.name);
+  for (const project of projects) {
+    validateJournalEntries(join(projectsDir, project, 'JOURNAL.md'));
+  }
+}
+
+// --- Validate CONTRIBUTORS.yaml ---
+
+const contributorsPath = 'CONTRIBUTORS.yaml';
+if (existsSync(contributorsPath)) {
+  let contribDoc;
+  try {
+    contribDoc = yaml.load(readFileSync(contributorsPath, 'utf8'));
+  } catch (e) {
+    error(contributorsPath, `Invalid YAML: ${e.message}`);
+  }
+
+  if (contribDoc && contribDoc.contributors) {
+    const ACCEPTED_ZONES = ['maintainer', 'trusted', 'untrusted'];
+    const ALLOWED_REPO_FIELDS = new Set(['zone', 'since', 'promoted_by']);
+
+    for (const [handle, fields] of Object.entries(contribDoc.contributors)) {
+      if (!fields.zone) {
+        error(contributorsPath, `Contributor "${handle}" missing required field: zone`);
+      } else if (!ACCEPTED_ZONES.includes(fields.zone)) {
+        error(contributorsPath, `Contributor "${handle}" has invalid zone: "${fields.zone}". Must be one of: ${ACCEPTED_ZONES.join(', ')}`);
+      }
+
+      if (!fields.since) {
+        error(contributorsPath, `Contributor "${handle}" missing required field: since`);
+      }
+
+      const extraFields = Object.keys(fields).filter(k => !ALLOWED_REPO_FIELDS.has(k));
+      if (extraFields.length > 0) {
+        warn(contributorsPath, `Contributor "${handle}" has non-standard fields: ${extraFields.join(', ')}. Standard fields: zone, since, promoted_by.`);
+      }
+
+      // Trusted/untrusted contributors promoted by someone should have promoted_by
+      if (fields.zone === 'trusted' && !fields.promoted_by) {
+        warn(contributorsPath, `Contributor "${handle}" is trusted but missing promoted_by field for audit trail.`);
+      }
+    }
   }
 }
 

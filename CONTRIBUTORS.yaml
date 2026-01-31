@@ -15,10 +15,8 @@ contributors:
   mellanon:
     zone: maintainer
     since: 2026-01-31
-    notes: Repository owner
 
   jcfischer:
     zone: trusted
-    promoted: 2026-01-31
+    since: 2026-01-31
     promoted_by: mellanon
-    notes: First external contributor. Maintainer of pai-secret-scanning (project-level).

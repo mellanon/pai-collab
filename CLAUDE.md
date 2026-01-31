@@ -105,7 +105,7 @@ Every issue must have labels from these categories:
 | Category | Labels | Purpose |
 |----------|--------|---------|
 | **Scope** | `project/signal`, `project/pai-secret-scanning`, `project/specflow-lifecycle`, `project/collab-infra`, `governance` | What area — a specific project or the repo-level system |
-| **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling` | What kind of work |
+| **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling`, `type/governance` | What kind of work |
 | **Priority** | `P1-high`, `P2-medium`, `P3-low` | When to do it |
 | **Cross-cutting** | `security`, `trust`, `upstream-contribution`, `seeking-contributors` | Functional tags |
 | **Collaboration** | `parallel-review`, `competing-proposals`, `expertise-needed` | Multiple contributors sought on the same topic |

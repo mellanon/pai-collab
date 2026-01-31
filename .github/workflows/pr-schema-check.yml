@@ -50,6 +50,28 @@ jobs:
             fi
           fi
 
+      - name: Check PR references an issue
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          # Check if PR body or title references an issue (#N)
+          if echo "$PR_BODY" "$PR_TITLE" | grep -qE '#[0-9]+'; then
+            echo "✅ PR references at least one issue."
+          else
+            echo "::warning::PR does not reference any issue (#N). Per CLAUDE.md: all non-trivial changes must be tracked by an issue."
+          fi
+
+      - name: Check commit messages reference issues
+        run: |
+          # Check if any commit in the PR references an issue
+          COMMITS=$(git log --format="%s %b" ${{ github.event.pull_request.base.sha }}..HEAD)
+          if echo "$COMMITS" | grep -qE '(closes|partial|fixes|refs) #[0-9]+'; then
+            echo "✅ Commits reference issues."
+          else
+            echo "::warning::No commits reference issues (closes #N, partial #N). Per CLAUDE.md: commit with references to issues."
+          fi
+
       - name: Check JOURNAL.md updated
         run: |
           BASE_SHA=${{ github.event.pull_request.base.sha }}
