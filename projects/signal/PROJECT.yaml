@@ -12,3 +12,9 @@ paths:
   - bin/ingest/
 tests: bun test
 docs: https://gist.github.com/mellanon/62a12ddef60ca7ff74331c2983fb43c7
+
+# Project-level trust zones (see TRUST-MODEL.md → Two-Level Scoping)
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-01-31

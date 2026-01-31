@@ -7,3 +7,9 @@ paths:
   - playbooks/Review/
   - playbooks/Release/
   - templates/OPEN-SPEC.md
+
+# Project-level trust zones (see TRUST-MODEL.md → Two-Level Scoping)
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-01-31

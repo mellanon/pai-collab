@@ -6,6 +6,29 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-01-31 — Trust Zones Implemented in CONTRIBUTORS.yaml and PROJECT.yaml
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** CONTRIBUTORS.yaml created, all PROJECT.yaml files updated with trust zones (closes #19)
+
+### What Happened
+- Created `CONTRIBUTORS.yaml` at repo root — repo-level trust zones for all contributors
+- @mellanon as `maintainer` (repo owner), @jcfischer as `trusted` (first external contributor, promoted by mellanon)
+- Updated all three `PROJECT.yaml` files with project-level trust zones:
+  - pai-secret-scanning: @jcfischer as project `maintainer`
+  - signal: @mellanon as project `maintainer`
+  - specflow-lifecycle: @mellanon as project `maintainer`
+- Two-level scoping now concrete: Jens is `trusted` repo-wide but `maintainer` of pai-secret-scanning
+- CONTRIBUTORS.yaml header documents the three zones and references TRUST-MODEL.md
+
+### What Emerged
+- The two-level model is clean in practice: one file at root for repo-wide trust, one section in each PROJECT.yaml for project governance
+- Default for unlisted contributors is untrusted — you don't appear in CONTRIBUTORS.yaml until promoted
+- The schema is deliberately simple: zone, date, promoted_by, optional notes. No automation, no scoring — just manual declarations by maintainers
+
+---
+
 ## 2026-01-31 — Inbound SOP and CLAUDE.md Self-Alignment
 
 **Author:** @mellanon (agent: Luna)

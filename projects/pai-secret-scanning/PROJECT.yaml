@@ -10,3 +10,10 @@ source:
 
 tests:
   command: bun test
+
+# Project-level trust zones (see TRUST-MODEL.md → Two-Level Scoping)
+# Project maintainer has governance authority over this project only.
+contributors:
+  jcfischer:
+    zone: maintainer
+    since: 2026-01-31

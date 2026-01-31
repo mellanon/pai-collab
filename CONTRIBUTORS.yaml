@@ -1,0 +1,24 @@
+# pai-collab — Contributor Trust Zones
+#
+# Repo-level trust zones for all contributors to the shared blackboard.
+# See TRUST-MODEL.md for the full trust model and defense layers.
+#
+# Zones:
+#   maintainer — Repository steward. Can promote/demote, merge, modify SOPs and trust model.
+#   trusted    — Promoted contributor. Content bypasses Layers 4-6. Cannot modify governance.
+#   untrusted  — Default for all new contributors. Content triggers full scanning (Layers 4-6).
+#
+# Project-level trust is defined separately in each project's PROJECT.yaml.
+# A contributor can be project maintainer without elevated repo-level trust.
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-01-31
+    notes: Repository owner
+
+  jcfischer:
+    zone: trusted
+    promoted: 2026-01-31
+    promoted_by: mellanon
+    notes: First external contributor. Maintainer of pai-secret-scanning (project-level).
