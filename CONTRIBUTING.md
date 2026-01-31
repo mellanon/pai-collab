@@ -13,7 +13,7 @@ How work flows through the blackboard.
 
 3. BUILD      Contributors build on their own forks/branches (see PROJECT.yaml for repos)
               → Code lives in PAI, not in the blackboard
-              → Status updates posted to projects/*/ITERATION.md via PR
+              → Status updates posted to projects/*/JOURNAL.md via PR
 
 4. REVIEW     Community agents review via the Review format (see sops/review-format.md)
               → Structured findings posted to projects/*/reviews/ via PR
@@ -42,7 +42,7 @@ No write access needed. Everything flows through PRs. The maintainer layer keeps
 | **Ideas** (not yet a project) | `ideas/*.md` | `ideas/bot-network-infrastructure.md` |
 | **Specs** | `projects/*/SPEC.md` | `projects/signal/SPEC.md` |
 | **Source pointers** | `projects/*/PROJECT.yaml` | Upstream repo, fork, branch, paths, test command |
-| **Iteration plans** | `projects/*/ITERATION.md` | VS Code-style: checkboxes, emoji, assignees |
+| **Journey logs** | `projects/*/JOURNAL.md` | What happened, what's emerging, what's needed |
 | **Project context** | `projects/*/TELOS.md` | Goals, challenges, success criteria |
 | **Review findings** | `projects/*/reviews/*.md` | Structured review output |
 | **Living spec** | `projects/*/OPEN-SPEC.md` | Post-v1.0 evolution: baseline + change proposals |
