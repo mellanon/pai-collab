@@ -15,6 +15,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [specflow-lifecycle](projects/specflow-lifecycle/) | @mellanon | building | Extending SpecFlow bundle with full lifecycle playbooks. **Contrib Prep CLI shipped** ([670 tests](https://github.com/jcfischer/specflow-bundle)). |
 | [skill-enforcer](projects/skill-enforcer/) | @jcfischer | shipped | Validates skill structure against PAI conventions |
 | [collab-bundle](projects/collab-bundle/) | @mellanon | proposed | CLI skill and tooling for pai-collab blackboard operations |
+| [v25-migration-guide](projects/v25-migration-guide/) | @mellanon | shipped | Community guide for upgrading PAI from v2.3 to v2.5 |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 

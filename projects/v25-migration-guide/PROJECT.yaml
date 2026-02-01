@@ -1,0 +1,14 @@
+name: PAI v2.3 to v2.5 Migration Guide
+maintainer: mellanon
+status: shipped
+created: 2026-02-02
+license: MIT
+type: documentation
+source:
+  repo: mellanon/pai-v25-migration-guide
+  branch: main
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-02-02

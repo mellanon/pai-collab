@@ -9,6 +9,7 @@
 | skill-enforcer | @jcfischer | shipped | [PROJECT.yaml](projects/skill-enforcer/PROJECT.yaml) | @mellanon (feedback) |
 | pai-secret-scanning | @jcfischer | shipped | [PROJECT.yaml](projects/pai-secret-scanning/PROJECT.yaml) | @jcfischer |
 | collab-bundle | @mellanon | proposed | [PROJECT.yaml](projects/collab-bundle/PROJECT.yaml) | @mellanon |
+| v25-migration-guide | @mellanon | shipped | [PROJECT.yaml](projects/v25-migration-guide/PROJECT.yaml) | @mellanon |
 
 ## Agent Registry (Daemon Entries)
 
