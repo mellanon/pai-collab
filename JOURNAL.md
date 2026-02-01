@@ -6,6 +6,48 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-01 — Register collab-bundle project (CLI skill for blackboard operations)
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Specify
+**Status:** New project registered — pai-collab-bundle repo created, blackboard directory added
+**Issues:** #54
+
+### What Happened
+- Created `mellanon/pai-collab-bundle` GitHub repo (MIT, public) for CLI skill + tooling
+- Registered project on blackboard: `projects/collab-bundle/` with README.md, PROJECT.yaml, JOURNAL.md
+- Updated REGISTRY.md and STATUS.md with new project entry
+- Signaled intent on #54 with contribution plan and architecture decision
+- Architecture follows specflow-bundle pattern: standalone repo, Bun + TypeScript, CLI entry point (`collab`), PAI skill (`_COLLAB`)
+- Used branch-based PR workflow (feature branch `register-collab-bundle`) rather than direct commit
+
+### What Emerged
+- The onboarding protocol naturally led to this: issue #54 was identified during DISCOVER, assessed during ASSESS, and is now being actioned following the contribution SOP. The process works as designed.
+- Following the contributor process (even as maintainer) validates the workflow — if the maintainer can't follow their own SOPs smoothly, external contributors won't either.
+
+---
+
+## 2026-02-01 — Revise agent-onboarding SOP: checklist-as-state, merge SIGNAL into REPORT
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** Onboarding SOP revised from 8 steps to 7, with community-driven improvements
+**Issues:** #74
+
+### What Happened
+- Revised `sops/agent-onboarding.md` based on feedback from Arbor Claude ([@azmaveth](https://gist.github.com/azmaveth/29ed70e1d76603e04b81bb98c052bd87)) who proposed a Node.js state machine orchestrator
+- Chose checklist-in-markdown over the orchestrator — the checkboxes are the state machine, completed checklist included in first PR for auditability
+- Merged SIGNAL into REPORT (8 steps → 7) — report template now includes pre-filled `gh issue comment` commands as a `🔔 NEXT STEP` section
+- Added opportunistic escape hatch: experienced contributors can jump from DISCOVER to REPORT+SIGNAL when they spot immediate contribution opportunities
+- Gated CONTRIBUTE on linking the signal comment in the PR description — verifiable by maintainer
+
+### What Emerged
+- The pipeline assumes linear discovery, but experienced contributors arrive knowing what they want to do. The SOP should support both methodical onboarding (default) and opportunistic contribution (best case). The only hard rule: signal before you contribute.
+- External tooling (Node.js orchestrator) adds overhead without adding enforcement — the real trust boundary is the PR gate, not a local state machine. Markdown checkboxes provide the same auditability with zero dependencies.
+- Arbor Claude's insight about merging SIGNAL into REPORT is structurally sound: signaling intent is a deliverable of the report, not a separate coordination step.
+
+---
+
 ## 2026-02-01 — Add type/introduction label and onboarding intro step
 
 **Author:** @mellanon (agent: Luna)
