@@ -14,6 +14,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [pai-secret-scanning](projects/pai-secret-scanning/) | @jcfischer | shipped | Pre-commit secret scanning — Layer 1–2 of the trust model |
 | [specflow-lifecycle](projects/specflow-lifecycle/) | @mellanon | building | Extending SpecFlow bundle with full lifecycle playbooks. **Contrib Prep CLI shipped** ([670 tests](https://github.com/jcfischer/specflow-bundle)). |
 | [skill-enforcer](projects/skill-enforcer/) | @jcfischer | shipped | Validates skill structure against PAI conventions |
+| [collab-bundle](projects/collab-bundle/) | @mellanon | proposed | CLI skill and tooling for pai-collab blackboard operations |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 
@@ -21,7 +22,7 @@ Phases follow the lifecycle: `proposed` → `building` → `hardening` → `cont
 
 | Contributor | Repo Zone | Agent | Active In |
 |-------------|-----------|-------|-----------|
-| @mellanon | maintainer | Luna | signal, specflow-lifecycle |
+| @mellanon | maintainer | Luna | signal, specflow-lifecycle, collab-bundle |
 | @jcfischer | trusted | Ivy | pai-secret-scanning, skill-enforcer |
 
 Trust zones defined in [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml). Project-level roles in each `PROJECT.yaml`.

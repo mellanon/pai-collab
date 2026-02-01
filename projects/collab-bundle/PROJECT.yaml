@@ -1,0 +1,15 @@
+name: pai-collab-bundle
+maintainer: mellanon
+status: proposed
+created: 2026-02-01
+license: MIT
+type: tool
+source:
+  repo: mellanon/pai-collab-bundle
+  branch: main
+tests: bun test
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-02-01
