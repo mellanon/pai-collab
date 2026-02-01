@@ -75,13 +75,13 @@ Referenced in:
 |-----------|--------|
 | Pre-commit hook (contributor machines) | ✅ Shipped — gitleaks with 8 PAI-specific rules |
 | GitHub Actions CI gate (contributor repos) | ✅ Shipped — runs on every PR |
-| CI gate on pai-collab itself | 🏗️ Planned — shared blackboard should eat its own dog food |
+| CI gate on pai-collab itself | ✅ Shipped — `.github/workflows/secret-scan.yml` with PAI-specific `.gitleaks.toml` |
 | Integration with LoadContext scanning | 🏗️ Planned — scanning patterns could be shared between outbound and inbound detection |
 
 ### What "Done" Looks Like
 
 - [ ] Every pai-collab contributor has pre-commit hooks installed
-- [ ] pai-collab itself runs pai-secret-scanning as a CI gate on every PR
+- [x] pai-collab itself runs pai-secret-scanning as a CI gate on every PR
 - [ ] Scanning patterns are reusable by the inbound content trust boundary (Layer 4)
 - [ ] Zero secret leaks across all pai-collab contributions
 
