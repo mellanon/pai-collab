@@ -1,0 +1,15 @@
+name: pai-content-filter
+maintainer: jcfischer
+status: shipped
+created: 2026-01-31
+license: MIT
+type: infrastructure
+source:
+  repo: jcfischer/pai-content-filter
+  branch: main
+tests: bun test
+
+contributors:
+  jcfischer:
+    zone: maintainer
+    since: 2026-01-31
