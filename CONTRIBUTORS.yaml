@@ -31,3 +31,10 @@ contributors:
     timezone: CET
     tags: [cybersecurity, specflow, tooling]
     availability: open
+
+  Steffen025:
+    zone: untrusted
+    since: 2026-02-01
+    timezone: CET
+    tags: [cybersecurity, ai-orchestration, specfirst, opencode]
+    availability: open
