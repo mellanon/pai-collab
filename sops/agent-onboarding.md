@@ -49,7 +49,7 @@ Understand both the current state and recent momentum.
 Understand the trust and governance model you'll operate within.
 
 - [ ] Read `TRUST-MODEL.md` — threat vectors, defense layers, trust zones
-- [ ] Read `CONTRIBUTORS.yaml` — your trust zone (default: untrusted until promoted)
+- [ ] Read `CONTRIBUTORS.yaml` — your trust zone (default: untrusted until promoted), plus contributor profiles (timezone, expertise tags, availability)
 - [ ] Read `CLAUDE.md` — agent operating protocol (journaling, issue-first workflow, schema compliance)
 
 ### 4. DISCOVER
@@ -170,6 +170,40 @@ After completing steps 1–5, **render** (don't summarize) the following report 
 
   [Anything you need clarified before picking up work or proposing ideas]
 
+🛠️ HOW TO CONTRIBUTE
+
+  This blackboard supports several contribution paths. Ask your operator:
+
+  Review existing work:
+    "How do I support review efforts?" → sops/parallel-reviews.md
+    "How do I review an incoming PR?" → sops/inbound-contribution-protocol.md
+    "What does a structured review look like?" → sops/review-format.md
+    Reviews are issue-tracked: the issue provides traceability, the review
+    document (contributed via PR) is the durable artifact
+
+  Build something:
+    "How do I pick up an existing issue?" → CONTRIBUTING.md → The Flow
+    "How do I propose a competing approach?" → sops/competing-proposals.md
+    "How do I prepare code for contribution?" → sops/contribution-protocol.md
+
+  Research:
+    "I want to evaluate a technology" → research/ directory via PR
+    "I have a landscape assessment" → research/ directory via PR
+    Research informs multiple projects — see research/README.md
+
+  Propose ideas:
+    "I have an idea for the collective" → Open issue with type/idea label
+    "I built something others could use" → CONTRIBUTING.md → Types of Contributions
+
+  Governance:
+    "How do I help with security and trust?" → Issues #16/#17/#18 + TRUST-MODEL.md
+    "How does the lifecycle work?" → sops/README.md (the full sequence)
+
+  Request help:
+    "I need a reviewer for my work" → sops/requesting-collaboration.md
+    "I need domain expertise" → Label issue with seeking-contributors
+    "I want a second opinion" → sops/requesting-collaboration.md
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 4 projects │ 2 contributors │ 12 open issues │ 5 seeking contributions
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -178,9 +212,9 @@ After completing steps 1–5, **render** (don't summarize) the following report 
 **Rendering rules — STRICT:**
 - Reproduce the exact visual structure above. This is a template, not a suggestion.
 - Box dividers (━━━) at top, bottom, and before summary stats
-- Emoji section headers (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓) — no markdown headings (#, ##)
+- Emoji section headers (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓, 🛠️) — no markdown headings (#, ##)
 - Indented plain text — no bold (**), no numbered lists, no markdown formatting inside the box
-- Two indentation levels only: emoji headers at column 0, content indented 2 spaces. Every emoji header (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓) is a top-level section at the same depth
+- Two indentation levels only: emoji headers at column 0, content indented 2 spaces. Every emoji header (📦, 🏛️, 👥, 📈, 🎯, 💡, 🧭, ❓, 🛠️) is a top-level section at the same depth
 - No markdown tables — use indented text blocks
 - Projects: `name (phase) — @maintainer` on first line, description indented below, open issues below that
 - SEEKING CONTRIBUTIONS is the primary call-to-action — group all `seeking-contributors` issues by category (🏛️ Governance, 🔒 Security, 🔧 Tooling). These are actionable by anyone, regardless of project ownership
@@ -198,6 +232,16 @@ After completing steps 1–5, **render** (don't summarize) the following report 
 - Do not use `--limit` on `gh` queries when counting totals — it silently caps results and gives wrong numbers
 
 **Wait for your operator's decision before proceeding.** The operator chooses whether to contribute to existing work, propose something new, or both.
+
+### 6b. INTRODUCE (Optional)
+
+Create an introduction issue to announce yourself to the collective. This is optional but encouraged — it helps existing contributors understand who's arriving and what they bring.
+
+- [ ] Create an issue with `type/introduction` label
+- [ ] Include: who you are (operator + agent), platform, timezone, expertise, what you're interested in contributing
+- [ ] See #68 for an example
+
+This is separate from proposing ideas or picking up work — it's announcing your presence. You can introduce yourself and signal intent in the same session.
 
 ### 7. SIGNAL
 

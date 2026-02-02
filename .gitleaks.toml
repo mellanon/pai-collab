@@ -47,6 +47,27 @@ description = "Telegram bot token detected"
 regex = '''\d{8,10}:[A-Za-z0-9_-]{35}'''
 tags = ["pai", "telegram", "token"]
 
+# Replicate API tokens
+[[rules]]
+id = "pai-replicate-key"
+description = "Replicate API token detected"
+regex = '''r8_[a-zA-Z0-9]{40}'''
+tags = ["pai", "api-key", "replicate"]
+
+# HuggingFace API tokens
+[[rules]]
+id = "pai-huggingface-key"
+description = "HuggingFace API token detected"
+regex = '''hf_[a-zA-Z0-9]{34,}'''
+tags = ["pai", "api-key", "huggingface"]
+
+# Groq API keys
+[[rules]]
+id = "pai-groq-key"
+description = "Groq API key detected"
+regex = '''gsk_[a-zA-Z0-9]{52}'''
+tags = ["pai", "api-key", "groq"]
+
 # Inline .env values
 [[rules]]
 id = "pai-env-inline"

@@ -32,9 +32,10 @@ All artifacts in this repository follow canonical schemas defined in `CONTRIBUTI
 | `JOURNAL.md` (root) | CONTRIBUTING.md → "JOURNAL.md Schema" | After every commit that changes governance files, after actioning a governance issue |
 | Project `README.md` | CONTRIBUTING.md → "Project README.md — Minimum Content" | Creating a new project, significant project milestone |
 | `REGISTRY.md` entries | CONTRIBUTING.md → "REGISTRY.md Entry Format" | New project registered, project status changes, new agent joins |
-| `CONTRIBUTORS.yaml` | TRUST-MODEL.md → "Two-Level Scoping" | New contributor promoted, trust zone changed |
+| `CONTRIBUTORS.yaml` | TRUST-MODEL.md → "Two-Level Scoping" | New contributor promoted, trust zone changed, profile updated |
 | `STATUS.md` | — (root-level project overview) | New project added, project phase changes, contributor promoted or added |
 | SOPs | CONTRIBUTING.md → "SOP Format Guide" | Creating or modifying an SOP |
+| Governance reviews | `reviews/README.md` | Trust model audits, documentation audits, cross-project reviews |
 
 **Key rules:**
 - `PROJECT.yaml` status must use canonical lifecycle values: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`, `archived`
@@ -105,14 +106,14 @@ Every issue must have labels from these categories:
 | Category | Labels | Purpose |
 |----------|--------|---------|
 | **Scope** | `project/signal`, `project/pai-secret-scanning`, `project/specflow-lifecycle`, `project/collab-infra`, `governance` | What area — a specific project or the repo-level system |
-| **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling` | What kind of work |
+| **Type** | `type/task`, `type/idea`, `type/review`, `type/tooling`, `type/governance`, `type/introduction` | What kind of work |
 | **Priority** | `P1-high`, `P2-medium`, `P3-low` | When to do it |
 | **Cross-cutting** | `security`, `trust`, `upstream-contribution`, `seeking-contributors` | Functional tags |
 | **Collaboration** | `parallel-review`, `competing-proposals` | Multiple contributors sought on the same topic |
 
 - Every issue needs at least one **scope** label — this links the issue to the repo structure
 - `governance` is for repo-level policy, trust model, SOPs, and process — not tied to a single project
-- `seeking-contributors` marks issues that new agents or contributors can pick up without deep context
+- `seeking-contributors` is the primary label for requesting any kind of help — reviews, expertise, implementation, second opinions. Use it alone or alongside `parallel-review` or `competing-proposals` to specify the collaboration pattern
 - `parallel-review` invites multiple independent reviews — reviewers submit separately, maintainer synthesizes
 - `competing-proposals` invites multiple approaches to the same problem — propose your solution, maintainer selects or merges
 
@@ -122,7 +123,7 @@ When a new `projects/` directory is created, a corresponding `project/<name>` la
 
 1. **Determine scope** — Does this issue relate to a specific project in `projects/`? If yes, use `project/<name>`. If it's repo-level (policy, SOPs, trust model, schemas, onboarding), use `governance`.
 2. **Check label exists** — If the `project/<name>` label doesn't exist yet, create it before applying.
-3. **Keep labels aligned** — When a project is renamed or archived, update or retire its label.
+3. **Keep labels aligned** — When a project is renamed or archived, update or retire its label. For archived projects, delete the `project/<name>` scope label per `sops/project-archival.md`.
 4. **One scope minimum** — Never create an issue without a scope label. An unscoped issue is invisible to agents filtering by area.
 
 ---
@@ -151,11 +152,15 @@ Follow the standard operating procedures in `sops/`:
 | When | SOP |
 |------|-----|
 | Processing an external PR | `sops/inbound-contribution-protocol.md` |
+| Inviting multiple independent reviews | `sops/parallel-reviews.md` |
+| Inviting competing approaches | `sops/competing-proposals.md` |
+| Requesting help from community | `sops/requesting-collaboration.md` |
 | Preparing code to share | `sops/contribution-protocol.md` |
 | Reviewing contributions | `sops/review-format.md` |
 | Building features | `sops/specflow-development-pipeline.md` |
 | Releasing to upstream | `sops/specfirst-release-process.md` |
 | Registering agents | `sops/daemon-registry-protocol.md` |
+| Coordinating cross-project work | `sops/iteration-planning.md` |
 
 ---
 
@@ -174,10 +179,27 @@ After any policy change, add a journal entry in the most relevant project explai
 
 ## Communication Protocol
 
-After processing a PR or completing significant work:
+### After completing significant work:
 - Draft a Discord summary for the maintainer to post
 - Include: what was done, what emerged, what follow-up was created
 - Keep it concise — the journal has the detail
+
+### When you need help (requesting collaboration):
+
+If you encounter a gap during work — need a security reviewer, domain expertise, a second opinion, or implementation help — follow `sops/requesting-collaboration.md`:
+
+1. **Label the issue** — Add `seeking-contributors` (optionally with `parallel-review` or `competing-proposals` for specific patterns)
+2. **Scope the request** — Update the issue with: what you need, what the helper needs to know, expected deliverable
+3. **Draft a Discord broadcast** for the maintainer:
+   ```
+   🤝 Collaboration request on pai-collab
+
+   Need: [review / expertise / implementation / second opinion]
+   Issue: #N — [title]
+   Context: [1-2 sentences]
+   How to help: [specific action they can take]
+   ```
+4. **Track responses** — Monitor the issue, respond promptly to helpers, acknowledge contributions
 
 ---
 
@@ -196,6 +218,7 @@ pai-collab/
 │   ├── specflow-lifecycle/
 │   ├── pai-secret-scanning/
 │   └── skill-enforcer/
+├── reviews/               ← Governance-level review artifacts (audits, cross-project reviews)
 └── sops/                  ← Standard operating procedures
 ```
 

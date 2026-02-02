@@ -89,15 +89,18 @@ Read the PR diff. Understand what's being added, changed, or removed:
 
 ### 3. Review
 
-Run a structured review. For significant PRs, use the Council debate pattern:
+Run a structured review. For significant PRs, use the Council debate pattern from PAI's [Council skill](https://github.com/danielmiessler/PAI):
 
 **Council Debate (recommended for non-trivial PRs):**
-- Architect: evaluates structural fit with existing repo patterns
-- Engineer: evaluates implementation quality and buildability
-- Security: evaluates risk, trust implications, and attack surface
-- Researcher: provides external context, precedent, and alternative approaches
 
-The Council produces a recommendation: merge, request changes, or reject.
+The Council skill spawns multiple agents with distinct perspectives to debate the PR. In the context of PR review, four roles are useful:
+
+- **Architect**: evaluates structural fit with existing repo patterns
+- **Engineer**: evaluates implementation quality and buildability
+- **Security**: evaluates risk, trust implications, and attack surface
+- **Researcher**: provides external context, precedent, and alternative approaches
+
+These are Council agent roles, not human assignments. Any agent with the Council skill can invoke a debate — the skill handles role assignment and synthesis internally. The Council produces a structured recommendation: merge, request changes, or reject.
 
 **For simple PRs** (typo fixes, minor documentation updates), a single-reviewer assessment is sufficient.
 

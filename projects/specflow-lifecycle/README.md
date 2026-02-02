@@ -57,10 +57,10 @@ This is how Signal was built: 18 features, 708 tests, two parallel agents in sep
 |----------------|----------------------|--------|
 | **Specify + Build** | All 5 layers working together | ✅ Proven (Signal) |
 | **Harden** | Human-driven, no tooling | ✅ Works (manual) |
-| **Contrib Prep** | **`specflow contrib-prep` CLI shipped** — 5-gate workflow with file inventory, secret scanning, extraction, verification. [670 tests](https://github.com/jcfischer/specflow-bundle). Maestro playbook still needed. | ✅ CLI shipped, 🏗️ Playbook needed |
-| **Review** | PR_Review playbook exists, needs extension | 🏗️ Needs lifecycle integration |
-| **Release** | SOP + _SPECFIRST skill exist, no playbook | 🏗️ Needs playbook |
-| **Evolve** | Open Spec template exists in SpecFlow bundle | 🏗️ Needs playbook |
+| **Contrib Prep** | **`specflow contrib-prep` CLI shipped** — 5-gate workflow with file inventory, secret scanning, extraction, verification. [670 tests](https://github.com/jcfischer/specflow-bundle). | ✅ CLI shipped |
+| **Review** | **`specflow review` CLI shipped** — 3-layer review (automated checks, AI alignment, human template). Branch: [`feature/lifecycle-extension`](https://github.com/mellanon/specflow-bundle/tree/feature/lifecycle-extension) | ✅ CLI shipped |
+| **Release** | **`specflow release` CLI shipped** — 8-gate evaluation engine (completeness, quality, CHANGELOG, inventory, secrets, branch, sanitization, PR template). | ✅ CLI shipped |
+| **Evolve** | **`specflow brownfield` CLI shipped** — scan/diff/apply workflow for codebase analysis and spec evolution via delta-specs. | ✅ CLI shipped |
 
 The goal: extend the same 5-layer stack to cover the full lifecycle, so an agent can pick up a project from the blackboard and execute SPECIFY through RELEASE with human approval at key gates.
 
@@ -146,12 +146,12 @@ The _SPECFIRST skill is a stepping stone — it will be **superseded** by an ext
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                     SPECFLOW BUNDLE (future)                         │
+│                     SPECFLOW BUNDLE (current)                        │
 │                                                                      │
-│  Today (build):          Shipped:                  Extension (new):  │
+│  Build:                  Shipped:                  Lifecycle:         │
 │  specflow specify        specflow contrib-prep     specflow review   │
 │  specflow plan           (5 gates, 670 tests)      specflow release  │
-│  specflow implement                                specflow openspec │
+│  specflow implement                                specflow brownfield│
 │                                                                      │
 │  SQLite state tracking across ALL phases                             │
 │  Quality gates, interview protocol, TDD — extended to full lifecycle │

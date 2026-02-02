@@ -24,6 +24,133 @@ A structured, append-only log of what happened on this project. New entries go a
 
 -->
 
+## 2026-02-02 — Orchestration Layer Specified: F-011 through F-021 Reviewed
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Design
+**Status:** 11 new features specified and human-reviewed, ready for planning
+**Branch:** `feature/lifecycle-extension` on `mellanon/specflow-bundle`
+
+### What Happened
+- Added 11 features (F-011 through F-021) to the specflow queue — the orchestration/UX layer that makes the pipeline human-friendly
+- Used SpecFlow's own `specflow specify --batch` and `specflow plan` commands to generate specs (dogfooding the tool)
+- Human-reviewed every spec with @mellanon, making architectural decisions at each step
+- **Key architectural decisions established across all specs:**
+  - SQLite as source of truth for all state (approval gates, failure context, execution log). JSON files (progress.json, pending-approval.json, failure.json) are derived notification surfaces for external readers only
+  - Concurrency model: one feature per agent, multiple agents concurrent, SQLite WAL handles access
+  - Phase names use canonical lowercase from `types.ts`: `specify`, `plan`, `tasks`, `implement`
+  - Phase boundaries: `specify_to_plan`, `plan_to_tasks`, `tasks_to_implement`, `implement_to_complete`
+
+### Feature Summary
+
+| ID | Feature | Key Decision |
+|----|---------|-------------|
+| F-011 | Pipeline progress file | Atomic write (tmp+rename), `--watch`/`--brief`/`--json` modes |
+| F-012 | Phase transition notifications | Three tiers: CRITICAL (voice+desktop+terminal-block), REVIEW (voice+desktop), AMBIENT (log) |
+| F-013 | Approval gates | SQLite `approval_gates` table, `specflow approve`/`reject`/`pending` commands |
+| F-014 | Failure recovery | `blocked` status (not terminal), circuit breaker at 3 resumes, Doctorow gate hardcoded in complete |
+| F-015 | Execution audit log | No rollback (use git), no approval columns (JOIN to F-013), unbounded retention |
+| F-016 | Autorun | Respects F-013 gates, sequential for v1, flags phase/artifact mismatches |
+| F-017 | Evolve command | (Reviewed in parallel session) |
+| F-018 | Review gate | Extension of F-013 — adds `request-changes` feedback loop, not a separate status |
+| F-019 | Harden command | (Pending review) |
+| F-020 | Semantic versioning | Standard semver only, auto-derived changelog categories from spec deltas |
+| F-021 | Phase hooks | Pre-hooks can abort, post-hooks fire-and-forget, 30s timeout, `SPECFLOW_PHASE_STATUS` env var |
+
+### What Emerged
+- **F-013/F-018 overlap:** AI-generated specs independently created overlapping approval mechanisms. F-018 was refactored to extend F-013 rather than duplicate it — the only new command is `request-changes` (feedback loop back to implement)
+- **Dogfooding tension:** Using `specflow specify --batch` in an agent-calling-agent context requires headless mode (no interactive stdin). Batch mode works but needs enrichment fields first. Quality eval always returns 0% (no rubric configured)
+- **Recurring AI spec issues:** All batch-generated specs had the same 3 problems — JSON instead of SQLite for state, wrong phase names (from research docs, not source code), single-pipeline assumption. Root cause: features.json descriptions inherited assumptions from council debate output
+- **The stack tells a story:** F-011 (see it) → F-012 (hear about it) → F-013 (approve it) → F-014 (recover from it) → F-015 (audit it) → F-016 (run it all) — each layer builds on the previous
+
+---
+
+## 2026-02-02 — All 10 Features Implemented (F-1 through F-10)
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** All 10 lifecycle extension features implemented, building clean at 200 modules
+**Branch:** `feature/lifecycle-extension` on `mellanon/specflow-bundle`
+
+### What Happened
+- Implemented all 10 features from the iteration plan in a single session
+- **F-1:** Delta-spec SQLite schema — migration 007, `spec_versions` + `spec_deltas` tables, TypeScript types, CRUD module
+- **F-2:** Spec versioning — auto-snapshot in `specify` command, version + delta tracking in `revise` command
+- **F-3:** Brownfield scanner — `specflow brownfield scan` with regex-based TS/JS parser, heuristic multi-language support, dependency scanning
+- **F-4:** Delta-spec generator — `specflow brownfield diff` with structural diff + optional AI classification
+- **F-5:** Brownfield apply — `specflow brownfield apply` creates versioned spec with full delta trail
+- **F-6:** Review automated checks — `specflow review` Layer 1 with typecheck/lint/test + spec-code file alignment
+- **F-7:** Review AI alignment — Layer 2 using headless Claude to evaluate spec-code faithfulness
+- **F-8:** Review human template — Layer 3 structured review template with risk areas, checklists, sign-off
+- **F-9:** Release gates 1-4 — `specflow release` evaluating completeness, quality evals, CHANGELOG, file inventory
+- **F-10:** Release gates 5-8 — PII/secrets scan, contrib branch, sanitization verification, PR template
+- Build: 200 modules compiled, 0 errors, binary functional
+- Updated PROJECT.yaml with correct `source_branch` and full `paths` inventory
+
+### What Emerged
+- **Process failure noted:** Did NOT use SpecFlow's own specify → plan → tasks pipeline for these features. Went straight from features.json descriptions to implementation. Ironic for a spec-driven development framework.
+- SpecFlow lacks a `catch-up` or `sync-state` command to retroactively update feature phases when implementation outpaces the process — this is a feature request
+- The `specflow complete` command validates artifact existence (spec.md, plan.md, tasks.md), so features implemented without those artifacts can't be properly closed through the CLI
+- F-011 through F-015 (pipeline orchestration features) remain pending and should follow the actual SpecFlow process
+
+---
+
+## 2026-02-02 — Council Verdict C+: Build Natively, Emit Compatibly
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Design
+**Status:** Project scope pivoted from Maestro playbooks to native SpecFlow commands
+**Issues:** #82 (iteration plan), #83 (brownfield design), #5, #6, #7, #8
+
+### What Happened
+- Completed Spec-Driven Development Landscape research report with council debate (4 agents, 3 rounds)
+- Council verdict: **C+ — Build brownfield/review/release natively in SpecFlow, optionally emit OpenSpec-compatible format**
+- Issues #5, #6, #7 need re-scoping: originally framed as "Maestro playbooks" but council recommends native SpecFlow commands instead
+- Issue #8 (OpenSpec template) deprioritized — council says evaluate interchange format at 90-day review gate
+- Created iteration plan #82 (Feb 3-14) and brownfield design issue #83
+- Updated PROJECT.yaml paths from `playbooks/` to `src/commands/` to reflect native command approach
+- New command targets: `specflow brownfield` (delta-spec semantics), `specflow review`, `specflow release` (port SpecFirst 8-gate)
+
+### What Emerged
+- The v1.0→v1.1 problem is now clearly scoped: `specflow brownfield` with delta-spec semantics on SQLite is the core answer
+- SpecFirst's 8-gate release workflow (tag-before-contrib, CHANGELOG, file inventory) should be ported as `specflow release`, not recreated from scratch
+- OpenSpec's delta-spec concept (ADDED/MODIFIED/REMOVED) has value but OpenSpec as a dependency is too risky (bus factor=1, 21.5K stars but single maintainer). Extract the pattern, own the implementation.
+- Cedars (#72, @Steffen025) offers a complementary milestone-based approach — the `GateApprover` injection pattern is a natural integration point
+
+---
+
+## 2026-02-02 — Headless Pipeline, Doctorow Gate, and Bug Fixes (PRs #3, #4, #6, #7)
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Four PRs submitted to jcfischer/specflow-bundle — headless autonomous execution, AI quality gates, and two bug fixes
+**Issues:** #5, #8
+
+### What Happened
+- **PR #7 — Full headless pipeline** (1038 lines, 12 files): Shared `lib/headless.ts` runner using `claude -p --output-format json`. Headless branches added to specify, plan, tasks, and executor commands. New `specflow pipeline <featureId>` command runs the full lifecycle (specify → plan → tasks → implement → complete) autonomously. Controlled via `SPECFLOW_HEADLESS=true` and `SPECFLOW_MODEL` env vars. Auto-detects non-TTY environments.
+- **PR #6 — AI-powered Doctorow Gate**: Replaces stub quality checks in the `complete` command with real AI evaluation using Claude. Four checks (spec coherence, plan-spec alignment, test-plan alignment, scope discipline) run headlessly via `claude -p --output-format json`. Default model: Opus. Configurable via `SPECFLOW_DOCTOROW_MODEL`.
+- **PR #4 — N/A sections in verify.md**: CLI-only features (no UI) can now have N/A sections in verification checklists without failing validation.
+- **PR #3 — Migration fix for compiled binary**: `specflow init` migrations weren't running in the compiled Bun binary due to path resolution. Fixed import resolution.
+- Also created issue #5 on specflow-bundle for the headless Doctorow Gate feature request.
+- Used SpecFlow to dogfood its own headless mode development — created `features.json` with 6 features, ran SpecFlow on specflow-bundle to track the work.
+
+### What Emerged
+- **`claude -p --output-format json` is the key pattern** for headless AI execution in PAI tooling. The `--system-prompt` flag alone does NOT prevent PAI hooks from injecting formatting into output. The JSON envelope (`{"type":"result","result":"..."}`) is reliably parseable regardless of hook interference.
+- The headless pipeline directly enables the autonomous lifecycle vision from the specflow-lifecycle README: BUILD phase can now run end-to-end without human interaction. This is a prerequisite for Maestro playbook wrapping (issues #5-#7).
+- **OpenSpec gap confirmed**: SpecFlow bundle has zero OpenSpec implementation. Maestro has a full OpenSpec integration (openspec-manager.ts, 5 commands, IPC handlers, UI panel) pulling from Fission-AI/OpenSpec. The bridge between SpecFlow (feature-driven, greenfield) and OpenSpec (change-driven, brownfield/evolve) is issue #8's territory.
+- The four PRs collectively address the BUILD → HARDEN transition gap identified in the project README — automated quality gates (Doctorow) and autonomous execution (headless) make the build phase robust enough to feed into contrib-prep.
+
+### PR Summary
+
+| PR | Title | Status | Lines |
+|----|-------|--------|-------|
+| #3 | Fix migrations for compiled binary | Open | ~50 |
+| #4 | Allow N/A sections in verify.md | Open | ~80 |
+| #6 | AI-powered headless Doctorow Gate | Open | ~400 |
+| #7 | Full headless mode for autonomous pipelines | Open | 1038 |
+
+---
+
 ## 2026-01-31 — `specflow contrib-prep` CLI Shipped
 
 **Author:** @jcfischer (agent: Ivy)

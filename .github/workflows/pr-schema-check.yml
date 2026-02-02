@@ -1,0 +1,100 @@
+name: PR Schema Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'projects/**'
+      - 'REGISTRY.md'
+      - 'STATUS.md'
+      - 'sops/**'
+      - 'CONTRIBUTING.md'
+      - 'CLAUDE.md'
+      - 'TRUST-MODEL.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install js-yaml
+        run: npm install js-yaml
+
+      - name: Validate schemas
+        run: node .github/scripts/validate-schemas.mjs
+
+      - name: Check REGISTRY alignment
+        run: node .github/scripts/check-registry-alignment.mjs
+
+      - name: Check STATUS alignment
+        run: node .github/scripts/check-status-alignment.mjs
+
+      - name: Check STATUS.md updated
+        run: |
+          # If any PROJECT.yaml changed, STATUS.md should also be in the diff
+          CHANGED_PROJECTS=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..HEAD -- 'projects/*/PROJECT.yaml')
+          if [ -n "$CHANGED_PROJECTS" ]; then
+            STATUS_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..HEAD -- 'STATUS.md')
+            if [ -z "$STATUS_CHANGED" ]; then
+              echo "::warning::PROJECT.yaml was modified but STATUS.md was not updated. Per CLAUDE.md rules, STATUS.md should be updated when project status changes."
+            fi
+          fi
+
+      - name: Check PR references an issue
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          # Check if PR body or title references an issue (#N)
+          if echo "$PR_BODY" "$PR_TITLE" | grep -qE '#[0-9]+'; then
+            echo "✅ PR references at least one issue."
+          else
+            echo "::warning::PR does not reference any issue (#N). Per CLAUDE.md: all non-trivial changes must be tracked by an issue."
+          fi
+
+      - name: Check commit messages reference issues
+        run: |
+          # Check if any commit in the PR references an issue
+          COMMITS=$(git log --format="%s %b" ${{ github.event.pull_request.base.sha }}..HEAD)
+          if echo "$COMMITS" | grep -qE '(closes|partial|fixes|refs) #[0-9]+'; then
+            echo "✅ Commits reference issues."
+          else
+            echo "::warning::No commits reference issues (closes #N, partial #N). Per CLAUDE.md: commit with references to issues."
+          fi
+
+      - name: Check JOURNAL.md updated
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+
+          # Check project-level changes need project journal
+          for project_dir in $(git diff --name-only $BASE_SHA..HEAD -- 'projects/' | sed 's|projects/\([^/]*\)/.*|\1|' | sort -u); do
+            PROJECT_JOURNAL="projects/${project_dir}/JOURNAL.md"
+            JOURNAL_CHANGED=$(git diff --name-only $BASE_SHA..HEAD -- "$PROJECT_JOURNAL")
+            if [ -z "$JOURNAL_CHANGED" ]; then
+              echo "::warning file=${PROJECT_JOURNAL}::Project '${project_dir}' was modified but its JOURNAL.md was not updated. Per CLAUDE.md: after every commit, update the relevant JOURNAL.md."
+            fi
+          done
+
+          # Check governance-level changes need root journal
+          GOV_CHANGES=$(git diff --name-only $BASE_SHA..HEAD -- 'sops/' 'CONTRIBUTING.md' 'CLAUDE.md' 'TRUST-MODEL.md' 'CONTRIBUTORS.yaml' 'STATUS.md')
+          if [ -n "$GOV_CHANGES" ]; then
+            ROOT_JOURNAL=$(git diff --name-only $BASE_SHA..HEAD -- 'JOURNAL.md')
+            if [ -z "$ROOT_JOURNAL" ]; then
+              echo "::warning file=JOURNAL.md::Governance files were modified but root JOURNAL.md was not updated. Per CLAUDE.md: governance changes should be journaled in the root JOURNAL.md."
+            fi
+          fi

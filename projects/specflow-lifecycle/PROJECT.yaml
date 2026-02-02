@@ -1,16 +1,22 @@
 name: SpecFlow Lifecycle Extension
 maintainer: mellanon
-status: building
+status: hardening
 created: 2026-01-31
 license: MIT
 type: bundle
 upstream: jcfischer/specflow-bundle
 fork: mellanon/specflow-bundle
+source_branch: feature/lifecycle-extension
+contrib_branch: contrib/specflow-lifecycle
 paths:
-  - playbooks/ContribPrep/
-  - playbooks/Review/
-  - playbooks/Release/
-  - templates/OPEN-SPEC.md
+  - packages/specflow/src/lib/spec-versions/
+  - packages/specflow/src/lib/brownfield/
+  - packages/specflow/src/lib/review/
+  - packages/specflow/src/lib/release/
+  - packages/specflow/src/commands/brownfield.ts
+  - packages/specflow/src/commands/review.ts
+  - packages/specflow/src/commands/release.ts
+  - packages/specflow/migrations/007_add_spec_deltas.sql
 
 contributors:
   mellanon:

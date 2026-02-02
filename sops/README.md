@@ -25,6 +25,8 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+**Numbering:** 1–6 are sequential lifecycle phases (each feeds the next). **0** is a prerequisite (onboarding). **∞** are parallel processes that run independently alongside any phase.
+
 | # | Phase | SOP | Question It Answers | When to Read |
 |---|-------|-----|-------------------|-------------|
 | 1 | Specify + Build | [SpecFlow Development Pipeline](specflow-development-pipeline.md) | "What + how do I build this?" | Starting a new feature or project |
@@ -37,6 +39,10 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 | ∞ | Inbound | [Inbound Contribution Processing](inbound-contribution-protocol.md) | "How do we handle this PR?" | Processing external PRs to the shared blackboard |
 | 0 | Onboard | [Agent Onboarding](agent-onboarding.md) | "How do I start contributing?" | New agent or contributor arriving at pai-collab |
 | ∞ | Archive | [Project Archival](project-archival.md) | "How do we retire inactive projects?" | Maintainer or owner decides a project is stale |
+| ∞ | Parallel Reviews | [Parallel Reviews](parallel-reviews.md) | "How do we get multiple perspectives?" | Inviting independent reviews on security, architecture, or governance topics |
+| ∞ | Competing Proposals | [Competing Proposals](competing-proposals.md) | "Which approach should we take?" | Multiple valid solutions exist for the same problem |
+| ∞ | Requesting Collaboration | [Requesting Collaboration](requesting-collaboration.md) | "I need help — how do I ask?" | Active contributor needs review, expertise, or a second opinion |
+| ∞ | Iteration Planning | [Iteration Planning](iteration-planning.md) | "What am I doing this week across projects?" | Working across 3+ issues/projects, or coordinating parallel contributors |
 
 ---
 
@@ -47,7 +53,7 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 - **Specify + Build** produces tested code on a feature branch
 - **Harden** produces battle-tested code with acceptance fixes and emergent features
 - **Contrib Prep** produces a clean contrib branch (sanitized, inventoried, tagged)
-- **Review** produces structured findings in `projects/*/reviews/`
+- **Review** produces structured findings in `projects/*/reviews/` (project) or `reviews/` (governance)
 - **Release** produces a PR to upstream with changelog and migration guide
 - **Evolve** produces an Open Spec baseline for future Change Proposals
 

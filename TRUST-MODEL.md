@@ -118,7 +118,7 @@ Maintainers are not exempt from the defense layers. Their contributions still pa
 
 Trust operates at two levels:
 
-**Repo-level** — A contributor's overall trust zone in pai-collab, recorded in `CONTRIBUTORS.yaml` at the repository root. This determines baseline content trust and governance authority across the entire shared blackboard.
+**Repo-level** — A contributor's overall trust zone in pai-collab, recorded in `CONTRIBUTORS.yaml` at the repository root. This determines baseline content trust and governance authority across the entire shared blackboard. Contributors may also include optional profile fields (`timezone`, `tags`, `availability`) for discovery and async coordination — these do not affect trust decisions.
 
 **Project-level** — A contributor can be designated as maintainer of a specific project in that project's `PROJECT.yaml`. This grants governance authority over that project (merge project PRs, manage project issues, guide project direction) without elevating repo-level trust.
 
