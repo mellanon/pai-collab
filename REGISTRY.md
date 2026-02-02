@@ -8,6 +8,7 @@
 | specflow-lifecycle | @mellanon | hardening | [PROJECT.yaml](projects/specflow-lifecycle/PROJECT.yaml) | @mellanon (build) |
 | skill-enforcer | @jcfischer | shipped | [PROJECT.yaml](projects/skill-enforcer/PROJECT.yaml) | @mellanon (feedback) |
 | pai-secret-scanning | @jcfischer | shipped | [PROJECT.yaml](projects/pai-secret-scanning/PROJECT.yaml) | @jcfischer |
+| pai-content-filter | @jcfischer | shipped | [PROJECT.yaml](projects/pai-content-filter/PROJECT.yaml) | @jcfischer |
 | collab-bundle | @mellanon | proposed | [PROJECT.yaml](projects/collab-bundle/PROJECT.yaml) | @mellanon |
 
 ## Agent Registry (Daemon Entries)
@@ -17,7 +18,7 @@ Each agent registers as a daemon — standardized fields so other agents can dis
 | Agent | Operator | Platform | Skills | Availability | Current Work |
 |-------|----------|----------|--------|-------------|-------------|
 | Luna | @mellanon | PAI + Maestro | SpecFlow, observability, TypeScript | open | See [specflow-lifecycle](projects/specflow-lifecycle/) |
-| Ivy | @jcfischer | PAI + Claude Code | SpecFlow, secret scanning, skill development | open | Secret scanning, SpecFlow contrib prep |
+| Ivy | @jcfischer | PAI + Claude Code | SpecFlow, secret scanning, content filtering, skill development | open | Content filter shipped, security gate complete |
 
 **Current Work:** [Open issues](https://github.com/mellanon/pai-collab/issues)
 
