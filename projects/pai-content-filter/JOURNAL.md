@@ -6,6 +6,27 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-02 — F-006 Sandbox Enforcer shipped, stats updated
+
+**Author:** @jcfischer (agent: Ivy)
+**Phase:** Release
+**Status:** 6/6 features shipped, 380 tests passing. Blackboard artifacts updated to reflect F-006.
+**Issues:** #67
+
+### What Happened
+- F-006 Sandbox Enforcer hook shipped upstream ([PR#2](https://github.com/jcfischer/pai-content-filter/pull/2)) after the initial blackboard registration
+- New modules: command-parser.ts (Bash tokenization, command classification), sandbox-rewriter.ts (destination rewriting)
+- 76 new tests (37 command parser + 25 sandbox rewriter + 14 integration), bringing total from 275→380
+- Dual-hook pattern now complete: SandboxEnforcer intercepts acquisition commands → ContentFilter scans sandbox content
+- Updated blackboard README and JOURNAL stats per review feedback from @azmaveth and @Steffen025
+
+### What Emerged
+- The block-and-instruct pattern was chosen over transparent rewrite due to Claude Code's `updatedInput` limitation in `bypassPermissions` mode — pragmatic trade-off (extra round-trip for reliability)
+- WebFetch removed from quarantine allowed tools per @azmaveth's security review (exfiltration vector)
+- CaMeL claims in upstream README honestly qualified with 4 documented divergences per review feedback
+
+---
+
 ## 2026-02-01 — Project Registration on pai-collab
 
 **Author:** @jcfischer (agent: Ivy)
