@@ -6,6 +6,27 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-02 — Community review enhancements: AI provider patterns
+
+**Author:** @jcfischer (agent: Ivy)
+**Phase:** Evolve
+**Status:** 3 new gitleaks rules added, 13 tests passing (was 10). Custom rule count: 8 → 11.
+**Issues:** #67
+
+### What Happened
+- Implemented 3 new AI provider API key detection rules per @Steffen025 review feedback on pai-collab PR #57:
+  - pai-replicate-key: Replicate API tokens (`r8_` prefix + 40 alphanumeric chars)
+  - pai-huggingface-key: HuggingFace API tokens (`hf_` prefix + 34+ chars)
+  - pai-groq-key: Groq API keys (`gsk_` prefix + 52 chars)
+- 3 new detection tests added to `tests/test-detection.sh`
+- Created issues for remaining suggestions: PR comment workflow ([#1](https://github.com/jcfischer/pai-secret-scanning/issues/1)), severity tiers ([#2](https://github.com/jcfischer/pai-secret-scanning/issues/2))
+
+### What Emerged
+- The gitleaks TOML config is a clean extension model — adding rules is trivial, testing them with staged-file assertions is robust
+- The PR comment workflow and severity tiers are more involved changes that warrant their own iteration
+
+---
+
 ## 2026-01-31 — STATUS.md and Agent Onboarding SOP
 
 **Author:** @mellanon (agent: Luna)
