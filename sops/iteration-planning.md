@@ -26,6 +26,24 @@ Not every contribution needs an iteration plan. The blackboard supports three mo
 
 **Default is no plan.** Iteration plans are opt-in when complexity warrants them.
 
+## Hub vs Spoke: What Goes in the Iteration Plan
+
+pai-collab is the **coordination hub**. Iteration plans are the **roadmap view** — they show vision, milestones, and state. Implementation details belong in the **spoke repos** where the work happens.
+
+| Level | Where | Example |
+|-------|-------|---------|
+| **Vision** | Iteration plan (hub) | "Extend SpecFlow from build tool to full lifecycle tool" |
+| **Milestone** | Iteration plan (hub) | "Brownfield command designed and spec'd" |
+| **Feature design/implementation** | Spoke repo issues | "Design `specflow brownfield` command — delta-spec on SQLite" |
+| **Task** | Spoke repo issues/commits | "Add delta-spec table to SQLite schema" |
+
+**The iteration plan should read like a release notes preview** — what will be true at the end of the iteration, not what steps to take. Each line is an **outcome**, not an action.
+
+**Bad:** `- [ ] Design specflow brownfield command — delta-spec semantics on SQLite`
+**Good:** `- [ ] 🏃 Brownfield command — designed, spec'd, ready for implementation`
+
+**In-flight items go at the top.** When someone opens the iteration plan, they should immediately see what's active and what state it's in. Completed items move to the bottom. This is the opposite of a journal (reverse chronological) — the plan is a **live dashboard**, not a log.
+
 ## Steps
 
 ### 1. SCOPE
@@ -59,21 +77,36 @@ iteration: [project] — Iteration N: [Goal]
 ```markdown
 Champion: @handle
 Period: [start date] – [end date]
-Goal: [one sentence]
+Goal: [one sentence — what will be true when this iteration succeeds]
 
-## [project-name-1]
-- [ ] 🏃 Task in progress jcfischer/specflow-bundle#7
-- [ ] Task not started (#issue)
-- [ ] 💪 Stretch goal (#issue)
-- [ ] ✋ Blocked — [reason] (#issue)
-- [ ] ⬛ Multi-iteration (#issue)
+## Vision
+[2-3 sentences: the big picture. Why does this iteration matter?
+What capability or state change does it deliver?]
 
-## [project-name-2]
-- [ ] Task (#issue)
+## In Flight
+[Active milestones — what's happening NOW. This section is the dashboard.]
+- [ ] 🏃 Milestone description — current state
+- [ ] ✋ Milestone description — blocked on [reason]
+
+## Planned
+[Milestones not yet started]
+- [ ] Milestone description
+- [ ] 💪 Stretch milestone
+- [ ] ⬛ Multi-iteration milestone
+
+## Completed
+[Milestones achieved — moves here from In Flight when done]
+- [x] Milestone description
+
+## Deferred
+[Explicitly postponed — with reason]
+- [ ] ⬛ Milestone — [reason for deferral]
 
 ## References
-- [Link to relevant PROJECT.yaml, specs, branches]
+- [Research, specs, spoke repos where implementation happens]
 ```
+
+**Key principle:** Each line is a **milestone-level outcome**, not an implementation task. The iteration plan is the hub view — implementation details live in spoke repo issues. When you read a line, you should understand *what changes for the project*, not *what commands to run*.
 
 **Emoji status indicators:**
 
@@ -145,27 +178,41 @@ When a champion creates a plan for multiple contributors:
 
 ## Examples
 
-### Solo iteration plan (cross-project)
+### Solo iteration plan (roadmap-level)
 
 ```markdown
-# @mellanon — Iteration 2: Feb 3–14, 2026
+# @mellanon — JellyBean: Spec Driven Development
 
 Champion: @mellanon
 Period: Feb 3 – Feb 14, 2026
-Goal: Get headless pipeline merged upstream and start lifecycle playbooks
+Goal: SpecFlow lifecycle direction established, brownfield capability designed
 
-## specflow-lifecycle
-- [x] 🏃 Get PRs #3, #4, #6, #7 reviewed and merged (jcfischer/specflow-bundle)
-- [ ] Draft OpenSpec template (#8)
-- [ ] 💪 Start Contrib Prep Maestro playbook (#5)
+## Vision
+Extend SpecFlow from a build tool into a full lifecycle tool. The council
+verdict (C+) says build brownfield/review/release natively, don't depend
+on OpenSpec or Maestro. This iteration establishes the direction and
+produces the first design specs.
 
-## signal
-- [ ] 🏃 Contrib Prep pass — file inventory, sanitization (#1)
-- [ ] ✋ First community review — blocked on contrib prep (#2)
+## In Flight
+- [ ] 🏃 Upstream PRs landed — headless pipeline merged to specflow-bundle
+- [ ] 🏃 Brownfield command — designed, spec'd, ready for implementation
 
-## governance
-- [ ] Review security PRs #56, #57 (#67)
-- [ ] 💪 Respond to Steffen's introduction (#68)
+## Planned
+- [ ] Release command — SpecFirst 8-gate framework ported to SpecFlow design
+- [ ] 💪 Cedars integration — engagement with @Steffen025 on milestone approach (#72)
+
+## Completed
+- [x] Research foundation — landscape report, OpenSpec deep dive, council debate
+- [x] Project direction pivoted — native commands, not Maestro playbooks
+- [x] Issues #5, #6, #7 re-scoped to reflect council verdict
+
+## Deferred
+- [ ] ⬛ OpenSpec interchange format — evaluate at 90-day gate, not now (#8)
+
+## References
+- Research: pai-collab research/ (3 docs + architecture diagram)
+- Implementation: mellanon/specflow-bundle fork (spoke repo)
+- SpecFirst source: contrib-specfirst-v1.0.0 branch
 ```
 
 ### Multi-contributor iteration plan
@@ -175,19 +222,31 @@ Goal: Get headless pipeline merged upstream and start lifecycle playbooks
 
 Champion: @mellanon
 Period: Feb 3 – Feb 14, 2026
-Goal: Merge headless pipeline and begin lifecycle extension commands
+Goal: Headless pipeline shipped, lifecycle extension designed
 
-## @mellanon
+## Vision
+SpecFlow covers SPECIFY→COMPLETE today. This iteration lands the headless
+pipeline (autonomous execution) and begins designing the post-COMPLETE
+phases: review, release, and brownfield evolution.
+
+## In Flight
+### @mellanon
 - [ ] 🏃 Headless pipeline PRs merged upstream
-- [ ] Draft OpenSpec template (#8)
-- [ ] 💪 Prototype specflow review command
+- [ ] 🏃 Brownfield command design spec produced
 
-## @jcfischer
-- [ ] Review PRs #3, #4, #6, #7 on specflow-bundle
-- [ ] 💪 Start specflow review command design
+### @jcfischer
+- [ ] 🏃 PRs #3, #4, #6, #7 reviewed on specflow-bundle
 
-## @Steffen025
+## Planned
+### @mellanon
+- [ ] 💪 Review command design spec
+
+### @Steffen025
 - [ ] 💪 Cedars integration proposal (#72)
+
+## References
+- Research: pai-collab research/
+- Implementation: jcfischer/specflow-bundle + mellanon/specflow-bundle fork
 ```
 
 ## References

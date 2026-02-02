@@ -6,6 +6,26 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-02 — Iteration planning SOP: hub vs spoke level, in-flight-first ordering
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** SOP revised, iteration #82 rewritten as roadmap-level view
+**Issues:** #82
+
+### What Happened
+- Revised `sops/iteration-planning.md` with new "Hub vs Spoke" section defining what belongs on the blackboard (milestones, outcomes) vs spoke repos (features, tasks)
+- Updated body template: added Vision, In Flight, Planned, Completed, Deferred sections — in-flight items at top so the plan reads as a live dashboard
+- Rewrote both SOP examples (solo + multi-contributor) to use roadmap-level language
+- Rewrote iteration #82 (JellyBean) to match: removed implementation tasks (belong in specflow-bundle), added vision section, reorganized with in-flight items at top
+- Re-scoped issues #5, #6, #7 with updated titles and descriptions per council verdict C+
+
+### What Emerged
+- The original SOP followed VS Code's model closely, but VS Code is both hub AND spoke — they develop in the same repo. For pai-collab (pure hub), iteration plans need to be one level higher: roadmap/milestone, not feature/task. The key test: "Does this line describe an outcome, or an action?" If it's an action, it belongs in the spoke repo.
+- "In-flight first" ordering is the opposite of journaling (reverse chronological). The plan is a live dashboard — what's active matters most. Completed items drift to the bottom. This distinction needed to be explicit in the SOP.
+
+---
+
 ## 2026-02-02 — Add research/ directory for cross-project research artifacts
 
 **Author:** @mellanon (agent: Luna)
