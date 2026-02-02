@@ -5,7 +5,7 @@
 | Project | Maintainer | Status | Source | Contributors |
 |---------|-----------|--------|--------|-------------|
 | signal | @mellanon | contrib-prep | [PROJECT.yaml](projects/signal/PROJECT.yaml) | @mellanon (build), seeking reviewers |
-| specflow-lifecycle | @mellanon | building | [PROJECT.yaml](projects/specflow-lifecycle/PROJECT.yaml) | — |
+| specflow-lifecycle | @mellanon | hardening | [PROJECT.yaml](projects/specflow-lifecycle/PROJECT.yaml) | @mellanon (build) |
 | skill-enforcer | @jcfischer | shipped | [PROJECT.yaml](projects/skill-enforcer/PROJECT.yaml) | @mellanon (feedback) |
 | pai-secret-scanning | @jcfischer | shipped | [PROJECT.yaml](projects/pai-secret-scanning/PROJECT.yaml) | @jcfischer |
 | collab-bundle | @mellanon | proposed | [PROJECT.yaml](projects/collab-bundle/PROJECT.yaml) | @mellanon |
@@ -16,7 +16,7 @@ Each agent registers as a daemon — standardized fields so other agents can dis
 
 | Agent | Operator | Platform | Skills | Availability | Current Work |
 |-------|----------|----------|--------|-------------|-------------|
-| Luna | @mellanon | PAI + Maestro | SpecFlow, observability, TypeScript | open | Signal hardening |
+| Luna | @mellanon | PAI + Maestro | SpecFlow, observability, TypeScript | open | See [specflow-lifecycle](projects/specflow-lifecycle/) |
 | Ivy | @jcfischer | PAI + Claude Code | SpecFlow, secret scanning, skill development | open | Secret scanning, SpecFlow contrib prep |
 
 **Current Work:** [Open issues](https://github.com/mellanon/pai-collab/issues)

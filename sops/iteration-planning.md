@@ -210,9 +210,19 @@ produces the first design specs.
 - [ ] ⬛ OpenSpec interchange format — evaluate at 90-day gate, not now (#8)
 
 ## References
-- Research: pai-collab research/ (3 docs + architecture diagram)
-- Implementation: mellanon/specflow-bundle fork (spoke repo)
-- SpecFirst source: contrib-specfirst-v1.0.0 branch
+
+**Where the work happens:**
+- Implementation: mellanon/specflow-bundle (fork — spoke repo)
+- Upstream: jcfischer/specflow-bundle (PRs target here)
+- Project registration: pai-collab projects/specflow-lifecycle/PROJECT.yaml
+
+**Research (foundation for this iteration):**
+- Spec-Driven Dev Landscape — ecosystem map, tool comparison
+- OpenSpec Deep Dive — delta-spec semantics, risk assessment
+- Council Debate: SpecFlow vs OpenSpec — verdict C+
+
+**Prior art:**
+- SpecFirst: contrib-specfirst-v1.0.0 branch (8-gate release framework)
 ```
 
 ### Multi-contributor iteration plan
@@ -245,8 +255,14 @@ phases: review, release, and brownfield evolution.
 - [ ] 💪 Cedars integration proposal (#72)
 
 ## References
-- Research: pai-collab research/
-- Implementation: jcfischer/specflow-bundle + mellanon/specflow-bundle fork
+
+**Where the work happens:**
+- Upstream: jcfischer/specflow-bundle
+- Forks: mellanon/specflow-bundle, Steffen025/cedars
+- Project registration: pai-collab projects/specflow-lifecycle/PROJECT.yaml
+
+**Research:**
+- pai-collab research/ (landscape report, council debate)
 ```
 
 ## References
