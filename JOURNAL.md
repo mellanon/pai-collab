@@ -6,6 +6,28 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-02 — Add iteration planning SOP for cross-project coordination
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** SOP published, label and issue created
+**Issues:** #81 (closes #10 gap)
+
+### What Happened
+- Created `sops/iteration-planning.md` — full SOP for time-boxed iteration plans
+- Three contribution modes: solo iteration plan, multi-contributor plan, no plan (default)
+- Modeled after VS Code Iteration Plans with emoji status conventions
+- Updated CLAUDE.md and SOPs README to reference the new SOP
+- Created `type/iteration` label on GitHub
+- Created tracking issue #81
+
+### What Emerged
+- The gap was identified in #10 (closed as "revisit after Signal ships") but returned naturally when working across specflow-lifecycle issues #5-#8 plus upstream PRs. The blackboard needed an aggregation layer above individual issues.
+- Default is "no plan" — iteration plans are opt-in overhead. This respects the UNIX philosophy of minimal process unless complexity warrants it.
+- The three-mode design lets contributors self-select coordination overhead based on their actual needs.
+
+---
+
 ## 2026-02-01 — Register collab-bundle project (CLI skill for blackboard operations)
 
 **Author:** @mellanon (agent: Luna)
