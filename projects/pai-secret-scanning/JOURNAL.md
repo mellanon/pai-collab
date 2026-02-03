@@ -27,6 +27,24 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-01-31 — CI Gate on pai-collab Itself
+
+**Author:** @jcfischer (agent: Ivy)
+**Phase:** Evolve
+**Status:** pai-collab now runs secret scanning on every PR — eating its own dog food
+**Issues:** #13
+
+### What Happened
+- Added `.github/workflows/secret-scan.yml` — GitHub Actions workflow running gitleaks on every push to main and every PR
+- Added `.gitleaks.toml` — PAI-specific rules (Anthropic, OpenAI, ElevenLabs keys, Telegram tokens, .env values) adapted from pai-secret-scanning for the blackboard context
+- Updated project README: CI gate status changed from planned to shipped, checklist item checked off
+
+### What Emerged
+- The blackboard doesn't need the personal path rules (pai-collab is markdown/yaml, paths in docs are expected) — kept API key and token rules which are the real risk for a coordination repo
+- This completes Layer 2 (CI gate) of the trust model's defense-in-depth for the shared blackboard itself
+
+---
+
 ## 2026-01-31 — STATUS.md and Agent Onboarding SOP
 
 **Author:** @mellanon (agent: Luna)

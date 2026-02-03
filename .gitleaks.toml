@@ -1,0 +1,100 @@
+# PAI Secret Scanning — Gitleaks Configuration for pai-collab
+#
+# Adapted from jcfischer/pai-secret-scanning for the shared blackboard.
+# pai-collab is a coordination repo (markdown, yaml, SOPs) — not a code repo.
+# But contributors may still accidentally paste secrets into PROJECT.yaml,
+# journal entries, or SOP examples.
+#
+# Built-in rules cover: AWS, GCP, Azure, SSH keys, JWTs, generic secrets (~150 patterns)
+# Custom rules below add PAI-specific detection.
+
+title = "pai-collab Secret Scanning"
+
+# Inherit all built-in gitleaks rules
+[extend]
+
+# --- PAI-Specific Custom Rules ---
+
+# Anthropic API keys
+[[rules]]
+id = "pai-anthropic-key"
+description = "Anthropic API key detected"
+regex = '''sk-ant-[A-Za-z0-9\-_]{20,}'''
+tags = ["pai", "api-key", "anthropic"]
+
+# OpenAI API keys
+[[rules]]
+id = "pai-openai-key"
+description = "OpenAI API key detected"
+regex = '''sk-(?:proj-)?[A-Za-z0-9]{20,}'''
+tags = ["pai", "api-key", "openai"]
+[rules.allowlist]
+regexes = [
+  '''sk-ant-''',  # Don't double-match Anthropic keys
+]
+
+# ElevenLabs API keys
+[[rules]]
+id = "pai-elevenlabs-key"
+description = "ElevenLabs API key detected"
+regex = '''(?i)elevenlabs[_\-\s]*(?:key|api|token)[_\-\s]*[=:]\s*[a-f0-9]{32}'''
+tags = ["pai", "api-key", "elevenlabs"]
+
+# Telegram bot tokens
+[[rules]]
+id = "pai-telegram-bot"
+description = "Telegram bot token detected"
+regex = '''\d{8,10}:[A-Za-z0-9_-]{35}'''
+tags = ["pai", "telegram", "token"]
+
+# Replicate API tokens
+[[rules]]
+id = "pai-replicate-key"
+description = "Replicate API token detected"
+regex = '''r8_[a-zA-Z0-9]{40}'''
+tags = ["pai", "api-key", "replicate"]
+
+# HuggingFace API tokens
+[[rules]]
+id = "pai-huggingface-key"
+description = "HuggingFace API token detected"
+regex = '''hf_[a-zA-Z0-9]{34,}'''
+tags = ["pai", "api-key", "huggingface"]
+
+# Groq API keys
+[[rules]]
+id = "pai-groq-key"
+description = "Groq API key detected"
+regex = '''gsk_[a-zA-Z0-9]{52}'''
+tags = ["pai", "api-key", "groq"]
+
+# Inline .env values
+[[rules]]
+id = "pai-env-inline"
+description = "Inline environment variable with value in .env file"
+regex = '''^[A-Z][A-Z0-9_]+=\S+'''
+path = '''\.env'''
+tags = ["pai", "env", "secret"]
+[rules.allowlist]
+regexes = [
+  '''^#''',
+  '''=\$\{''',
+  '''=\s*$''',
+  '''=placeholder''',
+  '''=changeme''',
+  '''=your-''',
+]
+
+# --- Global Allowlist ---
+
+[allowlist]
+paths = [
+  '''(^|/)\.git/''',
+  '''\.lock$''',
+  '''node_modules/''',
+  '''\.gitleaks\.toml$''',
+]
+regexes = [
+  '''Co-Authored-By:''',
+  '''noreply@''',
+]
