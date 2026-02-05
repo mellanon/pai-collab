@@ -16,6 +16,8 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [skill-enforcer](projects/skill-enforcer/) | @jcfischer | shipped | Validates skill structure against PAI conventions |
 | [pai-content-filter](projects/pai-content-filter/) | @jcfischer | shipped | Inbound content security — Layer 4–5 of the trust model (CaMeL-inspired) |
 | [collab-bundle](projects/collab-bundle/) | @mellanon | proposed | CLI skill and tooling for pai-collab blackboard operations |
+| [ivy-blackboard](projects/ivy-blackboard/) | @jcfischer | shipped | Local agent coordination using the blackboard pattern |
+| [ivy-heartbeat](projects/ivy-heartbeat/) | @jcfischer | shipped | Proactive monitoring and agent dispatch for PAI systems |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 

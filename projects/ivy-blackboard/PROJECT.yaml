@@ -1,0 +1,16 @@
+name: ivy-blackboard
+maintainer: jcfischer
+status: shipped
+created: 2026-02-05
+license: MIT
+type: infrastructure
+source:
+  repo: jcfischer/ivy-blackboard
+  branch: main
+tests: bun test
+docs: https://github.com/jcfischer/ivy-blackboard#readme
+
+contributors:
+  jcfischer:
+    zone: maintainer
+    since: 2026-01-28
