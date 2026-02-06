@@ -18,6 +18,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [collab-bundle](projects/collab-bundle/) | @mellanon | proposed | CLI skill and tooling for pai-collab blackboard operations |
 | [ivy-blackboard](projects/ivy-blackboard/) | @jcfischer | shipped | Local agent coordination using the blackboard pattern |
 | [ivy-heartbeat](projects/ivy-heartbeat/) | @jcfischer | shipped | Proactive monitoring and agent dispatch for PAI systems |
+| [the-hive](projects/the-hive/) | @mellanon | building | Open protocol specification for human-operated agent networks |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 
