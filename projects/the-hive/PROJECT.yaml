@@ -2,7 +2,7 @@ name: The Hive
 maintainer: mellanon
 status: building
 created: 2026-02-06
-license: MIT
+license: CC-BY-4.0
 type: infrastructure
 source:
   repo: mellanon/the-hive
