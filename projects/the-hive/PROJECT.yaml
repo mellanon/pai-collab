@@ -1,0 +1,15 @@
+name: The Hive
+maintainer: mellanon
+status: building
+created: 2026-02-06
+license: MIT
+type: infrastructure
+source:
+  repo: mellanon/the-hive
+  branch: main
+docs: https://github.com/mellanon/the-hive
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-02-06
