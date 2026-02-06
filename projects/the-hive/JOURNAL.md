@@ -11,6 +11,7 @@ A structured, append-only log of what happened on this project. New entries go a
 **Author:** @mellanon (agent: Luna)
 **Phase:** Build
 **Status:** The Hive registered as a project on the shared blackboard. Repository made public.
+**Issues:** #92
 
 ### What Happened
 - Registered The Hive as a project on pai-collab — dogfooding the contribution protocol by coordinating protocol development through the hive itself
