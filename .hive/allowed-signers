@@ -1,0 +1,26 @@
+# pai-collab allowed-signers — Cryptographic Trust Anchor
+#
+# This file maps operators to their Ed25519 SSH public keys.
+# It is the source of truth for commit signature verification.
+#
+# Format: <email> <key-type> <public-key>
+#
+# Maintenance rules:
+#   - Only maintainers can merge changes to this file
+#   - Adding an operator: they submit a signed PR with their key
+#     (the signed commit proves key ownership)
+#   - Removing an operator: maintainer removes the line
+#   - Key rotation: operator submits signed PR with new key
+#
+# Verification:
+#   git config gpg.ssh.allowedSignersFile .hive/allowed-signers
+#   git log --show-signature
+#
+# See: sops/agent-onboarding.md for setup instructions
+# See: TRUST-MODEL.md for how this fits into the defense layers
+
+# @mellanon — maintainer
+andreas.aastroem@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO6xYoY3NSCNkCSiS4GU+EhZPQFh098vsiUh6KggOg1a
+
+# @jcfischer — trusted
+# TODO: Add jcfischer's Ed25519 public key (request via issue or PR)

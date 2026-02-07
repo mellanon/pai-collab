@@ -6,6 +6,31 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — Security by design: commit signing, CI identity gate, reflex pipeline
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Security infrastructure added to pai-collab (hub implementation) aligned with the-hive trust protocol (spec).
+
+### What Happened
+- Studied [Arbor](https://github.com/trust-arbor/arbor) security architecture as reference for the-hive protocol design
+- Designed crypto identity layer using git's native SSH commit signing — no custom key management needed. Operators use existing Ed25519 SSH keys, 3 git config commands to enable
+- Created `.hive/allowed-signers` trust anchor file with maintainer's Ed25519 public key
+- Added Gate 1 (Identity) to CI pipeline: verifies commit signatures and checks key registration on every PR
+- Created PR template with CI-verified and self-reported checklists
+- Updated onboarding SOP with enforcement model (4 CI gates), signing prerequisites, and contributor-brings-nothing-but-git principle
+- Updated TRUST-MODEL.md Layer 3 for commit signing, added contributor responsibility
+- Updated CLAUDE.md with commit signing reference and `.hive/` in repo structure
+- Updated the-hive protocols (trust, hive, operator-identity, spoke) with: unified reflex pipeline (4 boundary reflexes), allowed-signers pattern, CI-as-state-machine enforcement, SSH signing as default provider, content provenance labels
+
+### What Emerged
+- The breakthrough: don't build custom key management — git 2.34+ SSH signing IS the crypto identity layer. Zero custom infrastructure, defense in depth (local hooks + CI backstop)
+- Arbor's "SOPs as state machines" principle adapted to git: CI pipeline IS the state machine runtime, git artifacts ARE the state storage. Enforcement lives on the receiving end (hub), not the sending end (contributor)
+- Four reflex firing points at boundary crossings (pre-commit, CI gate, acquisition, context load) unify the six defense layers into a coherent pipeline. The operator installs two things locally; everything else is hub infrastructure
+- pai-collab as "Hive Zero" means protocol specs and hub implementation must stay aligned — changes to one should cascade to the other
+
+---
+
 ## 2026-02-06 — The Hive registered, ecosystem license changed to CC-BY-4.0
 
 **Author:** @mellanon (agent: Luna)

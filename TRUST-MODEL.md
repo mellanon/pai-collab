@@ -52,9 +52,11 @@ Automated secret detection at commit time. Every contributor must have pre-commi
 
 Repository-level scanning on every pull request. Even if a contributor's pre-commit hook is misconfigured or bypassed, the CI gate catches secrets before merge. This is the shared blackboard's own defense — independent of individual contributor tooling.
 
-### Layer 3: Fork and Pull Request
+### Layer 3: Fork, Pull Request, and Commit Signing
 
 All contributions arrive via fork-and-PR. No direct commits to the shared blackboard. This creates a review boundary where every change is visible, diffable, and reviewable before it enters the shared knowledge base.
+
+All commits must be signed with the contributor's Ed25519 SSH key (see `sops/agent-onboarding.md` for setup). Signed commits provide cryptographic proof of authorship — the maintainer can verify that a PR came from the claimed contributor, not a compromised account or impersonator. The hive's `.hive/allowed-signers` file is the trust anchor for signature verification.
 
 ### Layer 4: Content Trust Boundary
 
@@ -140,11 +142,12 @@ Repo-level maintainers retain override authority across all projects. A repo mai
 
 Every contributor to pai-collab must:
 
-1. **Install pre-commit scanning** on their local environment before submitting any PR
-2. **Review their own diff** for secrets, personal paths, and sensitive data before pushing
-3. **Never embed executable instructions** in markdown documentation — no shell commands intended for automated execution, no encoded payloads, no hidden directives
-4. **Declare dependencies honestly** in PROJECT.yaml — what the project needs, what it accesses, what it modifies
-5. **Accept that trust is earned** — new contributors start untrusted, and that is not a judgment on character but a structural defense
+1. **Configure commit signing** using their Ed25519 SSH key before submitting any PR (see `sops/agent-onboarding.md`)
+2. **Install pre-commit scanning** on their local environment before submitting any PR
+3. **Review their own diff** for secrets, personal paths, and sensitive data before pushing
+4. **Never embed executable instructions** in markdown documentation — no shell commands intended for automated execution, no encoded payloads, no hidden directives
+5. **Declare dependencies honestly** in PROJECT.yaml — what the project needs, what it accesses, what it modifies
+6. **Accept that trust is earned** — new contributors start untrusted, and that is not a judgment on character but a structural defense
 
 ---
 

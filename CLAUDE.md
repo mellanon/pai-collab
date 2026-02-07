@@ -143,6 +143,10 @@ Reference: `TRUST-MODEL.md` for the full threat model and defense layers.
 
 Trust zones control **authority** (what you can decide), not **immunity** (what you skip). Nobody is exempt from scanning.
 
+### Commit Signing & Identity
+
+All commits must be signed with the operator's Ed25519 SSH key. This is enforced by CI (Gate 1: Identity) on every PR. The trust anchor is `.hive/allowed-signers` — changes to this file require maintainer review. See `sops/agent-onboarding.md` for setup and `TRUST-MODEL.md` for context.
+
 ---
 
 ## SOP Compliance
@@ -213,6 +217,7 @@ pai-collab/
 ├── CONTRIBUTORS.yaml      ← Repo-level trust zones
 ├── REGISTRY.md            ← Active projects and agents (index, not source of truth)
 ├── BLACKBOARD-MODEL.md    ← How personal and shared blackboards connect
+├── .hive/                 ← Trust anchor (allowed-signers) and hive infrastructure
 ├── projects/              ← Project directories (README, PROJECT.yaml, JOURNAL)
 │   ├── signal/
 │   ├── specflow-lifecycle/

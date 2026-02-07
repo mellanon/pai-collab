@@ -11,10 +11,78 @@ on:
       - 'CONTRIBUTING.md'
       - 'CLAUDE.md'
       - 'TRUST-MODEL.md'
+      - '.hive/**'
 
 jobs:
+  # Gate 1: Identity — commit signing verification (runs first)
+  identity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify commit signatures
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          UNSIGNED=0
+          TOTAL=0
+
+          # Check each commit in the PR
+          for COMMIT in $(git rev-list $BASE_SHA..HEAD); do
+            TOTAL=$((TOTAL + 1))
+            # %G? shows signature status: G=good, B=bad, U=untrusted, N=none, E=expired
+            SIG_STATUS=$(git log -1 --format='%G?' $COMMIT)
+            AUTHOR=$(git log -1 --format='%ae' $COMMIT)
+            SHORT=$(git log -1 --format='%h' $COMMIT)
+
+            if [ "$SIG_STATUS" = "G" ]; then
+              echo "  $SHORT ($AUTHOR) — signed"
+            elif [ "$SIG_STATUS" = "N" ]; then
+              echo "::warning::Commit $SHORT by $AUTHOR is NOT signed. See sops/agent-onboarding.md for commit signing setup."
+              UNSIGNED=$((UNSIGNED + 1))
+            else
+              echo "::warning::Commit $SHORT by $AUTHOR has signature status: $SIG_STATUS"
+              UNSIGNED=$((UNSIGNED + 1))
+            fi
+          done
+
+          if [ $UNSIGNED -gt 0 ]; then
+            echo ""
+            echo "::warning::$UNSIGNED of $TOTAL commits are not signed with an SSH key."
+            echo "::warning::To set up commit signing, run these 3 commands:"
+            echo "::warning::  git config --global gpg.format ssh"
+            echo "::warning::  git config --global user.signingKey ~/.ssh/id_ed25519.pub"
+            echo "::warning::  git config --global commit.gpgSign true"
+            echo "::warning::See: sops/agent-onboarding.md#commit-signing-setup"
+          else
+            echo "All $TOTAL commits are signed."
+          fi
+
+      - name: Check signing key registration
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          ALLOWED_SIGNERS=".hive/allowed-signers"
+
+          if [ ! -f "$ALLOWED_SIGNERS" ]; then
+            echo "::warning::No .hive/allowed-signers file found. Cannot verify key registration."
+            exit 0
+          fi
+
+          # Extract unique author emails from PR commits
+          for AUTHOR in $(git log --format='%ae' $BASE_SHA..HEAD | sort -u); do
+            if grep -q "$AUTHOR" "$ALLOWED_SIGNERS"; then
+              echo "  $AUTHOR — registered in allowed-signers"
+            else
+              echo "::notice::$AUTHOR is not yet in .hive/allowed-signers. New contributor detected — maintainer will register key on merge."
+            fi
+          done
+
+  # Gate 2 + 3: Schema validation and governance checks
   validate:
     runs-on: ubuntu-latest
+    needs: identity
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
