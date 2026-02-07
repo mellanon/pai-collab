@@ -28,6 +28,8 @@ Gate 1 runs first. If identity fails, you still see schema results but the signi
 | `gh` (GitHub CLI) | Creating/querying issues, applying labels, submitting PRs | [cli.github.com](https://cli.github.com/) |
 | `git` (2.34+) | Cloning, branching, committing, **SSH commit signing** | Included with most dev environments |
 | Ed25519 SSH key | Cryptographic identity, signed commits | `ssh-keygen -t ed25519` (most developers already have one) |
+| `gitleaks` | Pre-commit secret scanning (Reflex A) | `brew install gitleaks` or [github.com/gitleaks/gitleaks](https://github.com/gitleaks/gitleaks) |
+| `bun` | Running content filter hooks | [bun.sh](https://bun.sh/) |
 
 The agent must have `gh` authenticated (`gh auth login`) before starting the DISCOVER step. Without `gh`, issue discovery and the issue-first workflow from CLAUDE.md are not possible.
 
@@ -43,7 +45,98 @@ git config --global commit.gpgSign true
 
 If the operator doesn't have an Ed25519 key yet: `ssh-keygen -t ed25519`
 
+Point git at the hive's trust anchor for local signature verification:
+
+```bash
+git config --global gpg.ssh.allowedSignersFile .hive/allowed-signers
+```
+
 Verification: `git log --show-signature -1` should show `Good "git" signature` after the first signed commit.
+
+### Local Reflex Setup (Security by Design)
+
+The hive enforces security at the CI boundary (Reflex B), but operators should also enable local reflexes for defense in depth. This section installs Reflexes A, C, and D.
+
+**Reflex A — Pre-commit secret scanning:**
+
+Install gitleaks and create a pre-commit hook in your local repo:
+
+```bash
+brew install gitleaks
+```
+
+Create `.git/hooks/pre-commit` in your cloned repo:
+
+```bash
+#!/usr/bin/env bash
+# Reflex A: Pre-commit secret scanning
+if ! command -v gitleaks &>/dev/null; then
+  echo "ERROR: gitleaks is not installed. Install with: brew install gitleaks"
+  exit 1
+fi
+gitleaks protect --staged --config .gitleaks.toml --verbose
+exit $?
+```
+
+Make it executable: `chmod +x .git/hooks/pre-commit`
+
+Test it works: stage a file containing `sk-ant-FAKE123456789` — the commit should be blocked.
+
+**Reflexes C & D — Inbound content filter:**
+
+Clone and install [pai-content-filter](https://github.com/jcfischer/pai-content-filter):
+
+```bash
+git clone https://github.com/jcfischer/pai-content-filter.git ~/Developer/pai-content-filter
+cd ~/Developer/pai-content-filter && bun install
+mkdir -p ~/work/sandbox
+```
+
+Wire the hooks into your Claude Code `settings.json` (under `hooks.PreToolUse`):
+
+```json
+{
+  "matcher": "Bash",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "CONTENT_FILTER_SANDBOX_DIR=$HOME/work/sandbox bun run $HOME/Developer/pai-content-filter/hooks/SandboxEnforcer.hook.ts"
+    }
+  ]
+},
+{
+  "matcher": "Read",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "CONTENT_FILTER_SANDBOX_DIR=$HOME/work/sandbox bun run $HOME/Developer/pai-content-filter/hooks/ContentFilter.hook.ts"
+    }
+  ]
+},
+{
+  "matcher": "Glob",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "CONTENT_FILTER_SANDBOX_DIR=$HOME/work/sandbox bun run $HOME/Developer/pai-content-filter/hooks/ContentFilter.hook.ts"
+    }
+  ]
+},
+{
+  "matcher": "Grep",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "CONTENT_FILTER_SANDBOX_DIR=$HOME/work/sandbox bun run $HOME/Developer/pai-content-filter/hooks/ContentFilter.hook.ts"
+    }
+  ]
+}
+```
+
+- **SandboxEnforcer** (Reflex C): intercepts `git clone`, `curl -o`, `wget` and redirects to `~/work/sandbox/`
+- **ContentFilter** (Reflex D): scans files under `~/work/sandbox/` before they enter LLM context
+
+Verify: run `bun test` in the pai-content-filter directory — all 492 tests should pass.
 
 ## Pipeline
 
