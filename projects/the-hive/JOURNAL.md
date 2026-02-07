@@ -6,6 +6,26 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — First dogfood spoke: .collab/ files created, AGPL-3.0 in license field
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** the-hive is now a proper spoke projecting to pai-collab.
+
+### What Happened
+- Created `.collab/` directory with all three spoke contract files: manifest.yaml (identity + reflexes), status.yaml (phase snapshot), operator.yaml (Tier 1 + Tier 2 profile)
+- This is the first real-world use of the spoke protocol — the-hive projecting to pai-collab (Hive Zero)
+- Updated spoke-protocol.md license field to include AGPL-3.0 alongside existing accepted licenses
+- manifest.yaml includes full crypto identity (Ed25519 key, fingerprint) and reflex attestation
+- operator.yaml follows the three-tier model: Tier 1 (public identity) and Tier 2 (hive-scoped) included; Tier 3 (private) stays local per spec
+
+### What Emerged
+- Creating the files manually (without CLI tooling) validated the schema — all fields from spoke-protocol.md and operator-identity.md map cleanly to YAML
+- The status.yaml `generatedBy: operator-manual` field will change to the CLI tool name once hive-spoke ships — this is a natural migration path
+- The hive-spoke repo was created on GitHub (public, AGPL-3.0) — ready for Phase 1A implementation
+
+---
+
 ## 2026-02-07 — Spoke compliance verification model specified
 
 **Author:** @mellanon (agent: Luna)

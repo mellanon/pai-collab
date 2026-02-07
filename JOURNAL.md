@@ -6,6 +6,28 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — AGPL-3.0 licensing model for infrastructure tooling
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Licensing policy updated to support AGPL-3.0 two-layer model.
+
+### What Happened
+- Updated accepted license list in CLAUDE.md and CONTRIBUTING.md to include `AGPL-3.0` and `CC-BY-4.0`
+- Established two-layer licensing model: protocol specs use CC-BY-4.0 (open implementation), reference implementations use AGPL-3.0 (network-use protection)
+- hive-spoke PROJECT.yaml license changed from MIT to AGPL-3.0
+- Rejected licenses now explicitly listed: GPL, LGPL, MPL, SSPL — copyleft without AGPL's specific network-use clause
+- Spoke-protocol.md license field updated to include AGPL-3.0
+
+### What Emerged
+- The CC-BY-4.0 spec is the escape valve — anyone who can't use AGPL can implement from the open spec under any license. This prevents AGPL from being a lock-in mechanism.
+- The Elasticsearch/Grafana precedent validates this model: Grafana uses AGPL-3.0 with open concepts/protocol and remains one of the most widely adopted monitoring tools.
+- Standalone tools (ivy-blackboard, pai-secret-scanning) stay permissive (MIT) for upstream contribution compatibility. Only infrastructure tooling implementing the hive protocol uses AGPL-3.0.
+
+Refs: #96
+
+---
+
 ## 2026-02-07 — SOP tiered loading, hive-spoke project inception
 
 **Author:** @mellanon (agent: Luna)

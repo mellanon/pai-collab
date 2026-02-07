@@ -2,7 +2,7 @@ name: hive-spoke
 maintainer: mellanon
 status: proposed
 created: 2026-02-07
-license: MIT
+license: AGPL-3.0
 type: infrastructure
 source:
   repo: mellanon/hive-spoke

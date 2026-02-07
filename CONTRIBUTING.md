@@ -328,9 +328,18 @@ Every SOP should reference:
 
 All projects accepted to pai-collab must declare a license using an [SPDX identifier](https://spdx.org/licenses/) in their PROJECT.yaml.
 
-**Accepted licenses:** `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`
+**Accepted licenses:** `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `CC-BY-4.0`, `AGPL-3.0`
 
-**Why permissive only?** PAI is MIT-licensed. Contributions flow upstream from the blackboard to PAI and other repos. Copyleft licenses (GPL, AGPL, LGPL) create incompatibilities when code is merged into MIT-licensed projects. Permissive licenses ensure frictionless upstream contribution.
+**Two-layer model:** The Hive ecosystem uses a two-layer licensing approach:
+- **Protocol specifications** (e.g., the-hive) use `CC-BY-4.0` — anyone can read, implement, and fork the spec under any license
+- **Reference implementations** (e.g., hive-spoke, hive-hub) use `AGPL-3.0` — use freely, share modifications if offered as a network service
+- **Standalone tools** (e.g., ivy-blackboard, pai-secret-scanning) use permissive licenses (`MIT`, `Apache-2.0`) — frictionless upstream contribution
+
+**Why AGPL-3.0 for infrastructure tooling?** AGPL-3.0 is OSI-approved. Its Section 13 requires that modifications offered as a network service must be shared. This prevents cloud extraction without contribution (the Elasticsearch problem) while keeping the code fully open source. The CC-BY-4.0 spec is the escape valve — anyone who can't use AGPL can implement from the open spec under any license.
+
+**Why permissive for standalone tools?** Tools that may be merged into MIT-licensed projects (like PAI) need license compatibility. Copyleft creates friction when code flows upstream.
+
+**Rejected licenses:** GPL, LGPL, MPL, SSPL, and other copyleft variants not listed above. These create incompatibilities without the specific network-use protection that AGPL-3.0 provides.
 
 **No license = no acceptance.** Unlicensed work has implicit "all rights reserved" and cannot be safely merged anywhere. Projects without a `license` field in PROJECT.yaml will not be accepted.
 
