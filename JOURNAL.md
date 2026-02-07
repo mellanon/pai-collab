@@ -6,6 +6,31 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-06 — The Hive registered, ecosystem license changed to CC-BY-4.0
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Evolve
+**Status:** The Hive registered as a project. pai-collab and the-hive licenses changed from MIT to CC-BY-4.0. Schema allowlist updated.
+**Issues:** #92, #93
+
+### What Happened
+- Registered [The Hive](https://github.com/mellanon/the-hive) as a project on pai-collab — an open protocol specification for human-operated agent networks
+- The Hive repository made public with 7 protocol specifications (all at Draft status), architecture document, implementation plan, and operator experience scenarios
+- Analyzed licensing across the ecosystem: pai-collab is 94% governance documentation, The Hive is 100% protocol specification — both are documentation works, not software implementations
+- Changed The Hive license from MIT to CC-BY-4.0 (Creative Commons Attribution 4.0) — appropriate for protocol specifications, requires attribution, allows commercial use
+- Changed pai-collab license from MIT to CC-BY-4.0 — consistent with the-hive, protects attribution on governance model and SOPs
+- Added CC-BY-4.0 to the accepted license allowlist in schema validation (`validate-schemas.mjs`), CONTRIBUTING.md, and CLAUDE.md — documented as accepted for documentation/specification projects
+- Created retroactive JOURNAL.md files for ivy-blackboard and ivy-heartbeat to satisfy schema validation CI
+- Three-layer licensing strategy established: CC-BY-4.0 for specs/docs, separate license TBD for future code implementations, proprietary for hosted platform
+
+### What Emerged
+- pai-collab IS The Hive's reference hub implementation — just in governance form, not code. The SOPs, trust model, and schemas implement 6 of 7 Hive protocols. This means the license choice matters: MIT would let someone fork the entire governance model without attribution
+- CC-BY-4.0 is the right license for documentation-heavy repos. It requires attribution (your name stays on the work) while allowing maximum adoption. The real moat is the community and accumulated trust, not the docs
+- pai-content-filter (jcfischer) has no LICENSE file at all — needs addressing
+- The accepted license allowlist needed expanding beyond permissive code licenses to accommodate documentation projects. The error message now distinguishes between copyleft (rejected) and CC-BY-4.0 (accepted for docs/specs)
+
+---
+
 ## 2026-02-02 — Iteration planning SOP: hub vs spoke level, in-flight-first ordering
 
 **Author:** @mellanon (agent: Luna)

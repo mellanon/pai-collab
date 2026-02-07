@@ -15,7 +15,7 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ### What Happened
 - Registered The Hive as a project on pai-collab — dogfooding the contribution protocol by coordinating protocol development through the hive itself
-- Repository [mellanon/the-hive](https://github.com/mellanon/the-hive) made public under MIT license
+- Repository [mellanon/the-hive](https://github.com/mellanon/the-hive) made public under CC-BY-4.0 license
 - All 7 protocol specifications are at Draft status with all open design questions resolved
 - Architecture document, implementation plan (7 phases), and operator experience scenarios complete
 - Existing implementations mapped: pai-collab (hub), ivy-blackboard (local state), ivy-heartbeat (dispatch), pai-secret-scanning (outbound security), pai-content-filter (inbound security)
