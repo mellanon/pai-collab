@@ -166,3 +166,37 @@ jobs:
               echo "::warning file=JOURNAL.md::Governance files were modified but root JOURNAL.md was not updated. Per CLAUDE.md: governance changes should be journaled in the root JOURNAL.md."
             fi
           fi
+
+      - name: Check content provenance trailers
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          MISSING_ORIGIN=0
+          MISSING_ATTEST=0
+          TOTAL=0
+
+          for COMMIT in $(git rev-list $BASE_SHA..HEAD); do
+            TOTAL=$((TOTAL + 1))
+            SHORT=$(git log -1 --format='%h' $COMMIT)
+            BODY=$(git log -1 --format='%B' $COMMIT)
+
+            # Check for Origin trailer
+            if echo "$BODY" | grep -qE '^Origin: (operator|agent|external|mixed)'; then
+              ORIGIN=$(echo "$BODY" | grep -oE '^Origin: (operator|agent|external|mixed)' | head -1)
+
+              # If agent or mixed origin, check for Attested-By
+              if echo "$ORIGIN" | grep -qE '(agent|mixed)'; then
+                if ! echo "$BODY" | grep -qE '^Attested-By: '; then
+                  echo "::warning::Commit $SHORT has $ORIGIN but no Attested-By trailer. Per trust-protocol: Attested-By is required when Origin is agent or mixed."
+                  MISSING_ATTEST=$((MISSING_ATTEST + 1))
+                fi
+              fi
+            else
+              MISSING_ORIGIN=$((MISSING_ORIGIN + 1))
+            fi
+          done
+
+          if [ $MISSING_ORIGIN -gt 0 ]; then
+            echo "::warning::$MISSING_ORIGIN of $TOTAL commits missing Origin trailer. Recommended format: Origin: operator|agent|external|mixed"
+          else
+            echo "All $TOTAL commits have content provenance trailers."
+          fi
