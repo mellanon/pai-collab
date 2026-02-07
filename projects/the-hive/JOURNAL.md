@@ -6,6 +6,23 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — Spoke-protocol and operator-identity promoted to Review
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Two specs promoted from Draft to Review based on implementation validation.
+
+### What Happened
+- Updated spoke-protocol.md: pull model (hub fetches from repos), real CLI command names, data flow diagram, resolved open questions
+- Promoted spoke-protocol.md and operator-identity.md from Draft → Review
+- These are the first two specs to leave Draft — validated through hive-spoke implementation, 3 dogfooded spokes, and the pull/verify end-to-end cycle
+
+### What Emerged
+- Implementation drove significant spec changes: PR model replaced by pull model, "two files" became "three files" (operator.yaml), command names went from `blackboard --level` to actual `hive-spoke` names
+- The remaining 5 specs (hive, trust, work, swarm, skill) stay Draft until they get the same implementation treatment
+
+---
+
 ## 2026-02-07 — First dogfood spoke: .collab/ files created, AGPL-3.0 in license field
 
 **Author:** @mellanon (agent: Luna)
