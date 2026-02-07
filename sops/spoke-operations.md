@@ -93,18 +93,15 @@ Pre-flight check before projecting to the hub. Validates all four compliance lay
 
 **Exit codes:** 0 = pass, 1 = errors, 2 = warnings in strict mode.
 
-### 4. Publish to hub (Phase 1B)
+### 4. Publish to hub (optional — for private spokes)
 
 ```bash
 hive-spoke publish
 ```
 
-Projects the spoke's current state to the hub:
-1. Runs `status` to refresh the snapshot
-2. Runs `validate` to pre-flight check
-3. Creates or updates a PR to the hub with the spoke's `.collab/` files
-
-This is how the hub learns about spoke state. The hub's CI gates validate the incoming PR.
+Creates a PR on the hub with the spoke's `.collab/` files. **Most spokes don't need this** — the hub's `pull` command fetches directly from public repos. Use `publish` only when:
+- The spoke repo is private (hub can't read it via API)
+- You want to explicitly push a snapshot to the hub repo
 
 ### 5. Aggregate spoke statuses (hub-side)
 
@@ -112,7 +109,9 @@ This is how the hub learns about spoke state. The hub's CI gates validate the in
 hive-spoke pull
 ```
 
-Scans the hub's `projects/*/` directory for `.collab/status.yaml` files and produces a summary dashboard. Shows each spoke's phase, test results, maintainer, freshness, and flags (dirty, behind remote, stale).
+Fetches `.collab/` data directly from each spoke's public repo via the GitHub API. Reads `PROJECT.yaml` → `source.repo` to discover where each spoke lives, then fetches `manifest.yaml` and `status.yaml` from the repo.
+
+**No PRs. No merging. The hub reads spoke state on demand.**
 
 Run this from the hub repo root.
 
@@ -122,7 +121,7 @@ Run this from the hub repo root.
 hive-spoke verify
 ```
 
-Cross-references spoke signing keys (from `projects/*/.collab/manifest.yaml`) against the hub's `.hive/allowed-signers` trust anchor. Reports which spokes have verified identity and which need to register.
+Fetches spoke manifests from their repos and cross-references signing keys against the hub's `.hive/allowed-signers` trust anchor. Reports which spokes have verified identity.
 
 **Options:**
 | Flag | Description | Default |
@@ -147,8 +146,10 @@ git add .collab/ && git commit -m "spoke: Initialize .collab/ for hub projection
 ```bash
 hive-spoke status          # Refresh snapshot
 hive-spoke validate        # Pre-flight check
-hive-spoke publish         # Project to hub (Phase 1B)
+git add .collab/status.yaml && git commit -m "spoke: Refresh status" && git push
 ```
+
+That's it. The hub will see the updated status next time it runs `pull`. No publish step needed for public repos.
 
 ### CI automation (GitHub Action)
 
@@ -158,11 +159,11 @@ A GitHub Action can run `hive-spoke status` + `hive-spoke validate` on every pus
 
 ```bash
 cd pai-collab                  # Hub repo root
-hive-spoke pull                # See all spoke statuses at a glance
+hive-spoke pull                # Fetch spoke statuses from their repos
 hive-spoke verify              # Cross-check spoke keys against allowed-signers
 ```
 
-Run these periodically or after merging spoke publish PRs.
+Run these whenever you want a snapshot of the spoke ecosystem. No PRs to merge — `pull` reads directly from spoke repos via the GitHub API.
 
 ## Compliance Verification Model
 
