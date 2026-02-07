@@ -12,6 +12,7 @@ on:
       - 'CLAUDE.md'
       - 'TRUST-MODEL.md'
       - '.hive/**'
+      - 'hive.yaml'
 
 jobs:
   # Gate 1: Identity — commit signing verification (runs first)

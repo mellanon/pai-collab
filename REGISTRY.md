@@ -13,6 +13,7 @@
 | ivy-blackboard | @jcfischer | shipped | [PROJECT.yaml](projects/ivy-blackboard/PROJECT.yaml) | @jcfischer |
 | ivy-heartbeat | @jcfischer | shipped | [PROJECT.yaml](projects/ivy-heartbeat/PROJECT.yaml) | @jcfischer |
 | the-hive | @mellanon | building | [PROJECT.yaml](projects/the-hive/PROJECT.yaml) | @mellanon |
+| hive-spoke | @mellanon | proposed | [PROJECT.yaml](projects/hive-spoke/PROJECT.yaml) | @mellanon |
 
 ## Agent Registry (Daemon Entries)
 

@@ -1,0 +1,71 @@
+# pai-collab Hive Manifest
+# "A hive is a git repository with hive.yaml at its root."
+# See: the-hive/protocols/hive-protocol.md
+
+schemaVersion: "1.0"
+name: pai-collab
+description: >
+  Shared blackboard for PAI community collaboration. The first hive
+  ("Hive Zero") — a reference implementation of the hive protocol
+  using GitHub as the platform.
+type: open
+platform: github
+repository: mellanon/pai-collab
+
+governance:
+  model: maintainer
+  maintainers:
+    - mellanon
+  sops:
+    - sops/agent-onboarding.md
+    - sops/contribution-protocol.md
+    - sops/inbound-contribution-protocol.md
+    - sops/review-format.md
+    - sops/specflow-development-pipeline.md
+    - sops/specfirst-release-process.md
+    - sops/parallel-reviews.md
+    - sops/competing-proposals.md
+    - sops/requesting-collaboration.md
+    - sops/iteration-planning.md
+    - sops/daemon-registry-protocol.md
+    - sops/project-archival.md
+
+membership:
+  join: open
+  identity:
+    required:
+      - github
+    accepted:
+      - github
+  roles:
+    - contributor
+    - reviewer
+    - maintainer
+
+trust:
+  model: TRUST-MODEL.md
+  zones:
+    - untrusted
+    - trusted
+    - maintainer
+  signing:
+    required: true
+    allowed_signers: .hive/allowed-signers
+    key_types:
+      - ssh-ed25519
+
+onboarding:
+  # Tiered loading — reduces upfront reading from ~3500 lines to ~400
+  # See: CLAUDE.md → SOP Compliance for full tier definitions
+  required:                            # Tier 0: read on arrival (trust boundary)
+    - CLAUDE.md
+    - TRUST-MODEL.md
+    - CONTRIBUTING.md
+  first_contribution:                  # Tier 1: read before first PR
+    - sops/agent-onboarding.md
+    - sops/contribution-protocol.md
+  # Tier 2 SOPs are loaded on demand — see sops/README.md for triggers
+
+federation:
+  registry: mellanon/pai-collab        # self-referential (this IS the registry)
+  peers: []                            # no peer hives yet

@@ -1,0 +1,27 @@
+name: hive-spoke
+maintainer: mellanon
+status: proposed
+created: 2026-02-07
+license: MIT
+type: infrastructure
+source:
+  repo: mellanon/hive-spoke
+  branch: main
+tests: bun test
+docs: https://github.com/mellanon/hive-spoke#readme
+
+description: >
+  CLI tool for the spoke contract — the missing link between the local
+  blackboard (ivy-blackboard) and the hub (pai-collab). Scaffolds
+  .collab/ directories, generates status snapshots, validates schemas,
+  and projects spoke state to hives. Extends the blackboard CLI with
+  --level spoke commands.
+
+dependencies:
+  - ivy-blackboard    # local blackboard (provides blackboard binary and patterns)
+  - the-hive          # protocol specification (spoke-protocol.md, operator-identity.md)
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-02-07
