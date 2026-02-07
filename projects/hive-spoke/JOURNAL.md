@@ -6,6 +6,26 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — License set to AGPL-3.0, GitHub repo created
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Specify
+**Status:** License finalized, public repo created on GitHub.
+
+### What Happened
+- Changed license from MIT to AGPL-3.0 following two-layer licensing model analysis
+- Created public GitHub repo: mellanon/hive-spoke (AGPL-3.0)
+- AGPL-3.0 chosen to prevent cloud extraction without contribution (Elasticsearch precedent) while remaining OSI-approved
+- The open CC-BY-4.0 spec in the-hive serves as the escape valve — anyone who can't use AGPL can implement from spec
+
+### What Emerged
+- The two-layer model (CC-BY-4.0 spec + AGPL-3.0 implementation) is the licensing pattern for all hive-* infrastructure repos
+- This required updating the licensing policy in CONTRIBUTING.md and CLAUDE.md — AGPL-3.0 is now an accepted license for infrastructure tooling
+
+Refs: #96
+
+---
+
 ## 2026-02-07 — Project inception
 
 **Author:** @mellanon (agent: Luna)
