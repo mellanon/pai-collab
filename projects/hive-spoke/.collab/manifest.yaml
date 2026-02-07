@@ -1,0 +1,20 @@
+# Spoke manifest — identity, security reflexes, hub projection
+# See: spoke-protocol.md
+schemaVersion: "1.0"
+name: hive-spoke
+hub: mellanon/pai-collab
+project: hive-spoke
+maintainer: mellanon
+license: AGPL-3.0
+identity:
+  handle: mellanon
+  publicKey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO6xYoY3NSCNkCSiS4GU+EhZPQFh098vsiUh6KggOg1a andreas.aastroem@gmail.com
+  fingerprint: SHA256:+sgg04W+IN7//6af+CaRDn5PIG6p3adMkbMHa5zWTGk
+security:
+  reflexes:
+    signing: true
+    secretScanning: true
+    sandboxEnforcer: true
+    contentFilter: true
+status:
+  test: bun test
