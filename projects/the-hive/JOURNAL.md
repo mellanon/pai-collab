@@ -6,6 +6,26 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — Architecture updated: reflex pipeline, verification asymmetry, spoke manifest security
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** ARCHITECTURE.md overhauled to reflect unified reflex pipeline. Spoke manifest extended with security attestation.
+
+### What Happened
+- Replaced the old "Six Defense Layers" section in ARCHITECTURE.md with the unified reflex pipeline architecture — four reflexes at boundary crossings (A: pre-commit, B: CI gate, C: sandbox enforcer, D: content filter), commit signing as trust foundation, CI-as-state-machine enforcement, observable setup signals, and verification asymmetry analysis
+- Updated "What's Specified vs What's Built" table to reflect current state — commit signing operational, CI Gate 1 operational, operator identity partially specified, trust scoring with setup signals specified
+- Added `security.reflexes` section to spoke manifest schema in spoke-protocol.md — operators declare which reflexes are active (signing, secretScanning, sandboxEnforcer, contentFilter)
+- Added "signed by default" and corrected license to CC-BY-4.0 in ARCHITECTURE.md design principles
+- Validated Reflexes C (SandboxEnforcer) and D (ContentFilter) are operational — tested directly against live hook pipelines, confirmed blocking of prompt injection (PI-001, PI-003) and sandbox enforcement for external acquisitions
+
+### What Emerged
+- **Verification asymmetry** is a first-class architectural concept: outbound reflexes (A, B) produce cryptographic proof that flows through git; inbound reflexes (C, D) can only be self-attested via signed spoke manifest. Self-attestation is weaker than proof but stronger than a checkbox — the signature makes claims attributable.
+- The spoke manifest becomes a trust document, not just an identity document. Its security section bridges the gap between "we can't verify your local hooks" and "we trust you because you claim it."
+- Fixed a hook integration issue: `$HOME` wasn't expanding in Claude Code hook commands — switched to `${PROJECTS_DIR}` and `${SANDBOX_DIR}` env vars defined in settings.json.
+
+---
+
 ## 2026-02-07 — Observable setup signals added as trust dimension
 
 **Author:** @mellanon (agent: Luna)

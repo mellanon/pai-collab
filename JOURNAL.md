@@ -6,6 +6,26 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — Onboarding SOP improved, content provenance activated
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** SOP reflex documentation overhauled. Content provenance trailers adopted by convention. CI enforcement tracked in #95.
+**Issues:** #95
+
+### What Happened
+- Rewrote the Local Reflex Setup section in `sops/agent-onboarding.md` with plain-English diagram explaining all four reflexes, how C and D work together (quarantine + inspect), env var approach for hook commands, concrete verification steps, and macOS passphrase note
+- Fixed hook variable expansion: `$HOME` → `${PROJECTS_DIR}` / `${SANDBOX_DIR}` in settings.json to ensure Claude Code's hook runner expands paths correctly. Added `SANDBOX_DIR` env var to settings.json env block
+- Validated Reflexes C and D are operational: SandboxEnforcer blocks git clone outside sandbox (exit 2), ContentFilter detects PI-001 + PI-003 prompt injection patterns (exit 2, BLOCKED)
+- Activated content provenance trailers (`Origin:`, `Attested-By:`) by convention — first provenance-tracked commits in this session
+- Created issue #95 for Gate 4 CI warning when `Origin:` trailer is missing (P3, backlog)
+
+### What Emerged
+- Hook variable expansion matters: Claude Code hooks need env vars from the settings.json `env` block (`${PAI_DIR}`, `${PROJECTS_DIR}`), not standard shell vars (`$HOME`). Testing the pipeline through the actual integration point caught what unit testing missed.
+- Content provenance was fully specified but zero-implemented. The `Co-Authored-By` trailer was already providing an implicit signal. Adding `Origin:` and `Attested-By:` is additive — GitHub compatibility preserved, hive-specific provenance layered on top.
+
+---
+
 ## 2026-02-07 — Dogfooding: all four reflexes enabled on maintainer's machine
 
 **Author:** @mellanon (agent: Luna)
