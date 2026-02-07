@@ -6,6 +6,25 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — Observable setup signals added as trust dimension
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Trust protocol updated with setup verification as a first-class trust dimension.
+
+### What Happened
+- Added "Observable Setup Signals" section to trust-protocol.md — three binary signals (signing verified, secret scanning active, content filter active) that are cryptographically verifiable, not self-reported
+- Added setup events to the trust scoring feedback table (Dimension 4) as automatic positive feedback: CI Gate 1 passing on first PR generates "Setup: signing verified" event
+- Added optional promotion acceleration config in hive.yaml — setup signals can count toward promotion thresholds (e.g., 0.5 positive rating per verified signal)
+- Explicit: promotion remains human-gated. Setup signals are evidence, not automation.
+
+### What Emerged
+- The CI identity gate we already built IS the verification mechanism for the signing signal — no new infrastructure needed. First signed PR that passes Gate 1 is cryptographic proof of onboarding completion.
+- "Earned, not claimed" extends to onboarding itself. A signed commit is stronger evidence than a checked checkbox on a PR template. The protocol now captures this distinction.
+- Writing the spec while doing the dogfooding (previous session) made the trust signals concrete — we knew exactly what was observable because we just observed it ourselves.
+
+---
+
 ## 2026-02-07 — Security by design: Arbor-informed protocol updates
 
 **Author:** @mellanon (agent: Luna)
