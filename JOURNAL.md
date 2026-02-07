@@ -6,6 +6,25 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — SOP tiered loading, hive-spoke project inception
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** SOPs restructured with tiered loading. Spoke CLI scoped as new project.
+
+### What Happened
+- Restructured SOP loading model across three documents: CLAUDE.md, CONTRIBUTING.md, sops/README.md — all now use tiered loading (Foundation → First Contribution → Workflow on demand)
+- Foundation tier (always read): CLAUDE.md, TRUST-MODEL.md, CONTRIBUTING.md "Start Here" — reduces upfront reading from ~3,500 lines to ~400 lines
+- Aligned with the-hive spoke compliance verification: four-layer model (Provable, Detectable, Attested, Structural) now specified in spoke-protocol.md
+- Analyzed Arbor taint tracking — determined our content provenance trailers + reflex pipeline already serve the same purpose in git-native form
+- Decision: spoke CLI will be a new repo (`hive-spoke`) registered as a pai-collab project; the-hive will be the first dogfood spoke
+
+### What Emerged
+- The sorting key for lazy loading is "consequence of ignorance × reversibility" — if not knowing something causes a trust boundary violation (irreversible), it's Tier 0. If it causes a formatting issue (fixable), it's Tier 2.
+- Arbor's runtime taint tracking maps directly to our git-boundary enforcement: sandbox (Reflex C) IS the quarantine, content filter (Reflex D) IS the taint check, Origin trailer IS the taint label, PR approval IS taint reduction via human review.
+
+---
+
 ## 2026-02-07 — Gate 4: content provenance trailer check added to CI
 
 **Author:** @mellanon (agent: Luna)

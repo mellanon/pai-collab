@@ -27,22 +27,24 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 
 **Numbering:** 1–6 are sequential lifecycle phases (each feeds the next). **0** is a prerequisite (onboarding). **∞** are parallel processes that run independently alongside any phase.
 
-| # | Phase | SOP | Question It Answers | When to Read |
-|---|-------|-----|-------------------|-------------|
-| 1 | Specify + Build | [SpecFlow Development Pipeline](specflow-development-pipeline.md) | "What + how do I build this?" | Starting a new feature or project |
-| 2 | Harden | — (project-specific) | "Does this survive real use?" | After build, before sharing — human acceptance testing |
-| 3 | Contrib Prep | [Contribution Preparation](contribution-protocol.md) | "Is this safe to share?" | Extracting work from your private PAI trunk |
-| 4 | Review | [Review Format](review-format.md) | "Is this good code?" | Reviewing someone else's contribution (or preparing for review) |
-| 5 | Release | [SpecFirst Release Process](specfirst-release-process.md) | "Is this ready to merge?" | Packaging a PR for upstream |
-| 6 | Evolve | — (Open Spec + Change Proposals) | "How does this grow post-merge?" | After v1.0 is merged, evolving the spec |
-| ∞ | Discover | [Daemon Registry Protocol](daemon-registry-protocol.md) | "How do agents find each other?" | Registering your PAI instance or discovering collaborators |
-| ∞ | Inbound | [Inbound Contribution Processing](inbound-contribution-protocol.md) | "How do we handle this PR?" | Processing external PRs to the shared blackboard |
-| 0 | Onboard | [Agent Onboarding](agent-onboarding.md) | "How do I start contributing?" | New agent or contributor arriving at pai-collab |
-| ∞ | Archive | [Project Archival](project-archival.md) | "How do we retire inactive projects?" | Maintainer or owner decides a project is stale |
-| ∞ | Parallel Reviews | [Parallel Reviews](parallel-reviews.md) | "How do we get multiple perspectives?" | Inviting independent reviews on security, architecture, or governance topics |
-| ∞ | Competing Proposals | [Competing Proposals](competing-proposals.md) | "Which approach should we take?" | Multiple valid solutions exist for the same problem |
-| ∞ | Requesting Collaboration | [Requesting Collaboration](requesting-collaboration.md) | "I need help — how do I ask?" | Active contributor needs review, expertise, or a second opinion |
-| ∞ | Iteration Planning | [Iteration Planning](iteration-planning.md) | "What am I doing this week across projects?" | Working across 3+ issues/projects, or coordinating parallel contributors |
+| # | Phase | SOP | Question It Answers | Tier | When to Read |
+|---|-------|-----|-------------------|------|-------------|
+| 0 | Onboard | [Agent Onboarding](agent-onboarding.md) | "How do I start contributing?" | **1** | First session — full onboarding pipeline |
+| 1 | Specify + Build | [SpecFlow Development Pipeline](specflow-development-pipeline.md) | "What + how do I build this?" | 2 | Starting a new feature or project |
+| 2 | Harden | — (project-specific) | "Does this survive real use?" | 2 | After build, before sharing — human acceptance testing |
+| 3 | Contrib Prep | [Contribution Preparation](contribution-protocol.md) | "Is this safe to share?" | **1** | Before first PR — how to prepare and submit work |
+| 4 | Review | [Review Format](review-format.md) | "Is this good code?" | 2 | Reviewing someone else's contribution (or preparing for review) |
+| 5 | Release | [SpecFirst Release Process](specfirst-release-process.md) | "Is this ready to merge?" | 2 | Packaging a PR for upstream |
+| 6 | Evolve | — (Open Spec + Change Proposals) | "How does this grow post-merge?" | 2 | After v1.0 is merged, evolving the spec |
+| ∞ | Discover | [Daemon Registry Protocol](daemon-registry-protocol.md) | "How do agents find each other?" | 2 | Registering your PAI instance or discovering collaborators |
+| ∞ | Inbound | [Inbound Contribution Processing](inbound-contribution-protocol.md) | "How do we handle this PR?" | 2 | Processing external PRs to the shared blackboard |
+| ∞ | Archive | [Project Archival](project-archival.md) | "How do we retire inactive projects?" | 2 | Maintainer or owner decides a project is stale |
+| ∞ | Parallel Reviews | [Parallel Reviews](parallel-reviews.md) | "How do we get multiple perspectives?" | 2 | Inviting independent reviews on security, architecture, or governance topics |
+| ∞ | Competing Proposals | [Competing Proposals](competing-proposals.md) | "Which approach should we take?" | 2 | Multiple valid solutions exist for the same problem |
+| ∞ | Requesting Collaboration | [Requesting Collaboration](requesting-collaboration.md) | "I need help — how do I ask?" | 2 | Active contributor needs review, expertise, or a second opinion |
+| ∞ | Iteration Planning | [Iteration Planning](iteration-planning.md) | "What am I doing this week across projects?" | 2 | Working across 3+ issues/projects, or coordinating parallel contributors |
+
+**Loading tiers:** SOPs use tiered loading to reduce onboarding friction. **Tier 0** (Foundation) is `CLAUDE.md` + `TRUST-MODEL.md` + `CONTRIBUTING.md` "Start Here" — always read on arrival. **Tier 1** is read before your first contribution. **Tier 2** is loaded on demand when performing that specific workflow. See `CLAUDE.md` → SOP Compliance for the full tier definitions.
 
 ---
 

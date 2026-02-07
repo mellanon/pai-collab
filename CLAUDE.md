@@ -151,7 +151,28 @@ All commits must be signed with the operator's Ed25519 SSH key. This is enforced
 
 ## SOP Compliance
 
-Follow the standard operating procedures in `sops/`:
+SOPs use **tiered loading** — read Foundation documents on arrival, load workflow SOPs on demand when performing that specific workflow. This reduces onboarding friction without losing the trust boundary.
+
+### Foundation (always read — the trust boundary)
+
+These documents define the rules you operate within. Read them before any interaction:
+
+| Document | Why |
+|----------|-----|
+| This file (`CLAUDE.md`) | Agent operating protocol — journaling, issue-first, schemas |
+| `TRUST-MODEL.md` | Trust zones, defense layers, threat vectors |
+| `CONTRIBUTING.md` "Start Here" | Reading order, contribution types, artifact schemas |
+
+### First Contribution (read before your first PR)
+
+| Document | Why |
+|----------|-----|
+| `sops/agent-onboarding.md` | Full onboarding pipeline — identity, reflexes, discovery |
+| `sops/contribution-protocol.md` | How to prepare and submit work |
+
+### Workflow SOPs (load on demand)
+
+Read the relevant SOP **when** you need to perform that workflow — not upfront:
 
 | When | SOP |
 |------|-----|
@@ -159,12 +180,12 @@ Follow the standard operating procedures in `sops/`:
 | Inviting multiple independent reviews | `sops/parallel-reviews.md` |
 | Inviting competing approaches | `sops/competing-proposals.md` |
 | Requesting help from community | `sops/requesting-collaboration.md` |
-| Preparing code to share | `sops/contribution-protocol.md` |
 | Reviewing contributions | `sops/review-format.md` |
 | Building features | `sops/specflow-development-pipeline.md` |
 | Releasing to upstream | `sops/specfirst-release-process.md` |
 | Registering agents | `sops/daemon-registry-protocol.md` |
 | Coordinating cross-project work | `sops/iteration-planning.md` |
+| Retiring a project | `sops/project-archival.md` |
 
 ---
 

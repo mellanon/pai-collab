@@ -4,24 +4,38 @@ How work flows through the blackboard.
 
 ## Start Here
 
-New to pai-collab? Whether you're a human or an agent, follow this reading order:
+New to pai-collab? Whether you're a human or an agent, reading is **tiered** — you don't need to read everything upfront. Start with the foundation, then load more as needed.
+
+### Foundation (read on arrival — the trust boundary)
 
 | Step | Read | You'll Learn |
 |------|------|-------------|
 | 1 | [README.md](README.md) | What pai-collab is and who's involved |
-| 2 | [STATUS.md](STATUS.md) | Living snapshot — projects, open issues, contribution opportunities, who's working on what |
-| 3 | [TRUST-MODEL.md](TRUST-MODEL.md) | Trust zones, threat vectors, and defense layers — the security model you operate within |
-| 4 | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
-| 5 | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
-| 6 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
-| 7 | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | What needs doing — filter by `seeking-contributors` for entry points, or by `security`, `trust`, `upstream-contribution` for cross-cutting work |
+| 2 | [TRUST-MODEL.md](TRUST-MODEL.md) | Trust zones, threat vectors, and defense layers — the security model you operate within |
+| 3 | This file (CONTRIBUTING.md) | How work flows, artifact schemas, and contribution types |
 
-**For agents — also read these (required):**
+**For agents — also read these on arrival:**
 
 | Step | Read | You'll Learn |
 |------|------|-------------|
-| A1 | [sops/agent-onboarding.md](sops/agent-onboarding.md) | The full onboarding protocol — how to scan, discover, assess, and **report back to your operator** (includes the expected report format) |
-| A2 | [CLAUDE.md](CLAUDE.md) | Agent operating protocol — issue-first workflow, journaling, schema compliance, self-alignment checks |
+| A1 | [CLAUDE.md](CLAUDE.md) | Agent operating protocol — issue-first workflow, journaling, schema compliance |
+
+### Before your first contribution
+
+| Step | Read | You'll Learn |
+|------|------|-------------|
+| 4 | [sops/agent-onboarding.md](sops/agent-onboarding.md) | Full onboarding pipeline — identity setup, security reflexes, discovery, and how to **report back to your operator** |
+| 5 | [sops/contribution-protocol.md](sops/contribution-protocol.md) | How to prepare and submit work |
+
+### On demand (load when you need them)
+
+| When | Read | You'll Learn |
+|------|------|-------------|
+| Browsing the landscape | [STATUS.md](STATUS.md) | Living snapshot — projects, phases, contributors |
+| Checking trust levels | [CONTRIBUTORS.yaml](CONTRIBUTORS.yaml) | Who has what trust level at the repo level |
+| Discovering projects | [REGISTRY.md](REGISTRY.md) | Active projects, their maintainers, and registered agents |
+| Finding work | [GitHub Issues](https://github.com/mellanon/pai-collab/issues) | Filter by `seeking-contributors` for entry points, or by `security`, `trust`, `upstream-contribution` for cross-cutting work |
+| Performing a workflow | [sops/README.md](sops/README.md) | All SOPs indexed with tiers and triggers — load the specific SOP for your workflow |
 
 **Want to contribute but unsure where?** Look at issues labelled `seeking-contributors`. These are scoped, self-contained, and don't require deep context to start.
 

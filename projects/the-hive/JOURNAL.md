@@ -6,6 +6,24 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — Spoke compliance verification model specified
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Four-layer compliance verification model documented in spoke-protocol.md.
+
+### What Happened
+- Added "Spoke Compliance Verification" section to spoke-protocol.md — the protocol now specifies how the hub verifies spoke setup correctness without reaching into the spoke
+- Four verification layers defined: Provable (cryptographic evidence via signatures), Detectable (negative signals — if CI catches what local reflexes should have blocked), Attested (signed manifest claims about local reflexes), Structural (schema conformance of `.collab/` files)
+- Documented `blackboard validate --level spoke` pre-flight check spec — what it validates before the spoke projects to the hub
+- Each layer mapped to specific CI gates (Gate 1–4) showing exactly where hub enforcement happens
+
+### What Emerged
+- The verification asymmetry from ARCHITECTURE.md became concrete: signing attestation (Layer 3) upgrades to provable (Layer 1) because CI can check signatures. Secret scanning attestation gets falsified if CI catches leaks (Layer 2). Sandbox/content filter remain pure attestation — but the risk is borne by the spoke, not the hub.
+- "Absence of evidence IS evidence of absence" — Layer 2 (Detectable) is unexpectedly powerful. A clean CI secret scan doesn't prove gitleaks is installed, but a dirty one proves it isn't.
+
+---
+
 ## 2026-02-07 — Architecture updated: reflex pipeline, verification asymmetry, spoke manifest security
 
 **Author:** @mellanon (agent: Luna)
