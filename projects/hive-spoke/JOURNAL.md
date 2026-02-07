@@ -6,6 +6,29 @@ A structured, append-only log of what happened on this project. New entries go a
 
 ---
 
+## 2026-02-07 — Phase 1C: Hub aggregation commands + handle detection fix
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** All three phases shipped. Full spoke↔hub data flow operational.
+
+### What Happened
+- **Handle detection fix:** `init` command now queries `gh api user --jq .login` for GitHub handle instead of deriving from email (which gave `andreas.aastroem` instead of `mellanon`). Fallback chain: GitHub handle → git name → email prefix. Also auto-populates `operator.yaml` identities when GitHub handle detected.
+- **Phase 1C — Hub aggregation:** Two new hub-side commands:
+  - `pull` — Scans `projects/*/.collab/status.yaml` and produces a dashboard with phase, tests, maintainer, freshness/staleness flags
+  - `verify` — Cross-references spoke signing keys against `.hive/allowed-signers` trust anchor
+- **Dogfooded** both against pai-collab: pull shows 10 projects (0 with .collab/ yet), verify finds 1 signer in allowed-signers. Manual test with the-hive .collab/ data confirmed pull and verify work end-to-end.
+- SOP updated with hub-side commands documentation
+
+### What Emerged
+- The full spoke data flow is now: `init` → `status` → `validate` → `publish` → (PR merge) → `pull` → `verify`
+- Phase 1A (local CLI), 1B (hub projection), 1C (hub aggregation) are all shipped. The spoke protocol reference implementation is functionally complete.
+- No spokes have published to the hub yet — the pull/verify commands will show data once the first `publish` PR is merged
+
+Refs: hive-spoke commits b1afb12, 5aab353
+
+---
+
 ## 2026-02-07 — License set to AGPL-3.0, GitHub repo created
 
 **Author:** @mellanon (agent: Luna)
