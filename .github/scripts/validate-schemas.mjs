@@ -2,7 +2,7 @@ import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import yaml from 'js-yaml';
 
-const ACCEPTED_LICENSES = ['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'CC-BY-4.0'];
+const ACCEPTED_LICENSES = ['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'CC-BY-4.0', 'AGPL-3.0'];
 const ACCEPTED_STATUSES = [
   'proposed', 'building', 'hardening', 'contrib-prep',
   'review', 'shipped', 'evolving', 'archived'
@@ -70,7 +70,7 @@ if (existsSync(projectsDir)) {
     if (!doc.license) {
       error(yamlPath, 'Missing required field: license. All projects must declare a license. See CONTRIBUTING.md → Licensing Policy.');
     } else if (!ACCEPTED_LICENSES.includes(doc.license)) {
-      error(yamlPath, `Invalid license: "${doc.license}". Accepted: ${ACCEPTED_LICENSES.join(', ')}. Copyleft licenses are not accepted. CC-BY-4.0 is accepted for documentation/specification projects.`);
+      error(yamlPath, `Invalid license: "${doc.license}". Accepted: ${ACCEPTED_LICENSES.join(', ')}. AGPL-3.0 is accepted for infrastructure tooling. CC-BY-4.0 is accepted for documentation/specification projects.`);
     }
 
     if (!doc.contributors) {
