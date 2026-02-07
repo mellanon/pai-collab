@@ -19,7 +19,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [ivy-blackboard](projects/ivy-blackboard/) | @jcfischer | shipped | Local agent coordination using the blackboard pattern |
 | [ivy-heartbeat](projects/ivy-heartbeat/) | @jcfischer | shipped | Proactive monitoring and agent dispatch for PAI systems |
 | [the-hive](projects/the-hive/) | @mellanon | building | Open protocol specification for human-operated agent networks |
-| [hive-spoke](projects/hive-spoke/) | @mellanon | proposed | Spoke contract CLI — scaffolds .collab/, generates status, validates schemas, projects to hives |
+| [hive-spoke](projects/hive-spoke/) | @mellanon | building | Spoke contract CLI — scaffolds .collab/, generates status, validates schemas, projects to hives |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 

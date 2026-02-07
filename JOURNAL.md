@@ -6,6 +6,28 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — Spoke protocol complete, spoke registration, issue #96 closed
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** hive-spoke fully shipped (Phases 1A+1B+1C). Controlled spokes registered. PR #97 merged.
+
+### What Happened
+- Merged PR #97 (AGPL-3.0 licensing, spoke operations SOP, CI fix, journals)
+- Closed issue #96 — hive-spoke CLI implementation complete across all three phases
+- Registered collab-bundle as a spoke via `hive-spoke init` — .collab/ committed and pushed
+- Updated hive-spoke project status from `proposed` to `building` across PROJECT.yaml, REGISTRY.md, STATUS.md
+- Spoke data flow design decision: publish is operator-driven (manual), not automated CI heartbeat — avoids PR flood on the hub
+
+### What Emerged
+- Three mellanon spokes now registered: the-hive, hive-spoke, collab-bundle. Signal and specflow-lifecycle are hub-native (fork/upstream model), not spokes.
+- The spoke publish model is deliberately manual — operator decides when to project, not CI. This matches "projection, not exposure" from the spec.
+- Hub-side commands (pull, verify) are ready but show empty dashboards until first publish PRs are merged — this is the expected initial state.
+
+Refs: closes #96, PR #97
+
+---
+
 ## 2026-02-07 — AGPL-3.0 licensing model for infrastructure tooling
 
 **Author:** @mellanon (agent: Luna)
