@@ -106,6 +106,29 @@ Projects the spoke's current state to the hub:
 
 This is how the hub learns about spoke state. The hub's CI gates validate the incoming PR.
 
+### 5. Aggregate spoke statuses (hub-side)
+
+```bash
+hive-spoke pull
+```
+
+Scans the hub's `projects/*/` directory for `.collab/status.yaml` files and produces a summary dashboard. Shows each spoke's phase, test results, maintainer, freshness, and flags (dirty, behind remote, stale).
+
+Run this from the hub repo root.
+
+### 6. Verify spoke identities (hub-side)
+
+```bash
+hive-spoke verify
+```
+
+Cross-references spoke signing keys (from `projects/*/.collab/manifest.yaml`) against the hub's `.hive/allowed-signers` trust anchor. Reports which spokes have verified identity and which need to register.
+
+**Options:**
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--allowed-signers <path>` | Path to allowed-signers file | `.hive/allowed-signers` |
+
 ## Workflow
 
 ### First-time setup (new spoke)
@@ -130,6 +153,16 @@ hive-spoke publish         # Project to hub (Phase 1B)
 ### CI automation (GitHub Action)
 
 A GitHub Action can run `hive-spoke status` + `hive-spoke validate` on every push. See the spoke repo template for the workflow file.
+
+### Hub-side (aggregation and verification)
+
+```bash
+cd pai-collab                  # Hub repo root
+hive-spoke pull                # See all spoke statuses at a glance
+hive-spoke verify              # Cross-check spoke keys against allowed-signers
+```
+
+Run these periodically or after merging spoke publish PRs.
 
 ## Compliance Verification Model
 
