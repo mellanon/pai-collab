@@ -43,6 +43,7 @@ These SOPs are **sequenced** — they follow the lifecycle of a contribution fro
 | ∞ | Competing Proposals | [Competing Proposals](competing-proposals.md) | "Which approach should we take?" | 2 | Multiple valid solutions exist for the same problem |
 | ∞ | Requesting Collaboration | [Requesting Collaboration](requesting-collaboration.md) | "I need help — how do I ask?" | 2 | Active contributor needs review, expertise, or a second opinion |
 | ∞ | Iteration Planning | [Iteration Planning](iteration-planning.md) | "What am I doing this week across projects?" | 2 | Working across 3+ issues/projects, or coordinating parallel contributors |
+| ∞ | Spoke Operations | [Spoke Operations](spoke-operations.md) | "How do I project my spoke to a hive?" | 2 | Setting up .collab/, generating status, validating compliance, publishing to hub |
 
 **Loading tiers:** SOPs use tiered loading to reduce onboarding friction. **Tier 0** (Foundation) is `CLAUDE.md` + `TRUST-MODEL.md` + `CONTRIBUTING.md` "Start Here" — always read on arrival. **Tier 1** is read before your first contribution. **Tier 2** is loaded on demand when performing that specific workflow. See `CLAUDE.md` → SOP Compliance for the full tier definitions.
 

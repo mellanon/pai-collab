@@ -186,6 +186,7 @@ Read the relevant SOP **when** you need to perform that workflow — not upfront
 | Registering agents | `sops/daemon-registry-protocol.md` |
 | Coordinating cross-project work | `sops/iteration-planning.md` |
 | Retiring a project | `sops/project-archival.md` |
+| Setting up or publishing a spoke | `sops/spoke-operations.md` |
 
 ---
 
