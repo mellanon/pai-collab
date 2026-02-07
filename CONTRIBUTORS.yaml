@@ -23,6 +23,10 @@ contributors:
     timezone: NZDT
     tags: [observability, infrastructure, governance]
     availability: open
+    signing:
+      key_type: ssh-ed25519
+      fingerprint: "SHA256:+sgg04W+IN7//6af+CaRDn5PIG6p3adMkbMHa5zWTGk"
+      registered: 2026-02-07
 
   jcfischer:
     zone: trusted

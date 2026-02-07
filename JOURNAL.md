@@ -6,6 +6,31 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — Dogfooding: all four reflexes enabled on maintainer's machine
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** Maintainer's machine now runs all four reflexes. SOP updated with concrete setup steps. First signed commit verified.
+
+### What Happened
+- Validated the gap between specification and reality: signing was specified but not configured, only 1 of 4 reflexes was running (CI gate)
+- Enabled Git SSH commit signing: 3 config commands + ssh-agent key loading + allowed-signers trust anchor
+- Installed gitleaks locally (`brew install gitleaks`) and created pre-commit hooks in both pai-collab and the-hive repos (Reflex A)
+- Tested Reflex A: staged a fake Anthropic API key — gitleaks blocked the commit
+- Cloned and installed pai-content-filter (`jcfischer/pai-content-filter`) to `~/Developer/pai-content-filter`
+- Created sandbox directory at `~/work/sandbox` for inbound content quarantine
+- Wired SandboxEnforcer (Reflex C) and ContentFilter (Reflex D) into Claude Code `settings.json` hooks
+- Updated `sops/agent-onboarding.md` with full "Local Reflex Setup" section documenting every step
+- Registered maintainer's Ed25519 key fingerprint in CONTRIBUTORS.yaml
+- First signed commit verified: `Good "git" signature for andreas.aastroem@gmail.com with ED25519 key SHA256:+sgg04W+IN7//6af+CaRDn5PIG6p3adMkbMHa5zWTGk`
+
+### What Emerged
+- The ssh-agent passphrase friction is real — operators on macOS need `ssh-add --apple-use-keychain` to persist the key. This should be in the SOP (now it is)
+- Setup verification as a trust signal: whether an operator's first PR is signed is observable evidence that they followed the onboarding SOP. This could feed into trust scoring — not automatic promotion, but evidence for faster human-reviewed promotion
+- Writing the SOP while doing the setup revealed gaps that pure spec-writing missed (passphrase handling, sandbox directory creation, hook schema format)
+
+---
+
 ## 2026-02-07 — Security by design: commit signing, CI identity gate, reflex pipeline
 
 **Author:** @mellanon (agent: Luna)
