@@ -6,6 +6,25 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-07 — Gate 4: content provenance trailer check added to CI
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** CI now warns when commits are missing content provenance trailers.
+**Issues:** #95
+
+### What Happened
+- Added provenance trailer check to Gate 4 (governance) in `pr-schema-check.yml`
+- CI checks each commit for `Origin:` trailer — warns if missing
+- When `Origin: agent` or `Origin: mixed`, checks for `Attested-By:` — warns if missing
+- Advisory only (warnings, not errors) — consistent with Gate 4's role as informational, not blocking
+
+### What Emerged
+- From spec to CI enforcement in one session: the trust-protocol specified provenance trailers, we activated them by convention, and now CI validates them. The full loop — specify → adopt → enforce — completed within hours rather than across sprints.
+- Gate 4 is the right place for provenance checks. It's governance, not security — missing provenance doesn't compromise the codebase, it reduces traceability. Warnings nudge adoption without blocking contributions.
+
+---
+
 ## 2026-02-07 — Onboarding SOP improved, content provenance activated
 
 **Author:** @mellanon (agent: Luna)
