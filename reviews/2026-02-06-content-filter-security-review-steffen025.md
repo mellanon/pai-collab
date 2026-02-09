@@ -23,7 +23,7 @@ From an attacker's perspective, pai-content-filter demonstrates **solid layered 
 - ⚠️ Pattern bypass opportunities exist (expected)
 - ⚠️ CaMeL implementation incomplete (acknowledged in README)
 
-**Critical Finding:** This is NOT a pattern-matching-only security tool. The README explicitly states "Layer 2 must hold even when Layer 1 is completely bypassed." The architecture correctly assumes **pattern matching will fail** and relies on tool-restricted sandboxing as the real defense. This is the RIGHT approach.
+**Critical Finding (C-1):** Layer 2 (tool-restricted sandboxing) is the architecture's primary defense, but it is **described in documentation, not implemented in code**. This makes every pattern bypass (M-1 through M-3) potentially exploitable until the caller implements Layer 2. The README correctly states "Layer 2 must hold even when Layer 1 is completely bypassed" — the architecture is RIGHT, but the implementation gap must be addressed or explicitly documented as a caller responsibility.
 
 ---
 
@@ -44,9 +44,48 @@ From an attacker's perspective, pai-content-filter demonstrates **solid layered 
 
 **Duration:** 2 hours (deep adversarial analysis)
 
+**Important Disclaimer on Methodology:**
+This review is primarily a **theoretical/static analysis** — findings are based on source code inspection, regex analysis, and architectural reasoning. Bypass techniques described in M-1 through M-3 are **theoretical attack vectors** derived from pattern analysis, not confirmed exploits against a running instance. Where findings were verified against code (e.g., M-4 YAML anchors, M-5 ReDoS timeout), this is explicitly noted as "✅ Already mitigated" or "✅ Timeout protection works." Theoretical findings are marked as "Likely bypasses" or "Unknown." Both theoretical and confirmed findings are valid in a security review — the distinction matters for prioritization.
+
 ---
 
 ## Findings
+
+### CRITICAL (Architectural Gap)
+
+#### C-1: Layer 2 Quarantine — Described But Not Implemented
+
+**Severity:** CRITICAL — This is the single most important finding in this review.
+
+**The Architecture Promise (README):** "Quarantined agent processes untrusted content with no access to personal tools or data. Primary defense."
+
+**The Reality:** Layer 2 (tool-restricted sandboxing) is **described in the README and architecture docs but not implemented** in this repository. The `quarantine-runner.ts` exists but provides minimal functionality. Tests (`tests/quarantine-runner.test.ts`) test the API surface, not actual isolation enforcement.
+
+**Why This Is Critical:**
+Every pattern bypass finding in this review (M-1 Base64 chunking, M-2 Unicode normalization, M-3 Markdown edge cases) is mitigated by the statement "Layer 2 prevents exploitation." But if Layer 2 doesn't exist, **none of those mitigations hold**. The entire security model collapses from "defense-in-depth with acceptable Layer 1 gaps" to "single-layer pattern matching with known bypasses."
+
+**What's Missing:**
+1. MCP tool restriction mechanism (no implementation)
+2. Subprocess spawning with limited tool set (not enforced)
+3. Verification that quarantined agent can only Read (not Bash/Write)
+4. Integration test proving isolation holds under adversarial input
+
+**Impact Matrix — With vs Without Layer 2:**
+
+| Finding | With Layer 2 | Without Layer 2 |
+|---------|-------------|-----------------|
+| M-1 Base64 Chunking | LOW (Layer 2 catches) | **HIGH** (bypass → exploitation) |
+| M-2 Unicode Bypass | LOW (Layer 2 catches) | **HIGH** (injection succeeds) |
+| M-3 Markdown Edge | LOW (HUMAN_REVIEW) | **MEDIUM** (LLM concatenation risk) |
+
+**Recommendation:**
+- **Option A:** Implement Layer 2 in this repository (quarantine-runner with real MCP tool restriction)
+- **Option B:** Document explicitly: "Layer 2 is the CALLER's responsibility — this library provides Layer 1 only. Callers MUST implement tool-restricted sandboxing for the security model to hold."
+- Option B is acceptable but MUST be prominent (README header, not buried in architecture section)
+
+**Status:** ⚠️ **Architecture gap** — the security model's primary defense layer exists only in documentation
+
+---
 
 ### MEDIUM (Bypass Expected - Architectural Defense Required)
 
@@ -213,9 +252,37 @@ echo '{"decision":"ALLOWED","hash":"<collision>"}' >> audit.jsonl
 
 ---
 
-#### L-3: Test Suite Quality - Missing Bypass Tests
+#### L-3: Fail-Open as Deliberate Attack Vector
 
-**Claim:** "275 tests, 100% detection rate"
+**Context:** The review (and README) note "Fail-open design prevents infrastructure DoS" as a positive security property — if the filter crashes, content is ALLOWED rather than blocking the entire pipeline.
+
+**The Flip Side:** An attacker who can deliberately trigger infrastructure failure bypasses the entire content filter. If malformed input can crash the filter process outside of the ReDoS timeout protection (e.g., unexpected input types, memory exhaustion via deeply nested structures, or edge cases in the custom YAML parser), fail-open means **everything passes unscanned**.
+
+**Attack Scenario:**
+```yaml
+# Craft input that crashes parseSimpleYaml() or content-filter pipeline
+# If filter process dies → fail-open → all subsequent content ALLOWED
+deeply:
+  nested:
+    structure:
+      that:
+        exceeds:
+          parser:
+            stack:
+              depth: "trigger stack overflow in custom parser"
+```
+
+**Impact:** Low (the custom parser is simple and unlikely to crash, but the principle applies to any future parser changes)
+
+**Recommendation:** Add a canary test that verifies fail-open behavior is intentional: when the filter crashes, log a HIGH-priority alert (not just silently allow). Fail-open should be **noisy**, not silent.
+
+**Status:** Acknowledged tradeoff — worth documenting explicitly
+
+---
+
+#### L-4: Test Suite Quality - Missing Bypass Tests
+
+**Verified Test Count:** 389 tests (verified by running `bun test` against HEAD on 2026-02-09 — 389 pass, 0 fail, 801 expect() calls across 12 test files)
 
 **Test Suite Analysis:**
 - ✅ Canary tests cover ALL 36 pattern IDs + 6 encoding rules
@@ -244,6 +311,29 @@ echo '{"decision":"ALLOWED","hash":"<collision>"}' >> audit.jsonl
 
 ---
 
+#### L-5: TOCTOU Risk in Multi-Agent Collaboration Context
+
+**Context:** In pai-collab's multi-agent collaboration model, content is scanned by the filter and then processed by agents. This creates a Time-of-Check-to-Time-of-Use (TOCTOU) window.
+
+**Attack Scenario:**
+```
+1. Agent A submits PROJECT.yaml for scanning → ALLOWED
+2. Between scan result and Agent B processing the file:
+   - File is modified on disk (race condition)
+   - Or a concurrent agent writes to the same path
+3. Agent B processes the now-modified file (never scanned)
+```
+
+**Relevance to pai-collab:** This is directly relevant to the integration context from #67. When multiple PAI instances collaborate through the blackboard, file contents on the shared surface could change between scan and use — especially with concurrent agents claiming and modifying work items.
+
+**Impact:** Low in current single-agent usage. Medium in the target multi-agent collaboration scenario.
+
+**Recommendation:** Consider atomic scan-and-lock (scan returns a content hash, consumer verifies hash before processing) or document that the filter assumes single-agent sequential access.
+
+**Status:** Future concern — becomes relevant as multi-agent coordination matures
+
+---
+
 ## Architecture Review
 
 ### Layer 1: Content Filter (Pattern Matching)
@@ -263,8 +353,8 @@ File → Detect Format → Encoding Detection → Schema Validation → Pattern 
 
 **Attack Surface:**
 - Pattern bypass expected (Unicode, chunking, obfuscation)
-- Schema validation could have bypasses (Zod dependency)
-- Fail-open means infrastructure attack → full bypass
+- Schema validation via Zod: No known CVEs or bypass techniques found in Zod's npm advisory history as of 2026-02-09. Zod's validation is type-level coercion, not sanitization — it ensures structural correctness but does not inspect string content for malicious payloads (which is handled by the pattern matcher). The dependency risk is standard supply-chain, not Zod-specific.
+- Fail-open means infrastructure attack → full bypass (see L-3)
 
 **Trust Boundary:** Content enters sandbox → Pattern filter → Allow/Block decision
 
@@ -274,27 +364,11 @@ File → Detect Format → Encoding Detection → Schema Validation → Pattern 
 
 ### Layer 2: Tool-Restricted Sandboxing
 
-**Claim (README Line 10):** "Quarantined agent processes untrusted content with no access to personal tools or data. Primary defense."
+**⚠️ See Finding C-1 (CRITICAL) for the full analysis of this architectural gap.**
 
-**Code Review:**
-- ❌ NOT IMPLEMENTED in this repository
-- README references `quarantine-runner.ts` but implementation is minimal
-- Tests exist (`tests/quarantine-runner.test.ts`) but they test API, not actual isolation
+**Summary:** Layer 2 is described in the README as the primary defense but is not implemented in this repository. The `quarantine-runner.ts` exists but provides minimal functionality. This is the most important finding in this review — without Layer 2, every pattern bypass in M-1 through M-3 escalates from LOW/MEDIUM to HIGH/CRITICAL.
 
-**What's Missing:**
-1. MCP tool restriction mechanism
-2. Subprocess spawning with limited tool set
-3. Verification that quarantined agent can only Read (not Bash/Write)
-
-**Current State:** Architecture DESCRIBED, not IMPLEMENTED
-
-**Impact:** HIGH - If Layer 2 doesn't exist, pattern bypasses become critical
-
-**Recommendation:** 
-- Either implement Layer 2 OR
-- Document clearly: "Layer 2 is the CALLER's responsibility - this library only provides Layer 1"
-
-**Status:** ⚠️ **Architecture gap** - Layer 2 described but not enforced by this tool
+**Recommendation:** Implement Layer 2 or document clearly that callers must provide it.
 
 ---
 
@@ -441,7 +515,7 @@ part_b: "bGQgZGF0YQ=="  # < 20 chars
 1. **Honest Threat Model:** README correctly states "pattern matching is necessary but insufficient"
 2. **Layered Defense:** Architecture correctly positions regex as Layer 1, not sole defense
 3. **Solid Implementation:** ReDoS protection, fail-open design, encoding detection
-4. **Comprehensive Testing:** 380 tests covering all patterns and edge cases
+4. **Comprehensive Testing:** 389 tests covering all patterns and edge cases (verified: `bun test` → 389 pass, 0 fail, 801 expect() calls)
 
 ### Why Comments
 
@@ -547,4 +621,19 @@ describe("Base64 chunking bypasses", () => {
 
 **End of Review**
 
-*Reviewed from adversarial perspective. Findings represent potential attack vectors, not confirmed exploits. Layer 2 architectural defense is critical for security guarantees.*
+*Reviewed from adversarial perspective. Findings represent potential attack vectors, not confirmed exploits unless explicitly noted. Layer 2 architectural defense is critical for security guarantees.*
+
+---
+
+## Revision History
+
+| Date | Changes | Reason |
+|------|---------|--------|
+| 2026-02-06 | Initial review | PR #90 submission |
+| 2026-02-09 | **Rev 2 — Addressing maintainer feedback** (PR #90 review by @mellanon) | |
+| | **R-1:** Fixed test count inconsistency — verified actual count is 389 via `bun test` (was "275" in L-3, "380" in Conclusion) | Required change |
+| | **R-2:** Added methodology disclaimer clarifying theoretical vs confirmed bypasses | Required change |
+| | **R-3:** Promoted Layer 2 gap to standalone CRITICAL finding C-1 with impact matrix | Required change |
+| | **S-4:** Added L-3: Fail-open as deliberate attack vector | Suggested addition |
+| | **S-5:** Added L-5: TOCTOU race condition risk in multi-agent context | Suggested addition |
+| | **S-6:** Investigated Zod dependency claim — no CVEs found, clarified to supply-chain risk | Suggested addition |
