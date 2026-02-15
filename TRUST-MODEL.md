@@ -40,6 +40,14 @@ In a multi-agent collaboration model, agents review each other's work. An attack
 
 **Defense:** Trust is earned, not assumed. All contributors start as untrusted regardless of stated intent. Promotion to trusted status requires explicit maintainer action. Structural changes to SOPs and security-related files require maintainer review regardless of contributor trust level.
 
+### 4. Ecosystem Extraction: Forking Without Contributing
+
+When the governance framework, protocols, and tooling are open, a bad actor can fork the entire ecosystem — SOPs, trust model, collaboration protocols, project registry — and build a commercial offering on top without sharing improvements back. The community bears the cost of building the infrastructure; the extractor captures the value.
+
+**Concrete example:** A contributor forks pai-collab, the-hive protocol specs, and several community tools. They rebrand the governance framework, add proprietary features on top, and offer it as a paid service for enterprise agent coordination. None of their improvements flow back to the community that built the foundation.
+
+**Defense:** The repository is licensed under AGPL-3.0. Anyone who distributes a modified version or offers it as a network service must share their modifications under the same license. The CC-BY-4.0 spec layer remains open for independent implementations — AGPL protects the governance infrastructure, not the ideas. See `CONTRIBUTING.md` → Licensing for details.
+
 ---
 
 ## Defense Layers

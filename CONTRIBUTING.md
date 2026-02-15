@@ -324,18 +324,31 @@ Every SOP should reference:
 
 ---
 
-## Licensing Policy
+## Licensing
 
-All projects accepted to pai-collab must declare a license using an [SPDX identifier](https://spdx.org/licenses/) in their PROJECT.yaml.
+### Repository License
+
+pai-collab is licensed under **AGPL-3.0**. This covers the governance framework, SOPs, schemas, coordination infrastructure, and any tooling in this repository.
+
+**Why AGPL-3.0 for the governance framework?** The SOPs, trust model, and collaboration protocols in this repository are infrastructure — they define how agent networks coordinate. AGPL-3.0 ensures that anyone who forks this framework and offers it as a service (or distributes modified versions) must share their modifications. This prevents ecosystem extraction — taking community-built governance and closing it off for commercial use without contributing back.
+
+**What this means for contributors:** By submitting a PR to pai-collab, you agree that your contribution is licensed under AGPL-3.0. You retain copyright on your contributions, but grant the community the rights defined by the AGPL-3.0 license.
+
+**What this means for forks:** You can fork pai-collab freely. You can use it internally. If you distribute a modified version or offer it as a network service, you must make your modifications available under AGPL-3.0. Attribution is required.
+
+### Project Licensing Policy
+
+All projects registered in pai-collab must declare a license using an [SPDX identifier](https://spdx.org/licenses/) in their PROJECT.yaml.
 
 **Accepted licenses:** `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `CC-BY-4.0`, `AGPL-3.0`
 
-**Two-layer model:** The Hive ecosystem uses a two-layer licensing approach:
+**Three-layer model:** The ecosystem uses a layered licensing approach:
+- **Governance framework** (this repository) uses `AGPL-3.0` — modifications to the collaboration infrastructure must be shared
 - **Protocol specifications** (e.g., the-hive) use `CC-BY-4.0` — anyone can read, implement, and fork the spec under any license
 - **Reference implementations** (e.g., hive-spoke, hive-hub) use `AGPL-3.0` — use freely, share modifications if offered as a network service
 - **Standalone tools** (e.g., ivy-blackboard, pai-secret-scanning) use permissive licenses (`MIT`, `Apache-2.0`) — frictionless upstream contribution
 
-**Why AGPL-3.0 for infrastructure tooling?** AGPL-3.0 is OSI-approved. Its Section 13 requires that modifications offered as a network service must be shared. This prevents cloud extraction without contribution (the Elasticsearch problem) while keeping the code fully open source. The CC-BY-4.0 spec is the escape valve — anyone who can't use AGPL can implement from the open spec under any license.
+**Why AGPL-3.0 for infrastructure?** AGPL-3.0 is OSI-approved. Its Section 13 requires that modifications offered as a network service must be shared. This prevents cloud extraction without contribution (the Elasticsearch problem) while keeping everything fully open source. The CC-BY-4.0 spec layer is the escape valve — anyone who can't use AGPL can implement from the open spec under any license.
 
 **Why permissive for standalone tools?** Tools that may be merged into MIT-licensed projects (like PAI) need license compatibility. Copyleft creates friction when code flows upstream.
 
@@ -343,7 +356,17 @@ All projects accepted to pai-collab must declare a license using an [SPDX identi
 
 **No license = no acceptance.** Unlicensed work has implicit "all rights reserved" and cannot be safely merged anywhere. Projects without a `license` field in PROJECT.yaml will not be accepted.
 
-**Code contributions (PRs)** are submitted under the project's declared license. Specs and documentation follow the repository's license.
+### Developer Certificate of Origin (DCO)
+
+All contributions to pai-collab are made under the repository's AGPL-3.0 license. By submitting a pull request, you certify that:
+
+1. The contribution is your original work, or you have the right to submit it
+2. You grant the project a perpetual, irrevocable license to use your contribution under AGPL-3.0
+3. You understand that your contribution is public and that a record of it is maintained indefinitely
+
+This follows the [Developer Certificate of Origin](https://developercertificate.org/) (DCO) model. No CLA signature is required — the act of submitting a PR constitutes agreement.
+
+**Relicensing:** If the repository license changes in the future, existing contributors will be notified and their consent sought for contributions made under the prior license.
 
 ---
 

@@ -39,6 +39,7 @@ All artifacts in this repository follow canonical schemas defined in `CONTRIBUTI
 
 **Key rules:**
 - `PROJECT.yaml` status must use canonical lifecycle values: `proposed`, `building`, `hardening`, `contrib-prep`, `review`, `shipped`, `evolving`, `archived`
+- **Repository license is AGPL-3.0.** All contributions to pai-collab (SOPs, governance docs, tooling) are under AGPL-3.0. PRs constitute acceptance of this license (DCO model — see CONTRIBUTING.md)
 - `PROJECT.yaml` must include a `license` field with an accepted SPDX identifier: `MIT`, `Apache-2.0`, `BSD-2-Clause`, `BSD-3-Clause`, `CC-BY-4.0`, `AGPL-3.0`. CC-BY-4.0 is accepted for documentation/specification projects. AGPL-3.0 is accepted for infrastructure tooling where network-use protection is required (prevents cloud extraction without contribution). Reject PRs that omit this field or use other copyleft licenses (GPL, LGPL, MPL)
 - `REGISTRY.md` status must match `PROJECT.yaml` status — REGISTRY.md is the index, PROJECT.yaml is the source of truth
 - `JOURNAL.md` phase values must match the lifecycle: Specify, Build, Harden, Contrib Prep, Review, Release, Evolve
