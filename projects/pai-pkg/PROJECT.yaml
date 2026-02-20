@@ -1,0 +1,25 @@
+name: pai-pkg
+maintainer: mellanon
+status: proposed
+created: 2026-02-21
+license: MIT
+type: infrastructure
+source:
+  repo: mellanon/pai-pkg
+  branch: main
+docs: https://github.com/mellanon/pai-pkg#readme
+
+description: >
+  Package management for PAI skills. Three-layer architecture: npm as
+  transport (versioning, dependencies, registry), SkillSeal for cryptographic
+  signing and trust verification, and Debian-inspired governance with
+  Official/Community/Universe tiers. Enables secure sharing of skills
+  between PAI users.
+
+dependencies:
+  - the-hive          # trust model alignment (spoke protocol, operator identity)
+
+contributors:
+  mellanon:
+    zone: maintainer
+    since: 2026-02-21

@@ -20,6 +20,7 @@ For open issues and contribution opportunities, query [GitHub Issues](https://gi
 | [ivy-heartbeat](projects/ivy-heartbeat/) | @jcfischer | shipped | Proactive monitoring and agent dispatch for PAI systems |
 | [the-hive](projects/the-hive/) | @mellanon | building | Open protocol specification for human-operated agent networks |
 | [hive-spoke](projects/hive-spoke/) | @mellanon | building | Spoke contract CLI — scaffolds .collab/, generates status, validates schemas, projects to hives |
+| [pai-pkg](projects/pai-pkg/) | @mellanon | proposed | Package management for PAI skills — npm transport, SkillSeal signing, Debian-style governance tiers |
 
 Phases follow the lifecycle: `proposed` → `building` → `hardening` → `contrib-prep` → `review` → `shipped` → `evolving`. See each project's `PROJECT.yaml` for full details.
 

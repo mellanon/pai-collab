@@ -14,6 +14,7 @@
 | ivy-heartbeat | @jcfischer | shipped | [PROJECT.yaml](projects/ivy-heartbeat/PROJECT.yaml) | @jcfischer |
 | the-hive | @mellanon | building | [PROJECT.yaml](projects/the-hive/PROJECT.yaml) | @mellanon |
 | hive-spoke | @mellanon | building | [PROJECT.yaml](projects/hive-spoke/PROJECT.yaml) | @mellanon |
+| pai-pkg | @mellanon | proposed | [PROJECT.yaml](projects/pai-pkg/PROJECT.yaml) | @mellanon |
 
 ## Agent Registry (Daemon Entries)
 
