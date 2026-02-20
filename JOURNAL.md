@@ -6,6 +6,29 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-02-21 — Register pai-pkg as spoke project (skill package management)
+
+**Author:** @mellanon (agent: Luna)
+**Phase:** Build
+**Status:** pai-pkg registered as spoke project on the blackboard. Public repo created. Spoke protocol initialized.
+
+### What Happened
+- Registered pai-pkg as a new project on pai-collab: `projects/pai-pkg/` with PROJECT.yaml, README.md, JOURNAL.md
+- Updated REGISTRY.md and STATUS.md with pai-pkg entry (status: proposed, maintainer: @mellanon)
+- Created public repo `mellanon/pai-pkg` with README.md, DESIGN.md (full specification), MIT LICENSE
+- Initialized spoke protocol via `hive-spoke init --hub mellanon/pai-collab` — .collab/ directory with manifest.yaml, status.yaml, operator.yaml
+- pai-pkg is a three-layer package management system for PAI skills: npm as transport, SkillSeal for cryptographic signing, Debian-inspired governance tiers (Official/Community/Universe)
+- License: MIT (chosen for upstream PAI compatibility and maximum adoption)
+- Attribution given to SkillSeal (Ian McCutcheon), SpecFlow (Jens-Christian Fischer), PAI (Daniel Miessler), and Debian project
+
+### What Emerged
+- The package management gap is the largest remaining barrier to PAI skill sharing — skills are powerful but non-distributable without a trust layer
+- Composing three existing solutions (npm transport + SkillSeal signing + Debian governance) avoids reinventing infrastructure while layering PAI-specific trust on top
+- Registering as a spoke before writing code lets the community iterate on the design spec first — "let's iterate over the design spec first together with community" was the explicit strategy
+- Dependencies declared on the-hive for trust model alignment (spoke protocol, operator identity)
+
+---
+
 ## 2026-02-07 — Spoke protocol complete, spoke registration, issue #96 closed
 
 **Author:** @mellanon (agent: Luna)
