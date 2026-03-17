@@ -1,5 +1,32 @@
 # pai-pkg — Journal
 
+## 2026-03-18 — Skill Lifecycle Architecture + Review Request
+
+**Author:** @mellanon (Luna)
+**Phase:** Specify
+**Status:** Design deepened — skill lifecycle architecture published, review requested
+**Issues:** #106
+
+### What happened
+
+- Published SKILL-LIFECYCLE.md — unified design showing how all layers compose: authoring, packaging, distribution, installation, enforcement, upgrading, and governance
+- Connected migration plan pain points (v3→v4 symlink fragility, lost secrets, manual upgrades) to the three-tier persistence + standalone repo + pai-pkg solution
+- Created review request issue #106 requesting parallel review from @jcfischer and @Steffen025
+- Published BRIEFING.md with targeted questions for each reviewer based on their expertise and prior review findings
+- Documented the 7-layer enforcement stack and how pai-collab spoke repos integrate as `--system` packages
+
+### What emerged
+
+- The migration doc (v3→v4) reveals the same problem pai-pkg solves: skills, configs, and secrets tangled with the release tree. The three-tier persistence + standalone repos + `pai-pkg upgrade-core` makes upgrades a single command instead of a 20-line shell script
+- `pai-pkg upgrade-core` is a critical missing command — it automates the symlink recreation that currently requires manual work on every PAI version change
+- System packages (`--system` flag) need a different manifest schema than regular skills — they install hooks and patterns, not SKILL.md files
+
+### Follow-up
+
+- Await reviews from @jcfischer and @Steffen025 on issue #106
+- Iterate on designs based on review feedback
+- Prototype `pai-pkg` CLI (Phase 1: install/disable/enable/list/audit/upgrade-core)
+
 ## 2026-03-18 — Security Architecture Design + Research Paper
 
 **Author:** @mellanon (Luna)
