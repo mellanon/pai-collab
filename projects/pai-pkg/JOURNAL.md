@@ -1,5 +1,37 @@
 # pai-pkg — Journal
 
+## 2026-03-18 — CLI Implementation + upgrade-core Command
+
+**Author:** @mellanon (Luna)
+**Phase:** Build
+**Status:** Phase 1 CLI built — 10 commands, 64 tests, 202 assertions passing
+
+### What happened
+
+- Built pai-pkg CLI using TDD approach: wrote full test suite first, then implemented to pass
+- 10 commands implemented: `install`, `list`, `info`, `audit`, `disable`, `enable`, `remove`, `verify`, `init`, `upgrade-core`
+- Git-based transport (Phase 1): `pai-pkg install <git-url>` clones repo, reads pai-manifest.yaml, creates symlinks, records in packages.db
+- `upgrade-core` command automates the manual 20-line symlink script from v3→v4 migration plan into a single command with 7-step flow: locate release → persistent symlinks → skill re-linking → bin re-linking → config carry-forward → main symlink swap → validation
+- Added `pai-manifest.yaml` capability declarations to all 7 custom skill repos (jira, dispatch, oncharging, docx, jira-analysis, coupa, context)
+- SQLite database (bun:sqlite) with skills + capabilities tables, FK cascade on delete
+- Risk assessment: capabilities mapped to green/amber/red visual hierarchy
+- Audit composition detection: cross-skill warnings for dangerous capability unions (network+write, network+secret+read)
+- CLI registered globally via `bun link` (creates ~/.bun/bin/pai-pkg)
+
+### What emerged
+
+- Dynamic test fixtures (`createMockSkillRepo()`) generate git-initialized repos with configurable manifests — more robust than static fixtures
+- Library-first testing (import functions directly) is faster and more reliable than subprocess testing for Phase 1
+- The upgrade-core command is the most complex piece — full mock PAI environment in tests simulates old release with persistent + config symlinks, installed skills, and validates the entire upgrade flow
+- Capability composition warnings are critical: individually safe skills become dangerous when combined (Skill A has network, Skill B has file write → together they enable download-and-execute)
+
+### Follow-up
+
+- Await reviews from @jcfischer and @Steffen025 on issue #106
+- Implement SkillSeal signing integration (Phase 1 remaining)
+- Implement `sign` and `lint` commands
+- Prototype patterns.yaml v2.0 schema with skill-scoped policies
+
 ## 2026-03-18 — Skill Lifecycle Architecture + Review Request
 
 **Author:** @mellanon (Luna)
