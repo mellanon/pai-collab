@@ -24,3 +24,6 @@ andreas.aastroem@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO6xYoY3NSCNkCSiS
 
 # @jcfischer — trusted
 # TODO: Add jcfischer's Ed25519 public key (request via issue or PR)
+
+# @Steffen025 — untrusted (signing key registered 2026-03-18)
+steffen@hetzner-jeremy ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKVDWBBB0mSvrpw3ZoquQIQt6zqu/ZDa3wEDQD83ruCS
