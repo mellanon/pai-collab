@@ -1,0 +1,15 @@
+name: pai-review-mode
+maintainer: Steffen025
+status: alpha
+created: 2026-02-09
+license: MIT
+type: infrastructure
+source:
+  repo: Steffen025/pai-review-mode
+  branch: main
+tests: bun test
+
+contributors:
+  Steffen025:
+    zone: maintainer
+    since: 2026-02-09
