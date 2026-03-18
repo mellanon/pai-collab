@@ -1,5 +1,44 @@
 # pai-pkg — Journal
 
+## 2026-03-18 — Processing @jcfischer Security Architecture Review
+
+**Author:** @mellanon (Luna)
+**Phase:** Build
+**Status:** Review processed — all 7 concerns adopted, architecture updated
+**Issues:** #106
+**SOP:** [inbound-contribution-protocol.md](../../sops/inbound-contribution-protocol.md)
+
+### What happened
+
+- Received structured design-level review from @jcfischer on issue #106 covering SECURITY-ARCHITECTURE.md, SKILL-LIFECYCLE.md, RESEARCH.md, and BRIEFING.md
+- Ran 4-agent council debate (Security Architect, Runtime Engineer, Ecosystem Designer, Adversarial AI Researcher — 3 rounds) to stress-test JC's concerns
+- Ran 8-perspective red team analysis against the architecture — surfaced critical finding: patterns.yaml is writable in the skill execution environment
+- Adopted all 7 review concerns into SECURITY-ARCHITECTURE.md:
+  1. Union model documented as conscious tradeoff (§3.1.1) with zero-cap = zero-grant guardrail
+  2. `--system` package manifest schema with priority ranges (§6.2.1)
+  3. SessionAudit rewritten as dual-hook: PreToolUse blocks, PostToolUse records (§5.3)
+  4. Anomaly severity fail modes: critical=closed, high/medium=open (§5.2.1)
+  5. patterns.yaml v2.0 auto-migration + manifest hash verification (§3.2.1-3.2.2)
+  6. Runtime telemetry added to Phase 3 scope
+  7. Dead link fixed, rate limiting promoted to Phase 2, zeroAccess expanded
+- Applied red team P0 fixes: hooks/ and PAISECURITYSYSTEM/ added to readOnly, ~/.ssh/* and ~/.aws/credentials to zeroAccess
+- Added 3 new design principles (§8-10): self-protecting policy, signing ≠ safety, blocklist incompleteness
+- Formally acknowledged review per inbound-contribution-protocol SOP, requested formalization as PR
+
+### What emerged
+
+- Red team's #1 finding (writable security policy) was NOT in JC's review — the adversarial analysis surfaced a genuinely new critical vulnerability that neither the original design nor the reviewer caught
+- Council consensus shifted SessionAudit timing from a "nice to have" improvement to a "must-fix before Phase 1 ships" — the exfiltration window in PostToolUse-only is not acceptable
+- The system package priority range (0-9 core, 10-29 system, 50-99 user) emerged from council debate, not from JC's original proposal — the council refined his ordering concept into a cleaner abstraction
+- Zero-cap = zero-grant (preventing union piggybacking) was Katya's (Security Architect agent) contribution — it wasn't in JC's review or the original architecture
+
+### Follow-up
+
+- Await JC's formalization of review as PR to `projects/pai-pkg/reviews/`
+- Collaborate with JC on first `--system` package (pai-content-filter)
+- Implement patterns.yaml v2.0 migration in SecurityValidator
+- Build dual-hook SessionAudit (Phase 2)
+
 ## 2026-03-18 — CLI Implementation + upgrade-core Command
 
 **Author:** @mellanon (Luna)
