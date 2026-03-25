@@ -128,6 +128,53 @@ pai-pkg search myskill     # Finds it
 pai-pkg install MySkill     # Installs from registry
 ```
 
+## Version Management
+
+Versions follow [semver](https://semver.org/) and are tracked in two places:
+
+| Location | Field | Purpose |
+|----------|-------|---------|
+| `pai-manifest.yaml` | `version: "1.2.0"` | Canonical version — source of truth |
+| `git tag` | `v1.2.0` | Installable snapshot — pai-pkg uses this for pinned installs |
+
+### Convention
+
+1. **Bump the version** in `pai-manifest.yaml` when you ship a meaningful change
+2. **Tag the commit**: `git tag v1.2.0 && git push origin v1.2.0`
+3. **Tag must match manifest**: the `v` prefix on the tag, the version string in the manifest — they must agree (tag `v1.2.0` ↔ manifest `version: 1.2.0`)
+
+### When to bump
+
+| Change | Bump | Example |
+|--------|------|---------|
+| Bug fix, typo, docs | Patch | `1.0.0` → `1.0.1` |
+| New workflow, new capability, new CLI command | Minor | `1.0.0` → `1.1.0` |
+| Breaking change to skill interface, renamed triggers, removed capabilities | Major | `1.0.0` → `2.0.0` |
+
+### Registry version field
+
+REGISTRY.yaml entries may include an optional `version` field to advertise the latest available version:
+
+```yaml
+- name: MySkill
+  description: What it does
+  author: your-github-handle
+  source: https://github.com/you/pai-skill-myskill
+  version: 1.2.0              # optional — latest published version
+  type: community
+  status: shipped
+```
+
+This is informational today. Future pai-pkg versions will use it for upgrade detection (`pai-pkg upgrade` compares installed version against registry version).
+
+### Install behavior
+
+| Command | What happens |
+|---------|-------------|
+| `pai-pkg install MySkill` | Clones default branch (latest) |
+| `pai-pkg install MySkill@1.2.0` | (future) Clones and checks out `v1.2.0` tag |
+| `pai-pkg upgrade MySkill` | (future) Pulls latest, compares versions, upgrades if newer |
+
 ## Trust Tier Assignment
 
 Skills published through pai-collab get the **community** tier. This means:

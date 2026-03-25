@@ -1,0 +1,41 @@
+# skills/REGISTRY.yaml — pai-collab package registry
+# This file is fetched by pai-pkg clients configured with this hub as a source.
+# To publish: open a PR adding your entry below with a pai-manifest.yaml in your repo.
+# See sops/skill-publishing.md for the full publishing SOP.
+
+registry:
+  skills:
+    - name: _DOC
+      description: Markdown to styled HTML conversion with template/theme system
+      author: mellanon
+      version: 1.0.1
+      source: https://github.com/mellanon/pai-skill-doc
+      type: community
+      status: shipped
+
+  agents:
+    - name: PaiContributor
+      description: Community PAI ecosystem guide — helps with publishing, manifests, and SOPs
+      author: mellanon
+      version: 1.0.0
+      source: https://github.com/mellanon/pai-agent-contributor
+      type: community
+      status: shipped
+
+  prompts:
+    - name: explain-code
+      description: Structured code explanation — what, why, how, gotchas, connections
+      author: mellanon
+      version: 1.0.0
+      source: https://github.com/mellanon/pai-prompt-explain
+      type: community
+      status: shipped
+
+  tools:
+    - name: hello-pai
+      description: Welcome message CLI with PAI ASCII art
+      author: mellanon
+      version: 1.0.0
+      source: https://github.com/mellanon/pai-tool-hello
+      type: community
+      status: shipped
