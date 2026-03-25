@@ -73,6 +73,7 @@ Add your package under the appropriate section (`skills:`, `tools:`, `agents:`, 
 - name: MySkill
   description: What it does (one line)
   author: your-github-handle
+  version: 1.0.0
   source: https://github.com/you/pai-skill-myskill
   type: community
   status: shipped           # or "beta" for early releases
@@ -85,6 +86,7 @@ Add your package under the appropriate section (`skills:`, `tools:`, `agents:`, 
 | `name` | Yes | Must match `name` in your pai-manifest.yaml |
 | `description` | Yes | One-line description |
 | `author` | Yes | Your GitHub handle |
+| `version` | Yes | Semver — must match `version` in your pai-manifest.yaml |
 | `source` | Yes | GitHub repo URL (not raw file URL) |
 | `type` | Yes | `community` for community-reviewed, `custom` for personal |
 | `status` | Yes | `shipped`, `beta`, or `deprecated` |
@@ -167,13 +169,15 @@ REGISTRY.yaml entries may include an optional `version` field to advertise the l
 
 This is informational today. Future pai-pkg versions will use it for upgrade detection (`pai-pkg upgrade` compares installed version against registry version).
 
-### Install behavior
+### Install and upgrade behavior
 
 | Command | What happens |
 |---------|-------------|
 | `pai-pkg install MySkill` | Clones default branch (latest) |
+| `pai-pkg upgrade --check` | Compares installed versions against registry, shows upgradable |
+| `pai-pkg upgrade` | Pulls latest for all upgradable packages, updates DB |
+| `pai-pkg upgrade MySkill` | Pulls latest for MySkill, re-reads manifest, updates DB |
 | `pai-pkg install MySkill@1.2.0` | (future) Clones and checks out `v1.2.0` tag |
-| `pai-pkg upgrade MySkill` | (future) Pulls latest, compares versions, upgrades if newer |
 
 ## Trust Tier Assignment
 
