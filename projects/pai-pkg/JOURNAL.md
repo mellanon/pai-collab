@@ -1,5 +1,41 @@
 # pai-pkg — Journal
 
+## 2026-03-26 — Multi-Source Registry, Upgrade Lifecycle, Community Launch Prep
+
+**Author:** @mellanon (Luna)
+**Phase:** Build
+**Status:** v0.2.0 released — multi-source registry, upgrade lifecycle, GitHub Releases, beta testing requested
+**Issues:** #108 (beta testing), #106 (closed — security review complete)
+
+### What happened
+
+- Built multi-source registry system (apt model): `sources.yaml` configures registry endpoints, `source update` fetches indexes, `search` queries across all sources with tier display
+- Implemented upgrade lifecycle: `upgrade --check` compares installed vs registry versions (semver), `upgrade` pulls latest via `git pull --ff-only`, re-reads manifest, updates DB
+- Added version management: registry entries now carry `version` field, git tags match manifest versions, GitHub Releases serve as changelogs (no separate CHANGELOG.md)
+- `pai-pkg info` now fetches and displays GitHub Release notes via `gh` CLI (optional soft dependency, graceful degradation)
+- Improved audit command: summary mode by default (grouped composition stats + cross-tier warnings only), `--verbose` for full pairwise list. Reduces 180 lines of noise to ~15 actionable lines
+- Scaffolding (`pai-pkg init`) supports all 4 artifact types: skill, tool, agent, prompt — each with type-specific directory structure and manifest
+- Created GitHub Releases for all 16 managed repos (skills + tools)
+- Aligned all versions across: DB (packages.db), manifests (pai-manifest.yaml), git tags, and both registries (pai-collab + personal)
+- Updated publishing SOP with version management convention, GitHub Releases requirement, upgrade detection documentation
+- Closed #106 (security architecture review — all 7 concerns addressed), opened #108 (beta testing) assigned to @jcfischer
+- 180 tests, 554 assertions passing
+
+### What emerged
+
+- The apt model maps cleanly: `sources.yaml` = sources.list, `source update` = apt update, `search` = apt-cache search, `upgrade` = apt upgrade. Users with Linux/Debian background will find it intuitive
+- GitHub Releases as the sole changelog eliminates dual maintenance (CHANGELOG.md + releases). `pai-pkg info` reads release notes directly — dogfooding the system
+- Audit cross-tier filtering is the key insight: same-author/same-tier combinations (your own skills) generate O(n²) noise. Cross-tier warnings (community skill interacting with personal skills) are the actually interesting signals
+- Two-registry model (pai-collab community + personal private) handles the public/private separation cleanly. Personal skills (`_ALLCAPS`) stay in the private registry, never published to community
+
+### Follow-up
+
+- Beta testing feedback from @jcfischer (#108)
+- JC to publish SpecFlow and/or ContentFilter via publishing SOP PR
+- Implement `pai-pkg install MySkill@1.2.0` (pinned version install via git tag checkout)
+- SkillSeal signing integration (deferred to Phase 2)
+- patterns.yaml v2.0 integration with SecurityValidator
+
 ## 2026-03-18 — Processing @jcfischer Security Architecture Review
 
 **Author:** @mellanon (Luna)
