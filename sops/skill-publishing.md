@@ -22,6 +22,7 @@ Before publishing, your skill or tool repo must have:
 | Public GitHub repo | pai-pkg clones via git — must be accessible |
 | Working install | Someone should be able to `git clone` + `bun install` + use it |
 | License file | Accepted: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause |
+| Git tag + GitHub Release | Tag matches manifest version; release notes describe changes |
 
 ### pai-manifest.yaml minimum
 
@@ -143,7 +144,15 @@ Versions follow [semver](https://semver.org/) and are tracked in two places:
 
 1. **Bump the version** in `pai-manifest.yaml` when you ship a meaningful change
 2. **Tag the commit**: `git tag v1.2.0 && git push origin v1.2.0`
-3. **Tag must match manifest**: the `v` prefix on the tag, the version string in the manifest — they must agree (tag `v1.2.0` ↔ manifest `version: 1.2.0`)
+3. **Create a GitHub Release** with release notes describing what changed:
+   ```bash
+   gh release create v1.2.0 --title "v1.2.0" --notes "## What Changed
+   - Added new workflow for X
+   - Fixed Y bug in Z"
+   ```
+4. **Tag must match manifest**: tag `v1.2.0` ↔ manifest `version: 1.2.0`
+
+GitHub Releases are the changelog. No separate CHANGELOG.md file needed — `pai-pkg info` reads release notes directly.
 
 ### When to bump
 
@@ -167,7 +176,7 @@ REGISTRY.yaml entries may include an optional `version` field to advertise the l
   status: shipped
 ```
 
-This is informational today. Future pai-pkg versions will use it for upgrade detection (`pai-pkg upgrade` compares installed version against registry version).
+`pai-pkg upgrade --check` compares installed versions against registry versions and shows what's upgradable.
 
 ### Install and upgrade behavior
 
