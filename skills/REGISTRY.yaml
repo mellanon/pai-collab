@@ -13,6 +13,25 @@ registry:
       type: community
       status: shipped
 
+    - name: SpecFlow
+      description: Spec-driven development — specify, plan, implement with gated workflow and quality evals
+      author: jcfischer
+      version: 0.1.0
+      source: https://github.com/jcfischer/specflow-bundle
+      type: community
+      status: shipped
+      has_cli: true
+      bundle: true
+
+    - name: Pii
+      description: PII detection, pseudonymization, and restoration — pattern and NER-based
+      author: jcfischer
+      version: 1.0.0
+      source: https://github.com/jcfischer/pii-pseudonymizer
+      type: community
+      status: shipped
+      has_cli: true
+
   agents:
     - name: PaiContributor
       description: Community PAI ecosystem guide — helps with publishing, manifests, and SOPs
