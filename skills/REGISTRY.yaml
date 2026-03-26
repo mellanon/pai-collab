@@ -58,3 +58,12 @@ registry:
       source: https://github.com/mellanon/pai-tool-hello
       type: community
       status: shipped
+
+  components:
+    - name: TheAlgorithm
+      description: Daniel Miessler's Algorithm for autonomous optimization via verifiable ISC
+      author: danielmiessler
+      version: 1.6.0
+      source: https://github.com/danielmiessler/TheAlgorithm
+      type: community
+      status: shipped
