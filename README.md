@@ -141,15 +141,15 @@ pai-collab/
 
 ## Package Registry
 
-pai-collab hosts a [package registry](skills/README.md) for PAI skills, tools, agents, and prompts — installable via [`pai-pkg`](https://github.com/mellanon/pai-pkg).
+pai-collab hosts a [package registry](skills/README.md) for PAI skills, tools, agents, and prompts — installable via [`arc`](https://github.com/the-metafactory/arc).
 
 ```bash
 # Install the package manager
-git clone https://github.com/mellanon/pai-pkg.git && cd pai-pkg && bun install && bun link
+git clone https://github.com/the-metafactory/arc.git && cd arc && bun install && bun link
 
 # Search and install from the registry
-pai-pkg search doc
-pai-pkg install _DOC
+arc search doc
+arc install _DOC
 ```
 
 See **[skills/README.md](skills/README.md)** for the full quickstart and what's available.

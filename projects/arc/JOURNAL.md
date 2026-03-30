@@ -1,4 +1,6 @@
-# pai-pkg — Journal
+# arc — Journal
+
+> **Note (2026-03-30):** This project was renamed from `pai-pkg` to `arc`. The repository moved from `mellanon/pai-pkg` to `the-metafactory/arc`. Historical entries below retain original naming for accuracy.
 
 ## 2026-03-26 — Multi-Source Registry, Upgrade Lifecycle, Community Launch Prep
 

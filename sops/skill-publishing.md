@@ -1,10 +1,10 @@
 # SOP: Package Publishing
 
-How to publish a skill, tool, agent, or prompt to the pai-collab registry so others can discover and install it via `pai-pkg`.
+How to publish a skill, tool, agent, or prompt to the pai-collab registry so others can discover and install it via `arc`.
 
 ## Why This Exists
 
-pai-collab hosts a `skills/REGISTRY.yaml` that `pai-pkg` clients fetch for package discovery. Publishing a skill means adding an entry to this file via PR. The maintainer reviews the skill's `pai-manifest.yaml` capabilities before merging — this is the trust gate.
+pai-collab hosts a `skills/REGISTRY.yaml` that `arc` clients fetch for package discovery. Publishing a skill means adding an entry to this file via PR. The maintainer reviews the skill's `pai-manifest.yaml` capabilities before merging — this is the trust gate.
 
 ## Pipeline
 
@@ -19,7 +19,7 @@ Before publishing, your skill or tool repo must have:
 | Requirement | Why |
 |-------------|-----|
 | `pai-manifest.yaml` at repo root | Declares capabilities, author, dependencies |
-| Public GitHub repo | pai-pkg clones via git — must be accessible |
+| Public GitHub repo | arc clones via git — must be accessible |
 | Working install | Someone should be able to `git clone` + `bun install` + use it |
 | License file | Accepted: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause |
 | Git tag + GitHub Release | Tag matches manifest version; release notes describe changes |
@@ -118,7 +118,7 @@ gh pr create --title "Publish MySkill to registry" --body "
 The maintainer will:
 1. Clone your repo and read `pai-manifest.yaml`
 2. Check declared capabilities against actual code
-3. Run `pai-pkg install <your-repo-url>` to test the install flow
+3. Run `arc install <your-repo-url>` to test the install flow
 4. Verify no secrets, personal paths, or undeclared network access
 5. Merge or request changes
 
@@ -127,8 +127,8 @@ The maintainer will:
 Once merged, anyone with pai-collab as a source can discover your skill:
 
 ```bash
-pai-pkg search myskill     # Finds it
-pai-pkg install MySkill     # Installs from registry
+arc search myskill     # Finds it
+arc install MySkill     # Installs from registry
 ```
 
 ## Version Management
@@ -138,7 +138,7 @@ Versions follow [semver](https://semver.org/) and are tracked in two places:
 | Location | Field | Purpose |
 |----------|-------|---------|
 | `pai-manifest.yaml` | `version: "1.2.0"` | Canonical version — source of truth |
-| `git tag` | `v1.2.0` | Installable snapshot — pai-pkg uses this for pinned installs |
+| `git tag` | `v1.2.0` | Installable snapshot — arc uses this for pinned installs |
 
 ### Convention
 
@@ -152,7 +152,7 @@ Versions follow [semver](https://semver.org/) and are tracked in two places:
    ```
 4. **Tag must match manifest**: tag `v1.2.0` ↔ manifest `version: 1.2.0`
 
-GitHub Releases are the changelog. No separate CHANGELOG.md file needed — `pai-pkg info` reads release notes directly.
+GitHub Releases are the changelog. No separate CHANGELOG.md file needed — `arc info` reads release notes directly.
 
 ### When to bump
 
@@ -176,22 +176,22 @@ REGISTRY.yaml entries may include an optional `version` field to advertise the l
   status: shipped
 ```
 
-`pai-pkg upgrade --check` compares installed versions against registry versions and shows what's upgradable.
+`arc upgrade --check` compares installed versions against registry versions and shows what's upgradable.
 
 ### Install and upgrade behavior
 
 | Command | What happens |
 |---------|-------------|
-| `pai-pkg install MySkill` | Clones default branch (latest) |
-| `pai-pkg upgrade --check` | Compares installed versions against registry, shows upgradable |
-| `pai-pkg upgrade` | Pulls latest for all upgradable packages, updates DB |
-| `pai-pkg upgrade MySkill` | Pulls latest for MySkill, re-reads manifest, updates DB |
-| `pai-pkg install MySkill@1.2.0` | (future) Clones and checks out `v1.2.0` tag |
+| `arc install MySkill` | Clones default branch (latest) |
+| `arc upgrade --check` | Compares installed versions against registry, shows upgradable |
+| `arc upgrade` | Pulls latest for all upgradable packages, updates DB |
+| `arc upgrade MySkill` | Pulls latest for MySkill, re-reads manifest, updates DB |
+| `arc install MySkill@1.2.0` | (future) Clones and checks out `v1.2.0` tag |
 
 ## Trust Tier Assignment
 
 Skills published through pai-collab get the **community** tier. This means:
-- `pai-pkg` shows capability summary before install
+- `arc` shows capability summary before install
 - User must confirm before proceeding
 - Capabilities are displayed so users can make an informed decision
 
@@ -201,4 +201,4 @@ The **official** tier is reserved for upstream PAI skills (Daniel Miessler's rep
 
 - [CONTRIBUTING.md](../CONTRIBUTING.md) — Publishing section with entry format
 - [TRUST-MODEL.md](../TRUST-MODEL.md) — Trust zones and defense layers
-- [pai-pkg README](https://github.com/mellanon/pai-pkg) — Package manager documentation
+- [arc README](https://github.com/the-metafactory/arc) — Package manager documentation

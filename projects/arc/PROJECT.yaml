@@ -1,13 +1,13 @@
-name: pai-pkg
+name: arc
 maintainer: mellanon
 status: building
 created: 2026-02-21
 license: MIT
 type: infrastructure
 source:
-  repo: mellanon/pai-pkg
+  repo: the-metafactory/arc
   branch: main
-docs: https://github.com/mellanon/pai-pkg#readme
+docs: https://github.com/the-metafactory/arc#readme
 
 description: >
   Package management for PAI. Git-based transport with capability declarations
