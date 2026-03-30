@@ -1,10 +1,10 @@
-# pai-pkg
+# arc
 
 **Package management for PAI skills.** Install, publish, and share skills with cryptographic trust and tiered governance.
 
 ## What It Does
 
-pai-pkg adds an `apt`-like distribution layer to PAI's skill system. Three layers:
+arc adds an `apt`-like distribution layer to PAI's skill system. Three layers:
 
 1. **Transport** -- npm for versioning, dependencies, and registry infrastructure
 2. **Trust** -- [SkillSeal](https://github.com/mcyork/skillseal) by [Ian McCutcheon](https://github.com/mcyork) for cryptographic signing
@@ -16,8 +16,8 @@ pai-pkg adds an `apt`-like distribution layer to PAI's skill system. Three layer
 
 ## Source
 
-- **Design spec**: [DESIGN.md](https://github.com/mellanon/pai-pkg/blob/main/DESIGN.md)
-- **Repository**: [mellanon/pai-pkg](https://github.com/mellanon/pai-pkg)
+- **Design spec**: [DESIGN.md](https://github.com/the-metafactory/arc/blob/main/DESIGN.md)
+- **Repository**: [the-metafactory/arc](https://github.com/the-metafactory/arc)
 
 ## Key Design Decisions
 
@@ -30,7 +30,7 @@ pai-pkg adds an `apt`-like distribution layer to PAI's skill system. Three layer
 
 This project is in the design phase. The best contributions right now:
 
-1. **Design feedback** -- open an issue on [mellanon/pai-pkg](https://github.com/mellanon/pai-pkg/issues) discussing architectural decisions
+1. **Design feedback** -- open an issue on [the-metafactory/arc](https://github.com/the-metafactory/arc/issues) discussing architectural decisions
 2. **Use case contributions** -- describe your skill distribution needs
 3. **Security review** -- help strengthen the trust model
-4. **SkillSeal alignment** -- how should pai-pkg and SkillSeal integrate?
+4. **SkillSeal alignment** -- how should arc and SkillSeal integrate?

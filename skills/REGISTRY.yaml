@@ -1,5 +1,5 @@
 # skills/REGISTRY.yaml — pai-collab package registry
-# This file is fetched by pai-pkg clients configured with this hub as a source.
+# This file is fetched by arc clients configured with this hub as a source.
 # To publish: open a PR adding your entry below with a pai-manifest.yaml in your repo.
 # See sops/skill-publishing.md for the full publishing SOP.
 

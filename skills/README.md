@@ -1,15 +1,15 @@
 # PAI Package Registry
 
-This directory hosts `REGISTRY.yaml` — the package registry that [`pai-pkg`](https://github.com/mellanon/pai-pkg) clients use for package discovery.
+This directory hosts `REGISTRY.yaml` — the package registry that [`arc`](https://github.com/the-metafactory/arc) clients use for package discovery.
 
 ## Quick Start — Install Packages
 
-### 1. Install pai-pkg
+### 1. Install arc
 
 ```bash
 # Clone and link globally
-git clone https://github.com/mellanon/pai-pkg.git
-cd pai-pkg
+git clone https://github.com/the-metafactory/arc.git
+cd arc
 bun install
 bun link
 ```
@@ -19,21 +19,21 @@ Requires [Bun](https://bun.sh/) (v1.0+) and Git.
 ### 2. Search the registry
 
 ```bash
-pai-pkg search doc          # Search by keyword
-pai-pkg search architect    # Find agents
-pai-pkg search hello        # Find tools
+arc search doc          # Search by keyword
+arc search architect    # Find agents
+arc search hello        # Find tools
 ```
 
 ### 3. Install a package
 
 ```bash
-pai-pkg install _DOC              # Install by name (from registry)
-pai-pkg install hello-pai         # Install a tool
-pai-pkg install PaiContributor    # Install an agent
-pai-pkg install explain-code      # Install a prompt
+arc install _DOC              # Install by name (from registry)
+arc install hello-pai         # Install a tool
+arc install PaiContributor    # Install an agent
+arc install explain-code      # Install a prompt
 ```
 
-`pai-pkg` clones the source repo, reads `pai-manifest.yaml`, displays capabilities for your review, and creates the appropriate symlinks:
+`arc` clones the source repo, reads `pai-manifest.yaml`, displays capabilities for your review, and creates the appropriate symlinks:
 
 | Type | Installed To | Purpose |
 |------|-------------|---------|
@@ -45,12 +45,12 @@ pai-pkg install explain-code      # Install a prompt
 ### 4. Manage installed packages
 
 ```bash
-pai-pkg list                # Show all installed packages
-pai-pkg info _DOC           # Details + capabilities
-pai-pkg disable _DOC        # Remove symlink, keep repo
-pai-pkg enable _DOC         # Re-create symlink
-pai-pkg remove _DOC         # Full uninstall
-pai-pkg audit               # Security surface analysis
+arc list                # Show all installed packages
+arc info _DOC           # Details + capabilities
+arc disable _DOC        # Remove symlink, keep repo
+arc enable _DOC         # Re-create symlink
+arc remove _DOC         # Full uninstall
+arc audit               # Security surface analysis
 ```
 
 ## What's in the Registry
@@ -77,7 +77,7 @@ See [sops/skill-publishing.md](../sops/skill-publishing.md) for how to add your 
 You can install any repo with a `pai-manifest.yaml` directly:
 
 ```bash
-pai-pkg install https://github.com/someone/their-skill
+arc install https://github.com/someone/their-skill
 ```
 
 The registry provides discovery and community review — direct installs bypass this and show a risk warning.
@@ -85,10 +85,10 @@ The registry provides discovery and community review — direct installs bypass 
 ## Scaffold a New Package
 
 ```bash
-pai-pkg init my-skill --type skill     # Skill scaffold
-pai-pkg init my-tool --type tool       # Tool scaffold
-pai-pkg init my-agent --type agent     # Agent scaffold
-pai-pkg init my-prompt --type prompt   # Prompt scaffold
+arc init my-skill --type skill     # Skill scaffold
+arc init my-tool --type tool       # Tool scaffold
+arc init my-agent --type agent     # Agent scaffold
+arc init my-prompt --type prompt   # Prompt scaffold
 ```
 
 This creates the directory structure, `pai-manifest.yaml`, and starter files.

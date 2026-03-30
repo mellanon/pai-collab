@@ -6,6 +6,20 @@ A structured, append-only log of governance-level changes — SOPs, trust model,
 
 ---
 
+## 2026-03-30 — Rename pai-pkg to arc
+
+**Author:** @mellanon
+**Phase:** Governance
+**Status:** Complete — CLI tool and repository renamed from `pai-pkg` to `arc`
+
+### What Happened
+- Renamed CLI tool from `pai-pkg` to `arc`
+- Repository moved from `mellanon/pai-pkg` to `the-metafactory/arc`
+- Updated all references across pai-collab: PROJECT.yaml, REGISTRY.md, STATUS.md, skills/README.md, sops/skill-publishing.md, and project directory renamed from `projects/pai-pkg/` to `projects/arc/`
+- Historical journal entries in `projects/arc/JOURNAL.md` retain original naming for accuracy
+
+---
+
 ## 2026-02-21 — Register pai-pkg as spoke project (skill package management)
 
 **Author:** @mellanon (agent: Luna)
